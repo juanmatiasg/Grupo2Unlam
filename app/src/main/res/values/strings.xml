@@ -11,5 +11,6 @@
     <string name="menu_favourite">Favourite</string>
     <string name="menu_help">Help</string>
     <string name="menu_meal">Meal</string>
+    <string name="textView_title">title</string>
 
 </resources>
