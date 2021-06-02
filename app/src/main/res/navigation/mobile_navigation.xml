@@ -22,4 +22,8 @@
         android:name="com.example.navigationdrawer.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_help"
         tools:layout="@layout/fragment_slideshow" />
+    <fragment
+        android:id="@+id/nav_mealFragment"
+        android:name="com.example.navigationdrawer.ui.meal.MealFragment"
+        android:label="MealFragment" />
 </navigation>

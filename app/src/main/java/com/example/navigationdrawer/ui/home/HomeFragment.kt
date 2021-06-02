@@ -23,18 +23,16 @@ class HomeFragment : Fragment() {
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
+
     ): View? {
         homeViewModel =
                 ViewModelProvider(this).get(HomeViewModel::class.java)
-        val view = inflater.inflate(R.layout.fragment_home, container, false)
+        _binding = FragmentHomeBinding.inflate(layoutInflater,container,false)
 
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
             binding.textHome.text = it
-
-            _binding = FragmentHomeBinding.inflate(inflater, container, false)
-            val view = binding.root
-
         })
+        val view = binding.root
         return view
     }
 
