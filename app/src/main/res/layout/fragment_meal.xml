@@ -4,32 +4,67 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center">
+    android:background="#F3F3F3"
+    android:gravity="center"
+    android:orientation="vertical">
 
 
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="gone">
+        app:layout_constraintTop_toTopOf="parent">
 
     </ProgressBar>
 
+
+        <ImageView
+            android:id="@+id/imgBackoundTitle_activityMeal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/backgroundtitle_allactivities" />
+
+        <TextView
+            android:id="@+id/txtVTitleMeal_activityMeal"
+            android:layout_width="153dp"
+            android:layout_height="78dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="Comida"
+            android:textColor="@color/white"
+            android:textSize="50dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imgBackoundTitle_activityMeal"
+            app:layout_constraintEnd_toEndOf="@+id/imgBackoundTitle_activityMeal"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="@+id/imgBackoundTitle_activityMeal"
+            app:layout_constraintTop_toTopOf="@+id/imgBackoundTitle_activityMeal"
+            app:layout_constraintVertical_bias="0.0" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewMeal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="422dp"
+        android:layout_height="628dp"
+        android:background="#F3F3F3"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.545"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/items_meal"
+        app:layout_constraintTop_toBottomOf="@+id/imgBackoundTitle_activityMeal"
+        app:layout_constraintVertical_bias="0.0"
         app:spanCount="2"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"/>
+        tools:listitem="@layout/items_meal" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
