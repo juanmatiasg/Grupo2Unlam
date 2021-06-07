@@ -57,7 +57,7 @@ class MealFragment: Fragment() {
     }
 
     private fun setupObserver(){
-        mealViewModel.fetchMeals.observe(viewLifecycleOwner, Observer {
+        /*mealViewModel.fetchMeals.observe(viewLifecycleOwner, Observer {
             it?.let{result ->
 
                 when(result.status){
@@ -73,7 +73,8 @@ class MealFragment: Fragment() {
                 }
 
             }
-        })
+        })*/
+
     }
 
     private fun retrieveList(list:ArrayList<Meals>) {
