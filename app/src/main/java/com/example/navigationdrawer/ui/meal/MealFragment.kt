@@ -57,9 +57,9 @@ class MealFragment: Fragment() {
     }
 
     private fun setupObserver(){
-        /*mealViewModel.fetchMeals.observe(viewLifecycleOwner, Observer {
+        mealViewModel.setComida("chicken")
+        mealViewModel.fetchMeals.observe(viewLifecycleOwner, Observer {
             it?.let{result ->
-
                 when(result.status){
                     Status.LOADING ->{
                         binding.progressBar.visibility = View.VISIBLE
@@ -73,7 +73,7 @@ class MealFragment: Fragment() {
                 }
 
             }
-        })*/
+        })
 
     }
 
