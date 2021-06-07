@@ -9,7 +9,7 @@ object RetrofitClient {
 
     val webService by lazy{
         Retrofit.Builder()
-            .baseUrl("https://www.themealdb.com/")
+            .baseUrl("https://api.spoonacular.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ApiMeals::class.java)

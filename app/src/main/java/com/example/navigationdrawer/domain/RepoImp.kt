@@ -6,8 +6,8 @@ import com.example.navigationdrawer.vo.Resource
 
 class RepoImp(private val dataSource: DataSource):Repo{
 
-    override suspend fun getListMeals(): Resource<ListMeals> {
-        return dataSource.getListMeals()
+    override suspend fun getListMeals(term: String): Resource<ListMeals> {
+        return dataSource.getListMeals(term)
     }
 
 }

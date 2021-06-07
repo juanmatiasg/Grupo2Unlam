@@ -5,7 +5,7 @@ import com.example.navigationdrawer.vo.Resource
 import com.example.navigationdrawer.vo.RetrofitClient
 
 class DataSource {
-    suspend fun getListMeals(): Resource<ListMeals> {
-        return Resource.success(RetrofitClient.webService.getListMeals())
+    suspend fun getListMeals(term: String): Resource<ListMeals> {
+        return Resource.success(RetrofitClient.webService.searchListMealsBySearch(term))
     }
 }

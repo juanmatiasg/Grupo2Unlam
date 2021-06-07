@@ -15,7 +15,7 @@ class MealViewModel(private val repo: Repo): ViewModel() {
     val fetchMeals = liveData(Dispatchers.IO) {
         emit(Resource.loading(data = null))
         try {
-            emit(repo.getListMeals())
+            emit(repo.getListMeals("pasta"))
         }
         catch (e:Exception){
             emit(Resource.error(data = null,message = e.message ?: "Error Ocurred"))
@@ -27,4 +27,5 @@ class MealViewModel(private val repo: Repo): ViewModel() {
         value = "This is meal Fragment"
     }
     val text: LiveData<String> = _text
+
 }

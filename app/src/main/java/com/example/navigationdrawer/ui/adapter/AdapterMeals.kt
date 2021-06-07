@@ -21,8 +21,8 @@ class AdapterMeals (private val items: ArrayList<Meals>):RecyclerView.Adapter<Re
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        itemsMealBinding.textViewTitle.text = items[position].strMeal
-        itemsMealBinding.imageView.loadUrl(items[position].strMealThumb)
+        itemsMealBinding.textViewTitle.text = items[position].title
+        itemsMealBinding.imageView.loadUrl(items[position].image)
     }
 
     private fun ImageView.loadUrl(url:String){
