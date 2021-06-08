@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -45,6 +46,7 @@ class MealFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupRecycler()
         setupObserver()
+        searchComida()
     }
 
     private fun setupRecycler() {
@@ -57,7 +59,7 @@ class MealFragment: Fragment() {
     }
 
     private fun setupObserver(){
-        mealViewModel.setComida("chicken")
+        /*mealViewModel.setComida("chicken")*/
         mealViewModel.fetchMeals.observe(viewLifecycleOwner, Observer {
             it?.let{result ->
                 when(result.status){
@@ -83,6 +85,20 @@ class MealFragment: Fragment() {
         }
     }
 
+    private fun searchComida(){
+        binding.searchView.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                mealViewModel.setComida(query.toString())
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                //mealViewModel.setComida(newText.toString())
+                return false
+            }
+
+        })
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
