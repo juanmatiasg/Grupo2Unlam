@@ -59,7 +59,7 @@ class MealFragment: Fragment() {
     }
 
     private fun setupObserver(){
-        /*mealViewModel.setComida("chicken")*/
+        mealViewModel.setComida("chicken")
         mealViewModel.fetchMeals.observe(viewLifecycleOwner, Observer {
             it?.let{result ->
                 when(result.status){
