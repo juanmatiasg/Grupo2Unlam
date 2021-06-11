@@ -59,7 +59,10 @@ class MealFragment: Fragment() {
     }
 
     private fun setupObserver(){
+
+        //Para que aparezca por defecto.
         mealViewModel.setComida("chicken")
+
         mealViewModel.fetchMeals.observe(viewLifecycleOwner, Observer {
             it?.let{result ->
                 when(result.status){
@@ -69,6 +72,10 @@ class MealFragment: Fragment() {
                     Status.SUCCESS ->{
                         binding.progressBar.visibility = View.INVISIBLE
                         binding.recyclerViewMeal.visibility = View.VISIBLE
+
+                        /*adapterMeals=AdapterMeals(result.data!!.meals)
+                        binding.recyclerViewMeal.adapter=adapterMeals*/
+
                         result.data?.let { listMeals -> retrieveList(listMeals.meals)}
                     }
                     Status.ERROR ->{}
@@ -86,6 +93,7 @@ class MealFragment: Fragment() {
     }
 
     private fun searchComida(){
+
         binding.searchView.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 mealViewModel.setComida(query.toString())
