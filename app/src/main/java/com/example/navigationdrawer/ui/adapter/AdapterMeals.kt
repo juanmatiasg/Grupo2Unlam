@@ -3,7 +3,9 @@ package com.example.navigationdrawer.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.navigationdrawer.R
 import com.example.navigationdrawer.data.model.Meals
 import com.example.navigationdrawer.databinding.ItemsMealBinding
 import com.squareup.picasso.Picasso
@@ -23,6 +25,9 @@ class AdapterMeals (private val items: ArrayList<Meals>):RecyclerView.Adapter<Re
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         itemsMealBinding.textViewTitle.text = items[position].title
         itemsMealBinding.imageView.loadUrl(items[position].image)
+        itemsMealBinding.cardView.setOnClickListener {
+            it.findNavController().navigate(R.id.action_nav_mealFragment_to_mealDetailFragment)
+        }
     }
 
     private fun ImageView.loadUrl(url:String){

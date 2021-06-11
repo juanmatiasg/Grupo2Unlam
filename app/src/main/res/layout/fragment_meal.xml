@@ -55,7 +55,6 @@
         android:id="@+id/recyclerViewMeal"
         android:layout_width="411dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="4dp"
         android:background="#F3F3F3"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -67,6 +66,7 @@
     <SearchView
         android:id="@+id/searchView"
         android:layout_width="277dp"
+       android:iconifiedByDefault="false"
         android:layout_height="34dp"
         android:layout_marginStart="67dp"
         android:layout_marginLeft="67dp"
@@ -74,7 +74,6 @@
         android:layout_marginEnd="67dp"
         android:layout_marginRight="67dp"
         android:background="@drawable/border_input_text"
-        android:iconifiedByDefault="false"
         android:queryHint="Buscar comida"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

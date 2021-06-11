@@ -25,5 +25,14 @@
     <fragment
         android:id="@+id/nav_mealFragment"
         android:name="com.example.navigationdrawer.ui.meal.MealFragment"
-        android:label="MealFragment" />
+        android:label="MealFragment" >
+        <action
+            android:id="@+id/action_nav_mealFragment_to_mealDetailFragment"
+            app:destination="@id/mealDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mealDetailFragment"
+        android:name="com.example.navigationdrawer.ui.meal.MealDetailFragment"
+        android:label="fragment_meal_detail"
+        tools:layout="@layout/fragment_meal_detail" />
 </navigation>

@@ -6,19 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.navigationdrawer.data.DataSource
 import com.example.navigationdrawer.data.model.Meals
-import com.example.navigationdrawer.databinding.FragmentHomeBinding
 import com.example.navigationdrawer.databinding.FragmentMealBinding
 import com.example.navigationdrawer.domain.RepoImp
 import com.example.navigationdrawer.ui.adapter.AdapterMeals
-import com.example.navigationdrawer.ui.home.HomeViewModel
 import com.example.navigationdrawer.vo.Status
 
 class MealFragment: Fragment() {
@@ -37,8 +32,7 @@ class MealFragment: Fragment() {
     ): View? {
         _binding = FragmentMealBinding.inflate(layoutInflater,container,false)
 
-        val view = binding.root
-        return view
+        return binding.root
 
     }
 
@@ -59,10 +53,7 @@ class MealFragment: Fragment() {
     }
 
     private fun setupObserver(){
-
-        //Para que aparezca por defecto.
         mealViewModel.setComida("chicken")
-
         mealViewModel.fetchMeals.observe(viewLifecycleOwner, Observer {
             it?.let{result ->
                 when(result.status){
@@ -72,10 +63,6 @@ class MealFragment: Fragment() {
                     Status.SUCCESS ->{
                         binding.progressBar.visibility = View.INVISIBLE
                         binding.recyclerViewMeal.visibility = View.VISIBLE
-
-                        /*adapterMeals=AdapterMeals(result.data!!.meals)
-                        binding.recyclerViewMeal.adapter=adapterMeals*/
-
                         result.data?.let { listMeals -> retrieveList(listMeals.meals)}
                     }
                     Status.ERROR ->{}
@@ -93,7 +80,6 @@ class MealFragment: Fragment() {
     }
 
     private fun searchComida(){
-
         binding.searchView.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 mealViewModel.setComida(query.toString())

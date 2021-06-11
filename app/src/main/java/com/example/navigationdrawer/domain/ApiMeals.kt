@@ -6,7 +6,7 @@ import retrofit2.http.Query
 
 interface ApiMeals {
 
-    @GET("recipes/complexSearch?query=&apiKey=${apiKeyMariano}")
+    @GET("recipes/complexSearch?query=&apiKey=${apiKeyJuan}")
     suspend fun searchListMealsBySearch(@Query("query")term:String): ListMeals
 
     companion object{
