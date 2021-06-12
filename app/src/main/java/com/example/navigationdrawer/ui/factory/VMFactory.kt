@@ -1,4 +1,4 @@
-package com.example.navigationdrawer.ui.meal
+package com.example.navigationdrawer.ui.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

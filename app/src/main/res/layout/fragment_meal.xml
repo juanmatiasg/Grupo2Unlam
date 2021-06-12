@@ -35,20 +35,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/backgroundtitle_allactivities" />
 
-        <TextView
-            android:id="@+id/txtVTitleMeal_activityMeal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-condensed-medium"
-            android:text="Comida"
-            android:textColor="@color/white"
-            android:textSize="50dp"
-            app:layout_constraintBottom_toBottomOf="@+id/imgBackoundTitle_activityMeal"
-            app:layout_constraintEnd_toEndOf="@+id/imgBackoundTitle_activityMeal"
-            app:layout_constraintHorizontal_bias="0.502"
-            app:layout_constraintStart_toStartOf="@+id/imgBackoundTitle_activityMeal"
-            app:layout_constraintTop_toTopOf="@+id/imgBackoundTitle_activityMeal"
-            app:layout_constraintVertical_bias="0.0" />
+    <TextView
+        android:id="@+id/txtVTitleMeal_activityMeal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="Comida"
+        android:textColor="@color/white"
+        android:textSize="50dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imgBackoundTitle_activityMeal"
+        app:layout_constraintEnd_toEndOf="@+id/imgBackoundTitle_activityMeal"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="@+id/imgBackoundTitle_activityMeal"
+        app:layout_constraintTop_toTopOf="@+id/imgBackoundTitle_activityMeal"
+        app:layout_constraintVertical_bias="0.0" />
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -63,10 +63,10 @@
         app:layout_constraintTop_toBottomOf="@+id/searchView"
         app:spanCount="2"
         tools:listitem="@layout/items_meal" />
+
     <SearchView
         android:id="@+id/searchView"
         android:layout_width="277dp"
-       android:iconifiedByDefault="false"
         android:layout_height="34dp"
         android:layout_marginStart="67dp"
         android:layout_marginLeft="67dp"
@@ -74,9 +74,11 @@
         android:layout_marginEnd="67dp"
         android:layout_marginRight="67dp"
         android:background="@drawable/border_input_text"
+        android:iconifiedByDefault="false"
         android:queryHint="Buscar comida"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgBackoundTitle_activityMeal" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

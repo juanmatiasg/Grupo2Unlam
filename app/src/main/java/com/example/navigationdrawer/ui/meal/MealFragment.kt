@@ -14,15 +14,22 @@ import com.example.navigationdrawer.data.model.Meals
 import com.example.navigationdrawer.databinding.FragmentMealBinding
 import com.example.navigationdrawer.domain.RepoImp
 import com.example.navigationdrawer.ui.adapter.AdapterMeals
+import com.example.navigationdrawer.ui.factory.VMFactory
 import com.example.navigationdrawer.vo.Status
+import kotlinx.android.synthetic.main.fragment_meal.*
 
-class MealFragment: Fragment() {
+class MealFragment : Fragment() {
 
     private var _binding: FragmentMealBinding? = null
+
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-    private val mealViewModel by viewModels<MealViewModel> {VMFactory(RepoImp(DataSource())) }
+    private val mealViewModel by viewModels<MealViewModel> {
+        VMFactory(
+            RepoImp(DataSource())
+        )
+    }
     private lateinit var adapterMeals: AdapterMeals
 
     override fun onCreateView(
@@ -30,7 +37,7 @@ class MealFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentMealBinding.inflate(layoutInflater,container,false)
+        _binding = FragmentMealBinding.inflate(layoutInflater, container, false)
 
         return binding.root
 
@@ -46,26 +53,28 @@ class MealFragment: Fragment() {
     private fun setupRecycler() {
         binding.recyclerViewMeal.apply {
             setHasFixedSize(true)
-            layoutManager = GridLayoutManager(requireContext(),2)
+            layoutManager = GridLayoutManager(requireContext(), 2)
             adapterMeals = AdapterMeals(arrayListOf())
             binding.recyclerViewMeal.adapter = adapterMeals
         }
     }
 
-    private fun setupObserver(){
-        mealViewModel.setComida("chicken")
+    private fun setupObserver() {
         mealViewModel.fetchMeals.observe(viewLifecycleOwner, Observer {
-            it?.let{result ->
-                when(result.status){
-                    Status.LOADING ->{
+            it?.let { result ->
+                when (result.status) {
+                    Status.LOADING -> {
                         binding.progressBar.visibility = View.VISIBLE
                     }
-                    Status.SUCCESS ->{
+                    Status.SUCCESS -> {
                         binding.progressBar.visibility = View.INVISIBLE
                         binding.recyclerViewMeal.visibility = View.VISIBLE
-                        result.data?.let { listMeals -> retrieveList(listMeals.meals)}
+                        adapterMeals = AdapterMeals(result.data!!.meals)
+                        binding.recyclerViewMeal.adapter = adapterMeals
+                        //result.data?.let { listMeals -> retrieveList(listMeals.meals) }
                     }
-                    Status.ERROR ->{}
+                    Status.ERROR -> {
+                    }
                 }
 
             }
@@ -73,14 +82,14 @@ class MealFragment: Fragment() {
 
     }
 
-    private fun retrieveList(list:ArrayList<Meals>) {
+    private fun retrieveList(list: ArrayList<Meals>) {
         adapterMeals.apply {
             getAddListMeals(list)
         }
     }
 
-    private fun searchComida(){
-        binding.searchView.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
+    private fun searchComida() {
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 mealViewModel.setComida(query.toString())
                 return true

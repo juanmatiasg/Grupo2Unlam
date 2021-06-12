@@ -1,7 +1,10 @@
 package com.example.navigationdrawer.data.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Meals(
     @SerializedName("id")
     var id:String,
@@ -13,5 +16,4 @@ data class Meals(
     var calories: String,
     @SerializedName("protein")
     var protein: String
-
-)
+) : Parcelable

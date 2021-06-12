@@ -11,6 +11,10 @@ class MealViewModel(private val repo: Repo) : ViewModel() {
 
     private val term = MutableLiveData<String>()
 
+    init {
+        setComida("chicken")
+    }
+
     val fetchMeals = term.distinctUntilChanged().switchMap {
         liveData(Dispatchers.IO) {
             emit(Resource.loading(data = null))

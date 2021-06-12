@@ -4,16 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.meal.MealDetailFragment"
+    tools:context=".ui.mealDetail.MealDetailFragment"
     android:orientation="vertical">
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Detalles"
-        android:visibility="gone" />
 
     <ImageView
         android:id="@+id/imageView_MealDetail"
@@ -42,7 +34,7 @@
             android:layout_marginStart="96dp"
             android:layout_marginLeft="96dp"
             android:gravity="center"
-            android:textSize="28dp"
+            android:textSize="20dp"
             android:fontFamily="sans-serif-condensed"
             android:textStyle="bold"
             android:textColor="@color/black"
@@ -171,13 +163,13 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/textView_ResumenDetail"
-                    android:layout_width="384dp"
-                    android:layout_height="147dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:hint="@string/lorem_impsumt" />
             </LinearLayout>
         </ScrollView>

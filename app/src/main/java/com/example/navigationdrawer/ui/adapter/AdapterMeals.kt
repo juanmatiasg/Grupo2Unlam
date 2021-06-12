@@ -1,5 +1,6 @@
 package com.example.navigationdrawer.ui.adapter
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -26,7 +27,9 @@ class AdapterMeals (private val items: ArrayList<Meals>):RecyclerView.Adapter<Re
         itemsMealBinding.textViewTitle.text = items[position].title
         itemsMealBinding.imageView.loadUrl(items[position].image)
         itemsMealBinding.cardView.setOnClickListener {
-            it.findNavController().navigate(R.id.action_nav_mealFragment_to_mealDetailFragment)
+            val bundle = Bundle()
+            bundle.putParcelable(MEALS_ITEMS,items[position])
+            it.findNavController().navigate(R.id.action_nav_mealFragment_to_mealDetailFragment,bundle)
         }
     }
 
@@ -42,6 +45,9 @@ class AdapterMeals (private val items: ArrayList<Meals>):RecyclerView.Adapter<Re
 
     class ViewHolder(binding:ItemsMealBinding):RecyclerView.ViewHolder(binding.root)
 
+    companion object{
+        const val MEALS_ITEMS ="MEALS_ITEMS"
+    }
 
 
 }
