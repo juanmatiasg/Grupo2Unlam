@@ -51,7 +51,7 @@ class MealDetailFragment : Fragment() {
             meals = it.getParcelable(AdapterMeals.MEALS_ITEMS)!!
             viewModel.setIdInformation(meals.id)
             binding.textViewTitleDetail.text = meals.title
-            binding.textViewNumberCaloriesDetail.text = meals.calories
+            binding.textViewCalories.text = meals.calories
             Picasso.get().load(meals.image).into(binding.imageViewMealDetail)
         }
         viewModel.fetchMealsInformation.observe(viewLifecycleOwner, Observer { result ->
