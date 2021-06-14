@@ -16,7 +16,7 @@ import com.example.navigationdrawer.domain.RepoImp
 import com.example.navigationdrawer.ui.adapter.AdapterMeals
 import com.example.navigationdrawer.ui.factory.VMFactory
 import com.example.navigationdrawer.vo.Status
-import kotlinx.android.synthetic.main.fragment_meal.*
+//import kotlinx.android.synthetic.main.fragment_meal.*
 
 class MealFragment : Fragment() {
 

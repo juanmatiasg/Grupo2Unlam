@@ -1,7 +1,6 @@
 package com.example.navigationdrawer.domain
 
 import com.example.navigationdrawer.data.model.ListMeals
-import com.example.navigationdrawer.data.model.MealsInformation
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query

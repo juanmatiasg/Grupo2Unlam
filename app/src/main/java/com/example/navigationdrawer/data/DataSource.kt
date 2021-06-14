@@ -1,7 +1,6 @@
 package com.example.navigationdrawer.data
 
 import com.example.navigationdrawer.data.model.ListMeals
-import com.example.navigationdrawer.data.model.MealsInformation
 import com.example.navigationdrawer.vo.Resource
 import com.example.navigationdrawer.vo.RetrofitClient
 

@@ -10,7 +10,7 @@ import com.example.navigationdrawer.databinding.ItemsMealBinding
 import com.squareup.picasso.Picasso
 import java.text.FieldPosition
 
-class AdapterFavourites(private val items: ArrayList<Meals>:RecyclerView.Adapter<RecyclerView.ViewHolder>) {
+class AdapterFavourites(private val items: ArrayList<Meals>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private lateinit var itemsFavouriteBinding: ItemsFavouriteBinding
 
