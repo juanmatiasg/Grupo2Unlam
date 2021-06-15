@@ -64,21 +64,21 @@
             app:layout_constraintTop_toBottomOf="@+id/txtTitle_Favourite" />
 
         <ImageButton
-            android:id="@+id/imageButton2"
+            android:id="@+id/uiEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:background="@color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/imageButton3"
+            app:layout_constraintBottom_toBottomOf="@+id/uiClear"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageButton3"
+            app:layout_constraintTop_toTopOf="@+id/uiClear"
             app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/ic_baseline_edit_24"
             tools:ignore="VectorDrawableCompat" />
 
         <ImageButton
-            android:id="@+id/imageButton3"
+            android:id="@+id/uiClear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="96dp"
@@ -87,7 +87,7 @@
             android:layout_marginRight="32dp"
             android:background="@color/white"
             app:layout_constraintBottom_toBottomOf="@+id/txtTitle_Favourite"
-            app:layout_constraintEnd_toStartOf="@+id/imageButton2"
+            app:layout_constraintEnd_toStartOf="@+id/uiEdit"
             app:layout_constraintStart_toEndOf="@+id/txtTitle_Favourite"
             app:layout_constraintTop_toTopOf="@+id/txtTitle_Favourite"
             app:srcCompat="@drawable/ic_baseline_clear_24"
