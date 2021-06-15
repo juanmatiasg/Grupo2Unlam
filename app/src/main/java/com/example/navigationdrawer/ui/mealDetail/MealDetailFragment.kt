@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.example.navigationdrawer.R
 import com.example.navigationdrawer.data.DataSource
+import com.example.navigationdrawer.data.entities.MealEntity
 import com.example.navigationdrawer.data.model.Meals
 import com.example.navigationdrawer.databinding.FragmentMealBinding
 import com.example.navigationdrawer.databinding.FragmentMealDetailBinding
@@ -19,6 +20,7 @@ import com.example.navigationdrawer.ui.adapter.AdapterMeals
 import com.example.navigationdrawer.ui.factory.VMFactory
 import com.example.navigationdrawer.vo.Status
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.items_favourite.*
 
 
 class MealDetailFragment : Fragment() {
@@ -44,6 +46,10 @@ class MealDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupObserver()
+
+        btnHeart_Favourite.setOnClickListener{
+            viewModel.guardarComida(MealEntity(meals.id, meals.))
+        }
     }
 
     private fun setupObserver() {
