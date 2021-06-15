@@ -20,6 +20,7 @@ import com.example.navigationdrawer.domain.Repo
 import com.example.navigationdrawer.domain.RepoImp
 import com.example.navigationdrawer.ui.adapter.AdapterMeals
 import com.example.navigationdrawer.ui.factory.VMFactory
+import com.example.navigationdrawer.ui.meal.MealViewModel
 import com.example.navigationdrawer.vo.Status
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.items_favourite.*
@@ -50,7 +51,7 @@ class MealDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupObserver()
-
+        accionarBotonAddFavourites()
     }
 
     private fun setupObserver() {
@@ -72,7 +73,6 @@ class MealDetailFragment : Fragment() {
                 }
             }
         })
-        accionarBotonAddFavourites()
     }
 
     fun accionarBotonAddFavourites(){

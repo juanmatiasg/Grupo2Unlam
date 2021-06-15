@@ -8,7 +8,7 @@ import retrofit2.http.Query
 
 interface ApiMeals {
 
-    @GET("recipes/complexSearch?query=&apiKey=${apiKeyJuan}")
+    @GET("recipes/complexSearch?query=&apiKey=${apiKeyMariano2}")
     suspend fun searchListMealsBySearch(@Query("query")term:String): ListMeals
 
 
@@ -18,6 +18,7 @@ interface ApiMeals {
     companion object{
         const val apiKeyMariano = "9305b9a0df0b4abf8ef1440b2cb2ca2c"
         const val apiKeyJuan = "3debba4510294d7480646c8f48d7624b"
+        const val apiKeyMariano2="2094db6c4f1a4ac0a9393de34ad7f53a"
     }
 
 }

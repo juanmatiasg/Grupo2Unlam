@@ -30,8 +30,7 @@ abstract class AppDataBase:RoomDatabase(){
         }
 
         fun getDatabase(context:Context):AppDataBase{
-            INSTANCE=INSTANCE ?: Room.databaseBuilder(context.applicationContext,AppDataBase::class.java,"MealEntity").addMigrations(
-                MIGRATION_1_2).build()
+            INSTANCE=INSTANCE ?: Room.databaseBuilder(context.applicationContext,AppDataBase::class.java,"MealEntity").build()
             return INSTANCE!!
         }
 
