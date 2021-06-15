@@ -17,11 +17,11 @@ class RepoImp(private val dataSource: DataSource):Repo{
     }
 
     override suspend fun getMealsFavoritos(): Resource<List<MealEntity>> {
-
+        return dataSource.getMealFavoritos()
     }
 
     override suspend fun insertMeal(meal: MealEntity) {
-
+        dataSource.insertTragoIntoRoom(meal)
     }
 
 

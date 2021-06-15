@@ -10,24 +10,34 @@ import java.lang.Exception
 
 class MealDetailViewModel(private val repo: Repo) : ViewModel()  {
 
-    private val term = MutableLiveData<String>()
+    private val idInformationMeals = MutableLiveData<String>()
 
-
-    val fetchMeals = term.distinctUntilChanged().switchMap {
+    val fetchMealsInformation = idInformationMeals.switchMap {
         liveData(Dispatchers.IO) {
             emit(Resource.loading(data = null))
             try {
-                emit(repo.getListMeals(it))
+                emit(repo.getMealsInformation(it))
             } catch (e: Exception) {
-                emit(Resource.error(data = null, message = e.message ?: "Error Ocurred"))
-
+                emit(Resource.error(data = null, message = e.message ?: "Ocurrio un error"))
             }
         }
     }
 
+    fun setIdInformation(id:String){
+        idInformationMeals.value = id
+    }
     fun guardarComida(meal: MealEntity){
         viewModelScope.launch {
             repo.insertMeal(meal)
+        }
+    }
+
+    fun getMealsFavourites()= liveData(Dispatchers.IO){
+        emit(Resource.loading(data = null))
+        try {
+            emit(repo.getMealsFavoritos())
+        } catch (e: Exception) {
+            emit(Resource.error(data = null, message = e.message ?: "Ocurrio un error"))
         }
     }
 }

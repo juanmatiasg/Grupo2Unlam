@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.navigationdrawer.data.DataSource
+import com.example.navigationdrawer.data.database.AppDataBase
 import com.example.navigationdrawer.data.model.Meals
 import com.example.navigationdrawer.databinding.FragmentMealBinding
 import com.example.navigationdrawer.domain.RepoImp
@@ -27,7 +28,7 @@ class MealFragment : Fragment() {
     private val binding get() = _binding!!
     private val mealViewModel by viewModels<MealViewModel> {
         VMFactory(
-            RepoImp(DataSource())
+            RepoImp(DataSource(AppDataBase.getDatabase(requireActivity().applicationContext)))
         )
     }
     private lateinit var adapterMeals: AdapterMeals

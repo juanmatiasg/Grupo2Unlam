@@ -6,10 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.example.navigationdrawer.R
 import com.example.navigationdrawer.data.DataSource
+import com.example.navigationdrawer.data.database.AppDataBase
 import com.example.navigationdrawer.data.entities.MealEntity
 import com.example.navigationdrawer.data.model.Meals
 import com.example.navigationdrawer.databinding.FragmentMealBinding
@@ -26,7 +28,8 @@ import kotlinx.android.synthetic.main.items_favourite.*
 class MealDetailFragment : Fragment() {
     private var _binding: FragmentMealDetailBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: MealDetailViewModel by viewModels { VMFactory(RepoImp(DataSource())) }
+    private val viewModel: MealDetailViewModel by viewModels { VMFactory(RepoImp(DataSource(
+        AppDataBase.getDatabase(requireActivity().applicationContext)))) }
     lateinit var meals: Meals
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,6 +43,7 @@ class MealDetailFragment : Fragment() {
     ): View? {
         _binding = FragmentMealDetailBinding.inflate(layoutInflater, container, false)
         return binding.root
+
     }
 
 
@@ -47,9 +51,6 @@ class MealDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupObserver()
 
-        btnHeart_Favourite.setOnClickListener{
-            viewModel.guardarComida(MealEntity(meals.id, meals.))
-        }
     }
 
     private fun setupObserver() {
@@ -71,9 +72,22 @@ class MealDetailFragment : Fragment() {
                 }
             }
         })
-
+        accionarBotonAddFavourites()
     }
 
+    fun accionarBotonAddFavourites(){
+        binding.buttonFavourite.setOnClickListener{
+            viewModel.guardarComida(
+                MealEntity(
+                    meals.id,
+                    meals.title,
+                    meals.image,
+                    meals.protein
+                )
+            )
+            Toast.makeText(requireContext(), "Se añadió correctamente", Toast.LENGTH_SHORT).show()
+        }
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
