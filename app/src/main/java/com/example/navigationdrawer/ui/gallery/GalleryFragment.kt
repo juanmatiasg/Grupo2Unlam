@@ -22,7 +22,7 @@ import com.example.navigationdrawer.ui.mealDetail.MealDetailViewModel
 import com.example.navigationdrawer.vo.Status
 
 class GalleryFragment : Fragment() {
-    private val viewModel by activityViewModels<MealDetailViewModel> {
+    private val viewModel by activityViewModels<GalleryViewModel> {
         VMFactory(
             RepoImp(
                 DataSource(
@@ -41,7 +41,7 @@ class GalleryFragment : Fragment() {
     private val binding get() = _binding!!
 
     //cambiar esto
-    private lateinit var galleryViewModel: GalleryViewModel
+    //private lateinit var galleryViewModel: GalleryViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,16 +49,10 @@ class GalleryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         //cambiar esto
-        galleryViewModel =
-            ViewModelProvider(this).get(GalleryViewModel::class.java)
+
         _binding = FragmentGalleryBinding.inflate(layoutInflater,container,false)
 
-        //cambiar esto
-        galleryViewModel.text.observe(viewLifecycleOwner, Observer {
-            binding.textGallery.text = it
-        })
-        val view = binding.root
-        return view
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
