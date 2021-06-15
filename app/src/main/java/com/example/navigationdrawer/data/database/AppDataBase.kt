@@ -21,5 +21,10 @@ abstract class AppDataBase:RoomDatabase(){
             INSTANCE=INSTANCE ?: Room.databaseBuilder(context.applicationContext,AppDataBase::class.java,"MealEntity").build()
             return INSTANCE!!
         }
+
+        fun destroyInstance(){
+            INSTANCE=null
+        }
+
     }
 }
