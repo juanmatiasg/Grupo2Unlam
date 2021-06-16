@@ -23,31 +23,31 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imgVMeal_Favourite"
-            tools:srcCompat="@tools:sample/avatars"
+            android:id="@+id/imgMeal_Favourite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/txtTitle_Favourite"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="121dp"
+            android:layout_height="32dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="16dp"
             android:fontFamily="sans-serif-condensed-medium"
             android:hint="Title"
             android:textColor="@color/black"
             android:textSize="25dp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/imgVMeal_Favourite"
+            app:layout_constraintEnd_toStartOf="@+id/btnHeart_Favourite"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/imgMeal_Favourite"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -56,26 +56,20 @@
             android:layout_height="76dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
             android:hint="@string/lorem_impsumt"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imgVMeal_Favourite"
+            app:layout_constraintStart_toEndOf="@+id/imgMeal_Favourite"
             app:layout_constraintTop_toBottomOf="@+id/txtTitle_Favourite" />
 
-        <androidx.constraintlayout.utils.widget.ImageFilterButton
+        <ImageButton
             android:id="@+id/btnHeart_Favourite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="140dp"
-            android:layout_marginLeft="140dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:background="@color/white"
             android:src="@drawable/ic_baseline_favorite_24"
             app:layout_constraintBottom_toBottomOf="@+id/txtTitle_Favourite"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/txtTitle_Favourite"
             app:layout_constraintTop_toTopOf="@+id/txtTitle_Favourite" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,8 +23,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imgVMeal_Favourite"
-            tools:srcCompat="@tools:sample/avatars"
+            android:id="@+id/imgVMeal_Main"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -33,25 +32,28 @@
             android:layout_marginBottom="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
-            android:id="@+id/txtTitle_Favourite"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:id="@+id/txtTitle_Main"
+            android:layout_width="125dp"
+            android:layout_height="29dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="16dp"
             android:fontFamily="sans-serif-condensed-medium"
             android:hint="Title"
             android:textColor="@color/black"
             android:textSize="25dp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/imgVMeal_Favourite"
+            app:layout_constraintEnd_toStartOf="@+id/btnUiClear_Main"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/imgVMeal_Main"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/txtDescription_Favourite"
+            android:id="@+id/txtDescription_Main"
             android:layout_width="218dp"
             android:layout_height="76dp"
             android:layout_marginStart="16dp"
@@ -60,36 +62,33 @@
             android:layout_marginRight="8dp"
             android:hint="@string/lorem_impsumt"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imgVMeal_Favourite"
-            app:layout_constraintTop_toBottomOf="@+id/txtTitle_Favourite" />
+            app:layout_constraintStart_toEndOf="@+id/imgVMeal_Main"
+            app:layout_constraintTop_toBottomOf="@+id/txtTitle_Main" />
 
         <ImageButton
-            android:id="@+id/uiEdit"
+            android:id="@+id/btnUiEdit_Main"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:background="@color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/uiClear"
+            app:layout_constraintBottom_toBottomOf="@+id/btnUiClear_Main"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/uiClear"
+            app:layout_constraintTop_toTopOf="@+id/btnUiClear_Main"
             app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/ic_baseline_edit_24"
             tools:ignore="VectorDrawableCompat" />
 
         <ImageButton
-            android:id="@+id/uiClear"
+            android:id="@+id/btnUiClear_Main"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="96dp"
-            android:layout_marginLeft="96dp"
             android:layout_marginEnd="32dp"
             android:layout_marginRight="32dp"
             android:background="@color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/txtTitle_Favourite"
-            app:layout_constraintEnd_toStartOf="@+id/uiEdit"
-            app:layout_constraintStart_toEndOf="@+id/txtTitle_Favourite"
-            app:layout_constraintTop_toTopOf="@+id/txtTitle_Favourite"
+            app:layout_constraintBottom_toBottomOf="@+id/txtTitle_Main"
+            app:layout_constraintEnd_toStartOf="@+id/btnUiEdit_Main"
+            app:layout_constraintTop_toTopOf="@+id/txtTitle_Main"
             app:srcCompat="@drawable/ic_baseline_clear_24"
             tools:ignore="VectorDrawableCompat" />
 
