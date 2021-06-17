@@ -7,7 +7,7 @@ import com.example.navigationdrawer.data.entities.MealEntity
 @Dao
 interface MealDao {
 
-    @Query("SELECT * FROM MealEntity")
+    @Query("SELECT * FROM table_meals")
     suspend fun getListMeal(): List<MealEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.navigationdrawer.R
 import com.example.navigationdrawer.databinding.FragmentGalleryBinding
 import com.example.navigationdrawer.databinding.FragmentSlideshowBinding
-import com.example.navigationdrawer.ui.gallery.GalleryViewModel
+
 
 class SlideshowFragment : Fragment() {
     //cambiar esto

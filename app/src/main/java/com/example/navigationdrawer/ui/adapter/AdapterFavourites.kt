@@ -4,13 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.navigationdrawer.data.entities.MealEntity
 import com.example.navigationdrawer.data.model.Meals
 import com.example.navigationdrawer.databinding.ItemsFavouriteBinding
-import com.example.navigationdrawer.databinding.ItemsMealBinding
 import com.squareup.picasso.Picasso
-import java.text.FieldPosition
 
-class AdapterFavourites(private val items: ArrayList<Meals>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class AdapterFavourites(private val items: List<Meals>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private lateinit var itemsFavouriteBinding: ItemsFavouriteBinding
 
@@ -25,23 +24,14 @@ class AdapterFavourites(private val items: ArrayList<Meals>): RecyclerView.Adapt
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int){
         itemsFavouriteBinding.txtTitleFavourite.text=items[position].title
-        itemsFavouriteBinding.txtDescriptionFavourite.text=items[position].protein
         itemsFavouriteBinding.imgVMealFavourite.loadUrl(items[position].image)
     }
     private fun ImageView.loadUrl(url: String){
         Picasso.get().load(url).into(itemsFavouriteBinding.imgVMealFavourite)
     }
 
-    fun getAddListMeals(list: ArrayList<Meals>){
-        items.clear()
-        items.addAll(list)
-
-    }
-
     class ViewHolder(binding: ItemsFavouriteBinding):RecyclerView.ViewHolder(binding.root)
 
-    companion object{
-        const val FAVOURITE_ITEMS ="FAVOURITE_ITEMS"
-    }
+
 
 }

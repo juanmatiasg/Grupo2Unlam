@@ -6,10 +6,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.Transformations.map
 import com.example.navigationdrawer.R
 import com.example.navigationdrawer.data.DataSource
+import com.example.navigationdrawer.data.database.AppDataBase
+import com.example.navigationdrawer.data.entities.MealEntity
 import com.example.navigationdrawer.data.model.Meals
 import com.example.navigationdrawer.databinding.FragmentMealBinding
 import com.example.navigationdrawer.databinding.FragmentMealDetailBinding
@@ -17,6 +22,7 @@ import com.example.navigationdrawer.domain.Repo
 import com.example.navigationdrawer.domain.RepoImp
 import com.example.navigationdrawer.ui.adapter.AdapterMeals
 import com.example.navigationdrawer.ui.factory.VMFactory
+import com.example.navigationdrawer.ui.meal.MealViewModel
 import com.example.navigationdrawer.vo.Status
 import com.squareup.picasso.Picasso
 
@@ -24,7 +30,17 @@ import com.squareup.picasso.Picasso
 class MealDetailFragment : Fragment() {
     private var _binding: FragmentMealDetailBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: MealDetailViewModel by viewModels { VMFactory(RepoImp(DataSource())) }
+
+    private val viewModel by activityViewModels<MealDetailViewModel> {
+        VMFactory(
+            RepoImp(
+                DataSource(
+                    AppDataBase.getDatabase(requireActivity().applicationContext)
+                )
+            )
+        )
+    }
+
     lateinit var meals: Meals
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,7 +60,15 @@ class MealDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupObserver()
+        setupGuardarFavoritos()
     }
+
+    private fun setupGuardarFavoritos() {
+        binding.buttonFavourite.setOnClickListener {
+            viewModel.insertMeal(MealEntity(meals.id,meals.title,meals.image))
+        }
+    }
+
 
     private fun setupObserver() {
         requireArguments().let {
@@ -59,7 +83,8 @@ class MealDetailFragment : Fragment() {
                 Status.LOADING -> {
                 }
                 Status.SUCCESS -> {
-                    binding.textViewResumenDetail.text = Html.fromHtml(result.data!!.summary).toString()
+                    binding.textViewResumenDetail.text =
+                        Html.fromHtml(result.data!!.summary).toString()
                 }
                 Status.ERROR -> {
                 }
@@ -67,6 +92,8 @@ class MealDetailFragment : Fragment() {
         })
 
     }
+
+
 
 
     override fun onDestroyView() {

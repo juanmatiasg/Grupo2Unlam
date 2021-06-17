@@ -10,12 +10,14 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.navigationdrawer.data.DataSource
+import com.example.navigationdrawer.data.database.AppDataBase
 import com.example.navigationdrawer.data.model.Meals
 import com.example.navigationdrawer.databinding.FragmentMealBinding
 import com.example.navigationdrawer.domain.RepoImp
 import com.example.navigationdrawer.ui.adapter.AdapterMeals
 import com.example.navigationdrawer.ui.factory.VMFactory
 import com.example.navigationdrawer.vo.Status
+
 //import kotlinx.android.synthetic.main.fragment_meal.*
 
 class MealFragment : Fragment() {
@@ -27,7 +29,7 @@ class MealFragment : Fragment() {
     private val binding get() = _binding!!
     private val mealViewModel by viewModels<MealViewModel> {
         VMFactory(
-            RepoImp(DataSource())
+            RepoImp(DataSource(AppDataBase.getDatabase(requireActivity().applicationContext)))
         )
     }
     private lateinit var adapterMeals: AdapterMeals
@@ -82,11 +84,7 @@ class MealFragment : Fragment() {
 
     }
 
-    private fun retrieveList(list: ArrayList<Meals>) {
-        adapterMeals.apply {
-            getAddListMeals(list)
-        }
-    }
+
 
     private fun searchComida() {
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
