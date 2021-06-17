@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
-@Entity(tableName = "MealEntity")
+@Entity(tableName = "table_meals")
 data class MealEntity(
 
     @PrimaryKey
@@ -16,10 +16,7 @@ data class MealEntity(
     var title: String,
 
     @ColumnInfo(name = "image")
-    var image: String,
-
-    @ColumnInfo(name = "protein")
-    var protein: String
+    var image: String
 
 
 

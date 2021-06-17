@@ -16,11 +16,12 @@ class DataSource(private val appDataBase: AppDataBase) {
         return Resource.success(RetrofitClient.webService.getInformationMeals(id))
     }
 
-    suspend fun insertTragoIntoRoom(meal: MealEntity){
+    suspend fun insertMeal(meal:MealEntity){
         appDataBase.mealDao().insertMeal(meal)
     }
 
-    suspend fun getMealFavoritos(): Resource<List<MealEntity>> {
-        return Resource.success(appDataBase.mealDao().getListMealFavourites())
+    suspend fun getMealsFavoritos(): Resource<List<MealEntity>> {
+        return Resource.success(appDataBase.mealDao().getListMeal())
     }
+
 }

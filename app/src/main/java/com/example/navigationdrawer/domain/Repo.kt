@@ -12,5 +12,5 @@ interface Repo{
 
     suspend fun getMealsFavoritos():Resource<List<MealEntity>>
 
-    suspend fun insertMeal(meal: MealEntity)
+    suspend fun insertMeal(meal:MealEntity)
 }

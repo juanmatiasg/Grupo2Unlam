@@ -28,10 +28,10 @@ class AdapterFavourites(private val items: ArrayList<MealEntity>): RecyclerView.
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int){
         itemsFavouriteBinding.txtTitleFavourite.text=items[position].title
         //itemsFavouriteBinding.txtDescriptionFavourite.text=items[position].protein
-        itemsFavouriteBinding.imgMealFavourite.loadUrl(items[position].image)
+        itemsFavouriteBinding.imgVMealFavourite.loadUrl(items[position].image)
     }
     private fun ImageView.loadUrl(url: String){
-        Picasso.get().load(url).into(itemsFavouriteBinding.imgMealFavourite)
+        Picasso.get().load(url).into(itemsFavouriteBinding.imgVMealFavourite)
     }
 
     fun getAddListMeals(list: ArrayList<MealEntity>){

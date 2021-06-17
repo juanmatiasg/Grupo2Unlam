@@ -17,6 +17,7 @@ import com.example.navigationdrawer.domain.RepoImp
 import com.example.navigationdrawer.ui.adapter.AdapterMeals
 import com.example.navigationdrawer.ui.factory.VMFactory
 import com.example.navigationdrawer.vo.Status
+
 //import kotlinx.android.synthetic.main.fragment_meal.*
 
 class MealFragment : Fragment() {
@@ -83,11 +84,7 @@ class MealFragment : Fragment() {
 
     }
 
-    private fun retrieveList(list: ArrayList<Meals>) {
-        adapterMeals.apply {
-            getAddListMeals(list)
-        }
-    }
+
 
     private fun searchComida() {
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {

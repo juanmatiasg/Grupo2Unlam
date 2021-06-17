@@ -7,8 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.Transformations.map
 import com.example.navigationdrawer.R
 import com.example.navigationdrawer.data.DataSource
 import com.example.navigationdrawer.data.database.AppDataBase
@@ -23,14 +25,22 @@ import com.example.navigationdrawer.ui.factory.VMFactory
 import com.example.navigationdrawer.ui.meal.MealViewModel
 import com.example.navigationdrawer.vo.Status
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.items_favourite.*
 
 
 class MealDetailFragment : Fragment() {
     private var _binding: FragmentMealDetailBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: MealDetailViewModel by viewModels { VMFactory(RepoImp(DataSource(
-        AppDataBase.getDatabase(requireActivity().applicationContext)))) }
+
+    private val viewModel by activityViewModels<MealDetailViewModel> {
+        VMFactory(
+            RepoImp(
+                DataSource(
+                    AppDataBase.getDatabase(requireActivity().applicationContext)
+                )
+            )
+        )
+    }
+
     lateinit var meals: Meals
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,15 +54,21 @@ class MealDetailFragment : Fragment() {
     ): View? {
         _binding = FragmentMealDetailBinding.inflate(layoutInflater, container, false)
         return binding.root
-
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupObserver()
-        accionarBotonAddFavourites()
+        setupGuardarFavoritos()
     }
+
+    private fun setupGuardarFavoritos() {
+        binding.buttonFavourite.setOnClickListener {
+            viewModel.insertMeal(MealEntity(meals.id,meals.title,meals.image))
+        }
+    }
+
 
     private fun setupObserver() {
         requireArguments().let {
@@ -67,27 +83,18 @@ class MealDetailFragment : Fragment() {
                 Status.LOADING -> {
                 }
                 Status.SUCCESS -> {
-                    binding.textViewResumenDetail.text = Html.fromHtml(result.data!!.summary).toString()
+                    binding.textViewResumenDetail.text =
+                        Html.fromHtml(result.data!!.summary).toString()
                 }
                 Status.ERROR -> {
                 }
             }
         })
+
     }
 
-    fun accionarBotonAddFavourites(){
-        binding.buttonFavourite.setOnClickListener{
-            viewModel.guardarComida(
-                MealEntity(
-                    meals.id,
-                    meals.title,
-                    meals.image,
-                    meals.protein
-                )
-            )
-            Toast.makeText(requireContext(), "Se añadió correctamente", Toast.LENGTH_SHORT).show()
-        }
-    }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()
