@@ -2,8 +2,8 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-android-extensions'
-    id 'kotlin-kapt'
 }
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 30
@@ -77,12 +77,11 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
 
-    /*Room*/
-    def room_version="2.2.5"
+    implementation 'androidx.room:room-ktx:2.2.6'
+
+    def room_version = "2.2.5"
 
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 
-    // optional - Kotlin Extensions and Coroutines support for Room
-    implementation "androidx.room:room-ktx:$room_version"
 }

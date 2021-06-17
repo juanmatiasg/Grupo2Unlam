@@ -11,7 +11,7 @@ import com.example.navigationdrawer.data.model.Meals
 import com.example.navigationdrawer.databinding.ItemsMealBinding
 import com.squareup.picasso.Picasso
 
-class AdapterMeals (private val items: ArrayList<Meals>):RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+class AdapterMeals (private val items: List<Meals>):RecyclerView.Adapter<RecyclerView.ViewHolder>(){
     private lateinit var itemsMealBinding: ItemsMealBinding
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -37,11 +37,7 @@ class AdapterMeals (private val items: ArrayList<Meals>):RecyclerView.Adapter<Re
         Picasso.get().load(url).into(itemsMealBinding.imageView)
     }
 
-    fun getAddListMeals(list: ArrayList<Meals>) {
-        items.clear()
-        items.addAll(list)
-        notifyDataSetChanged()
-    }
+
 
     class ViewHolder(binding:ItemsMealBinding):RecyclerView.ViewHolder(binding.root)
 

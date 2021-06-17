@@ -6,9 +6,8 @@ import com.example.navigationdrawer.domain.Repo
 import com.example.navigationdrawer.vo.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.lang.Exception
 
-class MealDetailViewModel(private val repo: Repo) : ViewModel()  {
+class MealDetailViewModel(private val repo: Repo) : ViewModel() {
 
     private val idInformationMeals = MutableLiveData<String>()
 
@@ -23,16 +22,19 @@ class MealDetailViewModel(private val repo: Repo) : ViewModel()  {
         }
     }
 
-    fun setIdInformation(id:String){
+    fun setIdInformation(id: String) {
         idInformationMeals.value = id
     }
-    fun guardarComida(meal: MealEntity){
+
+    fun insertMeal(meals:MealEntity){
         viewModelScope.launch {
-            repo.insertMeal(meal)
+            repo.insertMeal(meals)
         }
+
     }
 
-    fun getMealsFavourites()= liveData(Dispatchers.IO){
+
+    fun getMealsFavoritos() = liveData(Dispatchers.IO) {
         emit(Resource.loading(data = null))
         try {
             emit(repo.getMealsFavoritos())
@@ -40,4 +42,5 @@ class MealDetailViewModel(private val repo: Repo) : ViewModel()  {
             emit(Resource.error(data = null, message = e.message ?: "Ocurrio un error"))
         }
     }
+
 }

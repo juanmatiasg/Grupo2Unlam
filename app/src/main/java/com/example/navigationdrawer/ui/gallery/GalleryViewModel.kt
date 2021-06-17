@@ -1,23 +1,13 @@
 package com.example.navigationdrawer.ui.gallery
 
-import androidx.lifecycle.*
-import com.example.navigationdrawer.data.entities.MealEntity
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
 import com.example.navigationdrawer.domain.Repo
 import com.example.navigationdrawer.vo.Resource
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import java.lang.Exception
 
-class GalleryViewModel(private val repo: Repo) : ViewModel() {
-
-
-    fun guardarComida(meal: MealEntity){
-        viewModelScope.launch {
-            repo.insertMeal(meal)
-        }
-    }
-
-    fun getMealsFavourites()= liveData(Dispatchers.IO){
+class GalleryViewModel(private val repo: Repo):ViewModel(){
+    fun getMealsFavoritos() = liveData(Dispatchers.IO) {
         emit(Resource.loading(data = null))
         try {
             emit(repo.getMealsFavoritos())
