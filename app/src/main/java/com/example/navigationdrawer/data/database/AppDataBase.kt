@@ -24,7 +24,7 @@ abstract class AppDataBase : RoomDatabase() {
             INSTANCE = INSTANCE ?: Room.databaseBuilder(
                 context.applicationContext,
                 AppDataBase::class.java,
-                "DBSpoonacularTwo"
+                "DBMealsAPI"
             )
                 .build()
             return INSTANCE!!

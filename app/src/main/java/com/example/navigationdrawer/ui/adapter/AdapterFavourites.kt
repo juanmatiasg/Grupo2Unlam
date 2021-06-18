@@ -25,6 +25,7 @@ class AdapterFavourites(private val items: List<Meals>): RecyclerView.Adapter<Re
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int){
         itemsFavouriteBinding.txtTitleFavourite.text=items[position].title
         itemsFavouriteBinding.imgVMealFavourite.loadUrl(items[position].image)
+        itemsFavouriteBinding.txtDescriptionFavourite.text=items[position].description
     }
     private fun ImageView.loadUrl(url: String){
         Picasso.get().load(url).into(itemsFavouriteBinding.imgVMealFavourite)

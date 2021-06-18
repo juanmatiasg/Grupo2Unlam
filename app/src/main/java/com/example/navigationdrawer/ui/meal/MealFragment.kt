@@ -49,6 +49,7 @@ class MealFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupRecycler()
         setupObserver()
+        setUpMealObserver()
         searchComida()
     }
 
@@ -60,6 +61,29 @@ class MealFragment : Fragment() {
             binding.recyclerViewMeal.adapter = adapterMeals
         }
     }
+
+    private fun setUpMealObserver(){
+        mealViewModel.fetchMeals.observe(viewLifecycleOwner, Observer {
+            it?.let { result ->
+                when (result.status) {
+                    Status.LOADING -> {
+                        binding.progressBar.visibility = View.VISIBLE
+                    }
+                    Status.SUCCESS -> {
+                        binding.progressBar.visibility = View.INVISIBLE
+                        binding.recyclerViewMeal.visibility = View.VISIBLE
+                        adapterMeals = AdapterMeals(result.data!!.meals)
+                        binding.recyclerViewMeal.adapter = adapterMeals
+                        //result.data?.let { listMeals -> retrieveList(listMeals.meals) }
+                    }
+                    Status.ERROR -> {
+                    }
+                }
+
+            }
+        })
+    }
+
 
     private fun setupObserver() {
         mealViewModel.fetchListMeal.observe(viewLifecycleOwner, Observer {
