@@ -1,7 +1,6 @@
 package com.example.navigationdrawer.ui.gallery
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +15,6 @@ import com.example.navigationdrawer.data.model.Meals
 import com.example.navigationdrawer.databinding.FragmentGalleryBinding
 import com.example.navigationdrawer.domain.RepoImp
 import com.example.navigationdrawer.ui.adapter.AdapterFavourites
-import com.example.navigationdrawer.ui.adapter.AdapterMeals
 import com.example.navigationdrawer.ui.factory.VMFactory
 import com.example.navigationdrawer.vo.Status
 
@@ -66,7 +64,7 @@ class GalleryFragment : Fragment() {
                 Status.LOADING ->{}
                 Status.SUCCESS ->{
                     val lista = it.data!!.map {
-                        Meals(it.id,it.title,it.image,calories = "",protein = "")
+                        Meals(it.id,it.title,it.image,description = "",protein = "",strYoutube = "")
                     }
                     binding.rvFavoritos.adapter = AdapterFavourites(lista)
 

@@ -8,11 +8,13 @@ import retrofit2.http.Query
 
 interface ApiMeals {
 
-    @GET("recipes/complexSearch?query=&apiKey=${apiKeyMariano2}")
-    suspend fun searchListMealsBySearch(@Query("query")term:String): ListMeals
+    //https://www.themealdb.com/
+    //https://www.themealdb.com/api/json/v1/1/search.php?f=a
+    @GET("api/json/v1/1/search.php?s=")
+    suspend fun searchListMealsBySearch(@Query("s")term:String): ListMeals
 
-
-    @GET("recipes/{id}/information?apiKey=${apiKeyJuan}")
+    //api/json/v1/1/search.php?f=a
+    /*@GET("recipes/{id}/information?apiKey=${apiKeyJuan}")
     suspend fun getInformationMeals(@Path("id")id:String): MealsInformation
 
     companion object{
@@ -20,6 +22,9 @@ interface ApiMeals {
         const val apiKeyJuan = "3debba4510294d7480646c8f48d7624b"
         const val apiKeyMariano2="2094db6c4f1a4ac0a9393de34ad7f53a"
     }
+    */
+    @GET("api/json/v1/1/search.php?f=b")
+    suspend fun getListMeal():ListMeals
 
 }
 

@@ -11,6 +11,7 @@ class MealDetailViewModel(private val repo: Repo) : ViewModel() {
 
     private val idInformationMeals = MutableLiveData<String>()
 
+    /*
     val fetchMealsInformation = idInformationMeals.switchMap {
         liveData(Dispatchers.IO) {
             emit(Resource.loading(data = null))
@@ -20,7 +21,7 @@ class MealDetailViewModel(private val repo: Repo) : ViewModel() {
                 emit(Resource.error(data = null, message = e.message ?: "Ocurrio un error"))
             }
         }
-    }
+    }*/
 
     fun setIdInformation(id: String) {
         idInformationMeals.value = id

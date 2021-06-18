@@ -6,14 +6,16 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Meals(
-    @SerializedName("id")
+    @SerializedName("idMeal")
     var id:String,
-    @SerializedName("title")
+    @SerializedName("strMeal")
     var title: String,
-    @SerializedName("image")
+    @SerializedName("strMealThumb")
     var image: String,
-    @SerializedName("calories")
-    var calories: String,
+    @SerializedName("strInstructions")
+    var description: String,
     @SerializedName("protein")
-    var protein: String
+    var protein: String,
+    @SerializedName("strYoutube")
+    var strYoutube: String
 ) : Parcelable

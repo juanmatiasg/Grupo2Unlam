@@ -12,10 +12,10 @@ import java.lang.Exception
 class MealViewModel(private val repo: Repo) : ViewModel() {
 
     private val term = MutableLiveData<String>()
-
+    /*
     init {
-        setComida("chicken")
-    }
+            setComida("pizza")
+    }*/
 
     val fetchMeals = term.distinctUntilChanged().switchMap {
         liveData(Dispatchers.IO) {
@@ -29,10 +29,22 @@ class MealViewModel(private val repo: Repo) : ViewModel() {
         }
     }
 
+    val fetchListMeal= liveData(Dispatchers.IO) {
+        emit(Resource.loading(data = null))
+        try {
+            emit(repo.getListMealByB())
+        } catch (e: Exception) {
+            emit(Resource.error(data = null, message = e.message ?: "Error Ocurred"))
+
+        }
+    }
+
+
     fun setComida(otroTerm: String) {
         term.value = otroTerm
     }
 
+    /*
     /*Agregado*/
     private val idInformationMeals = MutableLiveData<String>()
 
@@ -49,7 +61,7 @@ class MealViewModel(private val repo: Repo) : ViewModel() {
 
     fun setIdInformation(id: String) {
         idInformationMeals.value = id
-    }
+    }*/
 
     fun insertMeal(meals:MealEntity){
         viewModelScope.launch {
@@ -58,7 +70,7 @@ class MealViewModel(private val repo: Repo) : ViewModel() {
 
     }
 
-
+    /*
     fun getMealsFavoritos() = liveData(Dispatchers.IO) {
         emit(Resource.loading(data = null))
         try {
@@ -66,6 +78,6 @@ class MealViewModel(private val repo: Repo) : ViewModel() {
         } catch (e: Exception) {
             emit(Resource.error(data = null, message = e.message ?: "Ocurrio un error"))
         }
-    }
+    }*/
 
 }

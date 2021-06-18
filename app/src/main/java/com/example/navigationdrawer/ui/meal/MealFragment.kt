@@ -62,7 +62,7 @@ class MealFragment : Fragment() {
     }
 
     private fun setupObserver() {
-        mealViewModel.fetchMeals.observe(viewLifecycleOwner, Observer {
+        mealViewModel.fetchListMeal.observe(viewLifecycleOwner, Observer {
             it?.let { result ->
                 when (result.status) {
                     Status.LOADING -> {
