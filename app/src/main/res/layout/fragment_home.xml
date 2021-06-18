@@ -40,14 +40,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="7dp"
         android:text="Hola"
         android:textColor="@color/black"
         android:textSize="35dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtDate_Main" />
+        app:layout_constraintTop_toBottomOf="@+id/imgLogoApp_Main" />
 
     <TextView
         android:id="@+id/txtDate_Main"
@@ -58,6 +58,7 @@
         android:layout_marginEnd="147dp"
         android:layout_marginRight="147dp"
         android:hint="Martes 15 de junio"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgLogoApp_Main" />

@@ -3,7 +3,9 @@ package com.example.navigationdrawer.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.*
+import com.example.navigationdrawer.R
 import com.example.navigationdrawer.data.model.Meals
 import com.example.navigationdrawer.databinding.FragmentHomeBinding
 import com.example.navigationdrawer.databinding.ItemsMainBinding

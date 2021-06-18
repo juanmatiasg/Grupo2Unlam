@@ -12,19 +12,26 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.navigationdrawer.R
 import com.example.navigationdrawer.data.DataSource
 import com.example.navigationdrawer.data.database.AppDataBase
+import com.example.navigationdrawer.data.entities.MealEntity
 import com.example.navigationdrawer.data.model.Meals
 import com.example.navigationdrawer.databinding.FragmentHomeBinding
 import com.example.navigationdrawer.domain.RepoImp
+import com.example.navigationdrawer.ui.adapter.AdapterFavourites
 import com.example.navigationdrawer.ui.adapter.AdapterHome
 import com.example.navigationdrawer.ui.adapter.AdapterMeals
 import com.example.navigationdrawer.ui.factory.VMFactory
+import com.example.navigationdrawer.ui.gallery.GalleryViewModel
 import com.example.navigationdrawer.ui.meal.MealViewModel
 import com.example.navigationdrawer.vo.Status
 import kotlinx.android.synthetic.main.fragment_home.*
+import java.text.DateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class HomeFragment : Fragment() {
 
@@ -32,7 +39,7 @@ class HomeFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-    private val mainViewModel by viewModels<HomeViewModel> {
+    private val mainViewModel by viewModels<GalleryViewModel> {
         VMFactory(
             RepoImp(DataSource(AppDataBase.getDatabase(requireActivity().applicationContext)))
         )
@@ -47,15 +54,21 @@ class HomeFragment : Fragment() {
     ): View? {
         _binding = FragmentHomeBinding.inflate(layoutInflater,container,false)
 
-        mainViewModel.text.observe(viewLifecycleOwner, Observer {
-            binding.textHome.text = it
-        })
         val view = binding.root
         return view
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setDate()
+        setupObserver()
+        setupRecycler()
+        navegarAFragmentMeal()
+    }
 
+    private fun setDate() {
+        val calendar= Calendar.getInstance()
+        val currentDay= DateFormat.getDateInstance().format(calendar.time)
+        binding.txtDayDateMain.text=currentDay
     }
 
     private fun setupRecycler() {
@@ -66,35 +79,29 @@ class HomeFragment : Fragment() {
             binding.recyclerViewMain.adapter = adapterHome
         }
     }
-
     private fun setupObserver() {
-        mainViewModel.fetchMeals.observe(viewLifecycleOwner, Observer {
-            it?.let { result ->
-                when (result.status) {
-                    Status.LOADING -> {
+        mainViewModel.getMealsFavoritos().observe(viewLifecycleOwner, Observer {
+            when(it.status){
+                Status.LOADING ->{}
+                Status.SUCCESS ->{
+                    val lista = it.data!!.map {
+                        Meals(it.id,it.title,it.image,description = "",protein = "",strYoutube = "")
+                    }
+                    binding.recyclerViewMain.adapter = AdapterFavourites(lista)
 
-                    }
-                    Status.SUCCESS -> {
-
-                        binding.recyclerViewMain.visibility = View.VISIBLE
-                        adapterHome = AdapterHome(result.data!!.meals)
-                        binding.recyclerViewMain.adapter = adapterHome
-                        //result.data?.let { listMeals -> retrieveList(listMeals.meals) }
-                    }
-                    Status.ERROR -> {
-                    }
+                    //Log.d("Lista de Favoritos","${it.data}")
                 }
-
+                Status.ERROR ->{}
             }
         })
-
     }
-
-    private fun retrieveList(list: ArrayList<Meals>) {
-        adapterHome.apply {
-            getAddListMeals(list)
+    private fun navegarAFragmentMeal(){
+        binding.btnAddMealMain.setOnClickListener {
+            findNavController().navigate(R.id.nav_mealFragment)
         }
     }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()
