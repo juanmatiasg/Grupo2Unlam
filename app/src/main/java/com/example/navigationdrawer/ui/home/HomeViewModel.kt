@@ -19,6 +19,7 @@ class HomeViewModel(private val repo: Repo) : ViewModel() {
         setComida("chicken")
     }
 
+
     val fetchMeals = term.distinctUntilChanged().switchMap {
         liveData(Dispatchers.IO) {
             emit(Resource.loading(data = null))
