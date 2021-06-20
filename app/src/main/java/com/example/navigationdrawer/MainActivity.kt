@@ -1,20 +1,30 @@
 package com.example.navigationdrawer
 
+import android.R
 import android.os.Bundle
 import android.view.Menu
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.navigation.NavigationView
+import android.view.View
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
+import com.example.navigationdrawer.databinding.FragmentHomeBinding
+import com.google.android.material.navigation.NavigationView
+
 
 class MainActivity : AppCompatActivity() {
+    private var _binding: MainActivity? = null
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding get() = _binding!!
+
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 
@@ -45,5 +55,33 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+    private var usernameEditText: EditText? = null
+    private var passwordEditText: EditText? = null
+    private var loginButton: Button? = null
+    private var loginViaGoogle: Button? = null
+
+
+    fun Login(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        binding.loginButton
+        fin
+        val username: EditText =findViewById(R.id.act)
+        passwordEditText = findViewById(R.id.activity_main_passwordEditText)
+        loginButton= findViewById(R.id.activity_main_loginButton)
+        loginViaGoogle = findViewById(R.id.activity_main_loginGoogleS)
+        Button.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                if (usernameEditText.getText().length > 0 && passwordEditText.getText().length > 0) {
+                    val toastMessage = "Username: " + usernameEditText.getText()
+                        .toString() + ", Password: " + passwordEditText.getText().toString()
+                    Toast.makeText(applicationContext, toastMessage, Toast.LENGTH_SHORT).show()
+                } else {
+                    val toastMessage = "Username or Password are not populated"
+                    Toast.makeText(applicationContext, toastMessage, Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
     }
 }
