@@ -7,11 +7,12 @@ import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.navigationdrawer.data.entities.MealEntity
+import com.example.navigationdrawer.data.entities.PlannerEntity
 import com.example.navigationdrawer.domain.MealDao
 
 @Database(
     version = 1,
-    entities = [MealEntity::class],
+    entities = [MealEntity::class, PlannerEntity::class],
     exportSchema = false
 )
 abstract class AppDataBase : RoomDatabase() {
@@ -24,7 +25,7 @@ abstract class AppDataBase : RoomDatabase() {
             INSTANCE = INSTANCE ?: Room.databaseBuilder(
                 context.applicationContext,
                 AppDataBase::class.java,
-                "DBMealsAPI"
+                "DBMeals_API_v1.0.11"
             )
                 .build()
             return INSTANCE!!

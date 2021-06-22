@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -13,10 +14,12 @@ import com.example.navigationdrawer.data.DataSource
 import com.example.navigationdrawer.data.database.AppDataBase
 import com.example.navigationdrawer.data.model.Meals
 import com.example.navigationdrawer.databinding.FragmentMealBinding
+import com.example.navigationdrawer.databinding.ItemsMealBinding
 import com.example.navigationdrawer.domain.RepoImp
 import com.example.navigationdrawer.ui.adapter.AdapterMeals
 import com.example.navigationdrawer.ui.factory.VMFactory
 import com.example.navigationdrawer.vo.Status
+import kotlinx.android.synthetic.main.items_meal.view.*
 
 //import kotlinx.android.synthetic.main.fragment_meal.*
 
@@ -48,9 +51,9 @@ class MealFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecycler()
-        setupObserver()
-        setUpMealObserver()
-        searchComida()
+        setupObserver()//muestra la comida por defecto
+        setUpMealObserver()//busca la comida
+        searchComida()//busca la comida
     }
 
     private fun setupRecycler() {
@@ -61,6 +64,7 @@ class MealFragment : Fragment() {
             binding.recyclerViewMeal.adapter = adapterMeals
         }
     }
+
 
     private fun setUpMealObserver(){
         mealViewModel.fetchMeals.observe(viewLifecycleOwner, Observer {

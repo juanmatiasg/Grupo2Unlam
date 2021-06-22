@@ -2,6 +2,7 @@ package com.example.navigationdrawer.data
 
 import com.example.navigationdrawer.data.database.AppDataBase
 import com.example.navigationdrawer.data.entities.MealEntity
+import com.example.navigationdrawer.data.entities.PlannerEntity
 import com.example.navigationdrawer.data.model.ListMeals
 import com.example.navigationdrawer.data.model.MealsInformation
 import com.example.navigationdrawer.vo.Resource
@@ -19,6 +20,9 @@ class DataSource(private val appDataBase: AppDataBase) {
     suspend fun insertMeal(meal:MealEntity){
         appDataBase.mealDao().insertMeal(meal)
     }
+    suspend fun insertMealPlanner(meal:PlannerEntity){
+        appDataBase.mealDao().insertMealPlanner(meal)
+    }
 
     suspend fun getMealsFavoritos(): Resource<List<MealEntity>> {
         return Resource.success(appDataBase.mealDao().getListMeal())
@@ -26,6 +30,10 @@ class DataSource(private val appDataBase: AppDataBase) {
 
     suspend fun getListMealByB():Resource<ListMeals>{
         return Resource.success(RetrofitClient.webService.getListMeal())
+    }
+
+    suspend fun getMealsHome(): Resource<List<PlannerEntity>> {
+        return Resource.success(appDataBase.mealDao().getListPlanner())
     }
 
 }

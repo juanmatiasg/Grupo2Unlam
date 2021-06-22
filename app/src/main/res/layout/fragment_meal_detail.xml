@@ -64,19 +64,38 @@
             app:layout_constraintTop_toBottomOf="@+id/textView_titleDetail" />
 
 
+        <Button
+            android:id="@+id/buttonAddPlanner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="115dp"
+            android:layout_marginLeft="115dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginEnd="114dp"
+            android:layout_marginRight="114dp"
+            android:backgroundTint="#FF0000"
+            android:drawableLeft="@drawable/ic_baseline_fact_check_24"
+            android:text="Agregar al planificador"
+            android:textSize="10dp"
+            app:cornerRadius="21dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.531"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonFavourite" />
+
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView2"
             android:layout_width="241dp"
             android:layout_height="107dp"
             android:layout_marginStart="85dp"
             android:layout_marginLeft="85dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="7dp"
             android:layout_marginEnd="85dp"
             android:layout_marginRight="85dp"
             app:cardCornerRadius="18dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonFavourite">
+            app:layout_constraintTop_toBottomOf="@+id/buttonAddPlanner">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

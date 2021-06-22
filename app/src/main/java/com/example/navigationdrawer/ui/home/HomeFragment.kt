@@ -39,12 +39,14 @@ class HomeFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-    private val mainViewModel by viewModels<GalleryViewModel> {
+    private val mainViewModel by viewModels<HomeViewModel> {
         VMFactory(
             RepoImp(DataSource(AppDataBase.getDatabase(requireActivity().applicationContext)))
         )
     }
     private lateinit var adapterHome: AdapterHome
+    private lateinit var meal: Meals
+
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -65,13 +67,17 @@ class HomeFragment : Fragment() {
         navegarAFragmentMeal()
     }
 
+
     private fun setDate() {
         val calendar= Calendar.getInstance()
         val currentDay= DateFormat.getDateInstance().format(calendar.time)
         binding.txtDayDateMain.text=currentDay
     }
 
+
+
     private fun setupRecycler() {
+
         binding.recyclerViewMain.apply {
             setHasFixedSize(true)
             layoutManager = GridLayoutManager(requireContext(), 1)
@@ -80,14 +86,15 @@ class HomeFragment : Fragment() {
         }
     }
     private fun setupObserver() {
-        mainViewModel.getMealsFavoritos().observe(viewLifecycleOwner, Observer {
+
+        mainViewModel.getMealsHome().observe(viewLifecycleOwner, Observer {
             when(it.status){
                 Status.LOADING ->{}
                 Status.SUCCESS ->{
                     val lista = it.data!!.map {
                         Meals(it.id,it.title,it.image,description = "",protein = "",strYoutube = "")
                     }
-                    binding.recyclerViewMain.adapter = AdapterFavourites(lista)
+                    binding.recyclerViewMain.adapter = AdapterHome(lista)
 
                     //Log.d("Lista de Favoritos","${it.data}")
                 }
@@ -95,6 +102,8 @@ class HomeFragment : Fragment() {
             }
         })
     }
+
+
     private fun navegarAFragmentMeal(){
         binding.btnAddMealMain.setOnClickListener {
             findNavController().navigate(R.id.nav_mealFragment)

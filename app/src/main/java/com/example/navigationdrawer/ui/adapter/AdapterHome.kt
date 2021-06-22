@@ -1,18 +1,20 @@
 package com.example.navigationdrawer.ui.adapter
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.*
 import com.example.navigationdrawer.R
+import com.example.navigationdrawer.data.entities.MealEntity
 import com.example.navigationdrawer.data.model.Meals
 import com.example.navigationdrawer.databinding.FragmentHomeBinding
 import com.example.navigationdrawer.databinding.ItemsMainBinding
 import com.example.navigationdrawer.databinding.ItemsMealBinding
 import com.squareup.picasso.Picasso
 
-class AdapterHome(private val items: ArrayList<Meals>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class AdapterHome(private val items: List<Meals>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private lateinit var itemsMainBinding: ItemsMainBinding
 
@@ -33,10 +35,16 @@ class AdapterHome(private val items: ArrayList<Meals>): RecyclerView.Adapter<Rec
     private fun ImageView.loadUrl(url:String){
         Picasso.get().load(url).into(itemsMainBinding.imgVMealMain)
     }
-    fun getAddListMeals(list: ArrayList<Meals>) {
+
+    companion object{
+        const val MEALS_ITEMS_HOME ="MEALS_ITEMS_HOME"
+        const val MEAL_TITLE="MEAL_TITLE"
+    }
+
+    /*fun getAddListMeals(list: ArrayList<Meals>) {
         items.clear()
         items.addAll(list)
         notifyDataSetChanged()
-    }
+    }*/
     class ViewHolder(binding: ItemsMainBinding):RecyclerView.ViewHolder(binding.root)
 }

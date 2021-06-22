@@ -9,6 +9,7 @@ import androidx.fragment.app.activityViewModels
 import com.example.navigationdrawer.data.DataSource
 import com.example.navigationdrawer.data.database.AppDataBase
 import com.example.navigationdrawer.data.entities.MealEntity
+import com.example.navigationdrawer.data.entities.PlannerEntity
 import com.example.navigationdrawer.data.model.Meals
 import com.example.navigationdrawer.databinding.FragmentMealDetailBinding
 import com.example.navigationdrawer.domain.RepoImp
@@ -51,11 +52,17 @@ class MealDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupObserver()
         setupGuardarFavoritos()
+        setUpGuardarPlanner()
     }
 
     private fun setupGuardarFavoritos() {
         binding.buttonFavourite.setOnClickListener {
             viewModel.insertMeal(MealEntity(meals.id,meals.title,meals.image))
+        }
+    }
+    private fun setUpGuardarPlanner(){
+        binding.buttonAddPlanner.setOnClickListener {
+            viewModel.insertMealPlanner(PlannerEntity(meals.id,meals.title,meals.image))
         }
     }
 
