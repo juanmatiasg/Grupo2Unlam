@@ -19,7 +19,11 @@
         android:id="@+id/nav_gallery"
         android:name="com.example.navigationdrawer.ui.gallery.GalleryFragment"
         android:label="@string/menu_favourite"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_gallery" >
+        <action
+            android:id="@+id/action_nav_gallery_to_mealDetailFragment"
+            app:destination="@id/mealDetailFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_slideshow"

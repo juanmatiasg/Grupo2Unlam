@@ -110,6 +110,7 @@
                     android:text="Calorías"
                     android:textColor="@color/black"
                     android:textSize="25dp"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -126,6 +127,7 @@
                     android:textColor="@color/black"
                     android:textSize="25dp"
                     android:textStyle="bold"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="@+id/textView_numberCaloriesDetail"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -144,30 +146,22 @@
                     android:hint="383"
                     android:textColor="#2FA804"
                     android:textSize="25dp"
+                    android:visibility="gone"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView_CaloriasDetail" />
+
+                <VideoView
+                    android:id="@+id/videoView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
-
-        <TextView
-            android:id="@+id/textView_TitleDescriptionDetail"
-            android:layout_width="382dp"
-            android:layout_height="133dp"
-            android:layout_marginStart="13dp"
-            android:layout_marginLeft="13dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="13dp"
-            android:layout_marginRight="13dp"
-            android:fontFamily="sans-serif-condensed"
-            android:text="Descripción"
-            android:textColor="@color/black"
-            android:textSize="13dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.333"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView2" />
 
         <ScrollView
             android:layout_width="384dp"
@@ -180,7 +174,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_TitleDescriptionDetail">
+            app:layout_constraintTop_toBottomOf="@+id/textView_TitleDescriptionDetail"
+            tools:ignore="MissingPrefix,NotSibling">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -195,6 +190,35 @@
                     android:hint="@string/lorem_impsumt"
                     android:visibility="gone" />
             </LinearLayout>
+        </ScrollView>
+
+        <ScrollView
+            android:layout_width="404dp"
+            android:layout_height="135dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView2">
+
+            <TextView
+                android:id="@+id/textView_TitleDescriptionDetail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="13dp"
+                android:layout_marginLeft="13dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="13dp"
+                android:layout_marginRight="13dp"
+                android:fontFamily="sans-serif-condensed"
+                android:text="Descripción"
+                android:textColor="@color/black"
+                android:textSize="13dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.333"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView2" />
         </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
