@@ -38,4 +38,8 @@ class RepoImp(private val dataSource: DataSource):Repo{
         return dataSource.getMealsHome()
     }
 
+    override suspend fun deleteFavourite(meal: MealEntity) {
+        dataSource.deleteFavourite(meal)
+    }
+
 }

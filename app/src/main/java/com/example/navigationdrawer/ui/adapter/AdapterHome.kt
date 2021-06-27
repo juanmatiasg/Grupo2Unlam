@@ -36,10 +36,7 @@ class AdapterHome(private val items: List<Meals>): RecyclerView.Adapter<Recycler
         Picasso.get().load(url).into(itemsMainBinding.imgVMealMain)
     }
 
-    companion object{
-        const val MEALS_ITEMS_HOME ="MEALS_ITEMS_HOME"
-        const val MEAL_TITLE="MEAL_TITLE"
-    }
+
 
     /*fun getAddListMeals(list: ArrayList<Meals>) {
         items.clear()

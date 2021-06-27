@@ -36,4 +36,9 @@ class DataSource(private val appDataBase: AppDataBase) {
         return Resource.success(appDataBase.mealDao().getListPlanner())
     }
 
+    suspend fun deleteFavourite(meal: MealEntity){
+        appDataBase.mealDao().deleteMealFromFavourites(meal)
+    }
+
+
 }

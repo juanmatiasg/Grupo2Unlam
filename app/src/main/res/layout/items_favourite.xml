@@ -42,7 +42,7 @@
                 android:layout_height="78dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginLeft="24dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="44dp"
                 android:layout_marginEnd="12dp"
                 android:layout_marginRight="12dp"
                 android:fontFamily="sans-serif-condensed-medium"
@@ -51,8 +51,9 @@
                 android:textSize="25dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/imgVMeal_Favourite"
-                app:layout_constraintTop_toBottomOf="@+id/btnHeart_Favourite" />
+                app:layout_constraintTop_toTopOf="@+id/imgVMeal_Favourite" />
 
             <TextView
                 android:id="@+id/txtDescription_Favourite"
@@ -69,7 +70,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/txtTitle_Favourite" />
 
             <androidx.constraintlayout.utils.widget.ImageFilterButton
-                android:id="@+id/btnHeart_Favourite"
+                android:id="@+id/btnDelete_Favourite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="202dp"
@@ -78,7 +79,7 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:background="@color/white"
-                android:src="@drawable/ic_baseline_favorite_24"
+                android:src="@drawable/ic_baseline_delete_forever_24"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imgVMeal_Favourite"
                 app:layout_constraintTop_toTopOf="parent" />

@@ -9,7 +9,6 @@ import com.example.navigationdrawer.vo.Resource
 interface Repo{
     suspend fun getListMeals(term: String):Resource<ListMeals>
 
-    //suspend fun getMealsInformation(id:String):Resource<MealsInformation>
 
     suspend fun getMealsFavoritos():Resource<List<MealEntity>>
 
@@ -20,4 +19,6 @@ interface Repo{
     suspend fun getListMealByB():Resource<ListMeals>
 
     suspend fun getMealsHome():Resource<List<PlannerEntity>>
+
+    suspend fun deleteFavourite(meal:MealEntity)
 }

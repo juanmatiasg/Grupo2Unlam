@@ -7,7 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.MediaController
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import com.example.navigationdrawer.R
 import com.example.navigationdrawer.data.DataSource
 import com.example.navigationdrawer.data.database.AppDataBase
 import com.example.navigationdrawer.data.entities.MealEntity
@@ -61,11 +63,13 @@ class MealDetailFragment : Fragment() {
     private fun setupGuardarFavoritos() {
         binding.buttonFavourite.setOnClickListener {
             viewModel.insertMeal(MealEntity(meals.id,meals.title,meals.image))
+            Toast.makeText(requireContext(), R.string.msjeFavoritos,Toast.LENGTH_SHORT).show()
         }
     }
     private fun setUpGuardarPlanner(){
         binding.buttonAddPlanner.setOnClickListener {
             viewModel.insertMealPlanner(PlannerEntity(meals.id,meals.title,meals.image))
+            Toast.makeText(requireContext(), R.string.msjePlanner,Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -80,20 +84,11 @@ class MealDetailFragment : Fragment() {
 
             Picasso.get().load(meals.image).into(binding.imageViewMealDetail)
         }
-        /*viewModel.fetchMealsInformation.observe(viewLifecycleOwner, Observer { result ->
-            when (result.status) {
-                Status.LOADING -> {
-                }
-                Status.SUCCESS -> {
-                    binding.textViewResumenDetail.text =
-                        Html.fromHtml(result.data!!.summary).toString()
-                }
-                Status.ERROR -> {
-                }
-            }
-        })*/
+
 
     }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()
