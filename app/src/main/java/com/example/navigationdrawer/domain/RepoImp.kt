@@ -4,6 +4,7 @@ import com.example.navigationdrawer.data.DataSource
 import com.example.navigationdrawer.data.entities.MealEntity
 import com.example.navigationdrawer.data.entities.PlannerEntity
 import com.example.navigationdrawer.data.model.ListMeals
+import com.example.navigationdrawer.data.model.Meals
 import com.example.navigationdrawer.data.model.MealsInformation
 import com.example.navigationdrawer.vo.Resource
 
@@ -41,5 +42,13 @@ class RepoImp(private val dataSource: DataSource):Repo{
     override suspend fun deleteFavourite(meal: MealEntity) {
         dataSource.deleteFavourite(meal)
     }
+
+    override suspend fun deleteFromPlanner(meal: PlannerEntity) {
+        dataSource.deleteFromPlanner(meal)
+    }
+
+    /*override suspend fun deleteFavourite(meal: Meals) {
+        dataSource.deleteFavourite(meal)
+    }*/
 
 }

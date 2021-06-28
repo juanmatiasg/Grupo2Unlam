@@ -14,7 +14,11 @@ import com.example.navigationdrawer.databinding.ItemsMainBinding
 import com.example.navigationdrawer.databinding.ItemsMealBinding
 import com.squareup.picasso.Picasso
 
-class AdapterHome(private val items: List<Meals>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class AdapterHome(private val items: List<Meals>, private val itemClickListener: OnMealsListener): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    interface OnMealsListener{
+        fun deleteFavouriteListener(item:Meals,position: Int)
+    }
 
     private lateinit var itemsMainBinding: ItemsMainBinding
 
@@ -27,6 +31,14 @@ class AdapterHome(private val items: List<Meals>): RecyclerView.Adapter<Recycler
         itemsMainBinding.txtTitleMain.text=items[position].title
         itemsMainBinding.imgVMealMain.loadUrl(items[position].image)
         itemsMainBinding.txtDescriptionMain.text=items[position].protein
+        itemsMainBinding.btnUiClearMain.setOnClickListener{
+            itemClickListener.deleteFavouriteListener(items[position],position)
+            val lista= items as ArrayList
+            lista.removeAt(position)
+            notifyItemRemoved(position)
+            notifyItemRangeRemoved(position, itemCount)
+        }
+
     }
 
     override fun getItemCount(): Int {

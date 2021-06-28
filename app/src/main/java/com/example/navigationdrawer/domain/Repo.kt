@@ -21,4 +21,6 @@ interface Repo{
     suspend fun getMealsHome():Resource<List<PlannerEntity>>
 
     suspend fun deleteFavourite(meal:MealEntity)
+
+    suspend fun deleteFromPlanner(meal: PlannerEntity)
 }
