@@ -79,7 +79,8 @@ class MealDetailFragment : Fragment() {
 
             binding.youtubePlay.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
                 override fun onReady(youTubePlayer: YouTubePlayer) {
-                    val videoId = meals.strYoutube
+                    val expressionString= "https://www.youtube.com/watch?v="
+                    val videoId = meals.strYoutube.replace(expressionString,"")
                     youTubePlayer.loadVideo(videoId, 0f)
                 }
             })
