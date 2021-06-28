@@ -1,12 +1,10 @@
 package com.example.navigationdrawer.ui.mealDetail
 
-import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.MediaController
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.navigationdrawer.data.DataSource
 import com.example.navigationdrawer.data.database.AppDataBase
@@ -15,9 +13,10 @@ import com.example.navigationdrawer.data.entities.PlannerEntity
 import com.example.navigationdrawer.data.model.Meals
 import com.example.navigationdrawer.databinding.FragmentMealDetailBinding
 import com.example.navigationdrawer.domain.RepoImp
-import com.example.navigationdrawer.ui.adapter.AdapterFavourites
 import com.example.navigationdrawer.ui.adapter.AdapterMeals
 import com.example.navigationdrawer.ui.factory.VMFactory
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.squareup.picasso.Picasso
 
 
@@ -77,6 +76,13 @@ class MealDetailFragment : Fragment() {
             binding.textViewTitleDetail.text = meals.title
             //binding.textViewNumberCaloriesDetail.text = meals.strYoutube
             binding.textViewTitleDescriptionDetail.text=meals.description
+
+            binding.youtubePlay.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
+                override fun onReady(youTubePlayer: YouTubePlayer) {
+                    val videoId = meals.strYoutube
+                    youTubePlayer.loadVideo(videoId, 0f)
+                }
+            })
 
             Picasso.get().load(meals.image).into(binding.imageViewMealDetail)
         }
