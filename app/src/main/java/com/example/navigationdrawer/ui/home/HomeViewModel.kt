@@ -2,6 +2,7 @@ package com.example.navigationdrawer.ui.home
 
 import androidx.lifecycle.*
 import com.example.navigationdrawer.data.entities.MealEntity
+import com.example.navigationdrawer.data.entities.PlannerEntity
 import com.example.navigationdrawer.domain.Repo
 import com.example.navigationdrawer.vo.Resource
 import kotlinx.coroutines.Dispatchers
@@ -18,4 +19,11 @@ class HomeViewModel(private val repo: Repo) : ViewModel() {
             emit(Resource.error(data = null, message = e.message ?: "Ocurrio un error"))
         }
     }
+
+    fun deleteFromPlanner(plannerEntity: PlannerEntity){
+        viewModelScope.launch {
+            repo.deleteFromPlanner(plannerEntity)
+        }
+    }
+
 }

@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.navigationdrawer"
-        minSdkVersion 16
+        minSdkVersion 17
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -80,6 +80,10 @@ dependencies {
 
 
     implementation 'androidx.room:room-ktx:2.2.6'
+
+    /*Youtube Lib*/
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
+
 
     def room_version = "2.2.5"
 

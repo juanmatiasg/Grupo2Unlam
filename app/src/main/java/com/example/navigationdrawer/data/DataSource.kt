@@ -4,6 +4,7 @@ import com.example.navigationdrawer.data.database.AppDataBase
 import com.example.navigationdrawer.data.entities.MealEntity
 import com.example.navigationdrawer.data.entities.PlannerEntity
 import com.example.navigationdrawer.data.model.ListMeals
+import com.example.navigationdrawer.data.model.Meals
 import com.example.navigationdrawer.data.model.MealsInformation
 import com.example.navigationdrawer.vo.Resource
 import com.example.navigationdrawer.vo.RetrofitClient
@@ -34,6 +35,13 @@ class DataSource(private val appDataBase: AppDataBase) {
 
     suspend fun getMealsHome(): Resource<List<PlannerEntity>> {
         return Resource.success(appDataBase.mealDao().getListPlanner())
+    }
+
+    suspend fun deleteFavourite(meal: MealEntity){
+        appDataBase.mealDao().deleteMealFromFavourites(meal)
+    }
+    suspend fun deleteFromPlanner(meal: PlannerEntity){
+        appDataBase.mealDao().deleleFromPlanner(meal)
     }
 
 }

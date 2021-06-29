@@ -18,6 +18,7 @@ import com.example.navigationdrawer.R
 import com.example.navigationdrawer.data.DataSource
 import com.example.navigationdrawer.data.database.AppDataBase
 import com.example.navigationdrawer.data.entities.MealEntity
+import com.example.navigationdrawer.data.entities.PlannerEntity
 import com.example.navigationdrawer.data.model.Meals
 import com.example.navigationdrawer.databinding.FragmentHomeBinding
 import com.example.navigationdrawer.domain.RepoImp
@@ -33,7 +34,7 @@ import java.text.DateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), AdapterHome.OnMealsListener {
 
     private var _binding: FragmentHomeBinding? = null
     // This property is only valid between onCreateView and
@@ -81,8 +82,8 @@ class HomeFragment : Fragment() {
         binding.recyclerViewMain.apply {
             setHasFixedSize(true)
             layoutManager = GridLayoutManager(requireContext(), 1)
-            adapterHome = AdapterHome(arrayListOf())
-            binding.recyclerViewMain.adapter = adapterHome
+            /*adapterHome = AdapterHome(arrayListOf(),this)
+            binding.recyclerViewMain.adapter = adapterHome*/
         }
     }
     private fun setupObserver() {
@@ -94,7 +95,7 @@ class HomeFragment : Fragment() {
                     val lista = it.data!!.map {
                         Meals(it.id,it.title,it.image,description = "",protein = "",strYoutube = "")
                     }
-                    binding.recyclerViewMain.adapter = AdapterHome(lista)
+                    binding.recyclerViewMain.adapter = AdapterHome(lista,this)
 
                     //Log.d("Lista de Favoritos","${it.data}")
                 }
@@ -115,6 +116,10 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun deleteFavouriteListener(item: Meals, position: Int) {
+        mainViewModel.deleteFromPlanner(PlannerEntity(item.id,item.title,item.image))
     }
 
 }

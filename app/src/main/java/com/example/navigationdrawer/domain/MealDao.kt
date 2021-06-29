@@ -21,7 +21,7 @@ interface MealDao {
     suspend fun insertMealPlanner(meal: PlannerEntity)
 
     @Delete
-    suspend fun deleteMeal(meal: MealEntity)
+    suspend fun deleteMealFromFavourites(meal: MealEntity)
 
     @Delete
     suspend fun deleleFromPlanner(meal: PlannerEntity)

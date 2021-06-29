@@ -3,6 +3,7 @@ package com.example.navigationdrawer.ui.adapter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ImageView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -12,10 +13,13 @@ import com.example.navigationdrawer.data.model.Meals
 import com.example.navigationdrawer.databinding.ItemsFavouriteBinding
 import com.squareup.picasso.Picasso
 
-class AdapterFavourites(private val items: List<Meals>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class AdapterFavourites(private val items: List<Meals>,private val itemClickListener: OnMealsListener): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private lateinit var itemsFavouriteBinding: ItemsFavouriteBinding
 
+    interface OnMealsListener{
+        fun deleteFavouriteListener(item:Meals,position: Int)
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder{
         itemsFavouriteBinding= ItemsFavouriteBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return ViewHolder(itemsFavouriteBinding)
@@ -29,18 +33,24 @@ class AdapterFavourites(private val items: List<Meals>): RecyclerView.Adapter<Re
         itemsFavouriteBinding.txtTitleFavourite.text=items[position].title
         itemsFavouriteBinding.imgVMealFavourite.loadUrl(items[position].image)
         itemsFavouriteBinding.txtDescriptionFavourite.text=items[position].description
-        /*itemsFavouriteBinding.cardViewFavourite.setOnClickListener{
-            val bundle= Bundle()
-            bundle.putParcelable(FAVOURITES_ITEMS,items[position])
-            it.findNavController().navigate(R.id.action_nav_gallery_to_mealDetailFragment,bundle)
-        }*/
+
+        itemsFavouriteBinding.btnDeleteFavourite.setOnClickListener {
+            itemClickListener.deleteFavouriteListener(items[position],position)
+            val lista = items as ArrayList
+            lista.removeAt(position)
+            notifyItemRemoved(position)
+            notifyItemRangeRemoved(position, itemCount)
+        }
+
+
     }
     private fun ImageView.loadUrl(url: String){
         Picasso.get().load(url).into(itemsFavouriteBinding.imgVMealFavourite)
     }
-    companion object{
-        const val FAVOURITES_ITEMS="FAVOURITE_ITEM"
-    }
+
+
+
+
     class ViewHolder(binding: ItemsFavouriteBinding):RecyclerView.ViewHolder(binding.root)
 
 

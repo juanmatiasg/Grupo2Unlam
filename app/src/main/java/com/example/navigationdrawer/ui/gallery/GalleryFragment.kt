@@ -11,14 +11,19 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.navigationdrawer.data.DataSource
 import com.example.navigationdrawer.data.database.AppDataBase
+import com.example.navigationdrawer.data.entities.MealEntity
 import com.example.navigationdrawer.data.model.Meals
 import com.example.navigationdrawer.databinding.FragmentGalleryBinding
 import com.example.navigationdrawer.domain.RepoImp
 import com.example.navigationdrawer.ui.adapter.AdapterFavourites
 import com.example.navigationdrawer.ui.factory.VMFactory
 import com.example.navigationdrawer.vo.Status
+import kotlinx.android.synthetic.main.fragment_gallery.*
+import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.items_favourite.*
+import kotlinx.android.synthetic.main.items_favourite.view.*
 
-class GalleryFragment : Fragment() {
+class GalleryFragment : Fragment(), AdapterFavourites.OnMealsListener {
     //cambiar esto
     private var _binding: FragmentGalleryBinding? = null
     private val binding get() = _binding!!
@@ -66,19 +71,29 @@ class GalleryFragment : Fragment() {
                     val lista = it.data!!.map {
                         Meals(it.id,it.title,it.image,description = "",protein = "",strYoutube = "")
                     }
-                    binding.rvFavoritos.adapter = AdapterFavourites(lista)
+                    binding.rvFavoritos.adapter = AdapterFavourites(lista,this)
 
-                     //Log.d("Lista de Favoritos","${it.data}")
+
+
+                    //Log.d("Lista de Favoritos","${it.data}")
                 }
                 Status.ERROR ->{}
             }
         })
     }
 
+    private fun deleteFavourites(){
+       // mealViewModel.deleteFavourite(mealEntity)
+    }
 
+    override fun deleteFavouriteListener(item: Meals, position: Int) {
+        mealViewModel.deleteFavourite(MealEntity(item.id,item.title,item.image))
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
+
 }
