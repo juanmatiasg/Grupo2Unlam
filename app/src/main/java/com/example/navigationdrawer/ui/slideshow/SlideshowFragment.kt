@@ -17,8 +17,7 @@ import com.example.navigationdrawer.data.model.MapsPojo
 import com.example.navigationdrawer.databinding.FragmentSlideshowBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
@@ -37,11 +36,16 @@ class SlideshowFragment : Fragment(), OnMapReadyCallback {
 
     //cambiar esto
     private lateinit var slideshowViewModel: SlideshowViewModel
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private lateinit var dataBase: DatabaseReference
-    private lateinit var mMap:GoogleMap
-    var tmpRealTimeMarker= ArrayList<Marker>()
-    var realTimeMarker=ArrayList<Marker>()
+
+    //private lateinit var fusedLocationClient: FusedLocationProviderClient
+    //private lateinit var dataBase: DatabaseReference
+
+    private lateinit var map:GoogleMap
+    private lateinit var mapView: MapView
+
+    //var tmpRealTimeMarker= ArrayList<Marker>()
+    //var realTimeMarker=ArrayList<Marker>()
+
 
 
     override fun onCreateView(
@@ -54,6 +58,9 @@ class SlideshowFragment : Fragment(), OnMapReadyCallback {
             ViewModelProvider(this).get(SlideshowViewModel::class.java)
         _binding = FragmentSlideshowBinding.inflate(layoutInflater,container,false)
 
+        mapView=binding.mapView
+        mapView.getMapAsync(this)
+        mapView.onCreate(savedInstanceState)
 
         val view = binding.root
         return view
@@ -63,9 +70,6 @@ class SlideshowFragment : Fragment(), OnMapReadyCallback {
         super.onViewCreated(view, savedInstanceState)
 
         //dataBase=FirebaseDatabase.getInstance().getReference()
-
-        binding.mapView.getMapAsync(this)
-
 
         botonEmergencia()
         /*
@@ -108,11 +112,8 @@ class SlideshowFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
-    override fun onMapReady(p0: GoogleMap) {
+    override fun onMapReady(googleMap: GoogleMap) {
         //mMap=p0
-
-        p0.addMarker(MarkerOptions().position(LatLng(37.4219796,-122.0838577)).title("Aca"))
-
         /*dataBase.child("usuarios").addValueEventListener(object: ValueEventListener{
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
@@ -140,10 +141,40 @@ class SlideshowFragment : Fragment(), OnMapReadyCallback {
             }
 
         })*/
+
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    override fun onStart() {
+        super.onStart()
+        mapView.onStart()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mapView.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mapView.onPause()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        mapView.onStop()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mapView.onDestroy()
+    }
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        mapView.onSaveInstanceState(outState)
+    }
+
+    override fun onLowMemory() {
+        super.onLowMemory()
+        mapView.onLowMemory()
     }
 }
