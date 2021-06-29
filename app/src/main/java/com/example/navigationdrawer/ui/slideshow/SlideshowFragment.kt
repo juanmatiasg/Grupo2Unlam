@@ -62,13 +62,13 @@ class SlideshowFragment : Fragment(), OnMapReadyCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        dataBase=FirebaseDatabase.getInstance().getReference()
+        //dataBase=FirebaseDatabase.getInstance().getReference()
 
         binding.mapView.getMapAsync(this)
 
 
         botonEmergencia()
-
+        /*
         fusedLocationClient= LocationServices.getFusedLocationProviderClient(requireActivity())
         if (ActivityCompat.checkSelfPermission(
                 requireContext(),
@@ -95,7 +95,7 @@ class SlideshowFragment : Fragment(), OnMapReadyCallback {
             dataBase.child("usuarios").push().setValue(latLng)
 
 
-        }
+        }*/
 
 
     }
