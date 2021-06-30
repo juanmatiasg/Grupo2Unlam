@@ -9,7 +9,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 //import com.example.navigationdrawer.data.model.Maps
@@ -34,18 +36,14 @@ class SlideshowFragment : Fragment(), OnMapReadyCallback {
 
     private val binding get() = _binding!!
 
-    //cambiar esto
     private lateinit var slideshowViewModel: SlideshowViewModel
-
-    //private lateinit var fusedLocationClient: FusedLocationProviderClient
-    //private lateinit var dataBase: DatabaseReference
 
     private lateinit var map:GoogleMap
     private lateinit var mapView: MapView
 
-    //var tmpRealTimeMarker= ArrayList<Marker>()
-    //var realTimeMarker=ArrayList<Marker>()
-
+    companion object{
+        const val REQUEST_CODE_LOCATION=0
+    }
 
 
     override fun onCreateView(
@@ -68,39 +66,7 @@ class SlideshowFragment : Fragment(), OnMapReadyCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        //dataBase=FirebaseDatabase.getInstance().getReference()
-
         botonEmergencia()
-        /*
-        fusedLocationClient= LocationServices.getFusedLocationProviderClient(requireActivity())
-        if (ActivityCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return
-        }
-        fusedLocationClient.lastLocation.addOnSuccessListener {
-            Log.i("latitud","${it.latitude} + ${it.longitude} longitud")
-            val latLng = HashMap<String, Any>()
-            latLng.put("latitud", it.latitude)
-            latLng.put("longitud",it.longitude)
-            dataBase.child("usuarios").push().setValue(latLng)
-
-
-        }*/
-
 
     }
 
@@ -112,36 +78,57 @@ class SlideshowFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
+    private fun isLocationPermissionGranted()= ContextCompat.checkSelfPermission(
+        requireContext(),
+        Manifest.permission.ACCESS_FINE_LOCATION
+    ) == PackageManager.PERMISSION_GRANTED
+
+    private fun enableLocation(){
+        if (!::map.isInitialized) return
+        if (isLocationPermissionGranted()){
+            if (ActivityCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                return
+            }
+            map.isMyLocationEnabled=true
+        }else{
+            requestLocationPermission()
+        }
+    }
+    private fun requestLocationPermission(){
+        if (ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(),Manifest.permission.ACCESS_FINE_LOCATION)){
+            Toast.makeText(requireContext(),"active los permisos de ubicacion",Toast.LENGTH_SHORT).show()
+        }else{
+            ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                REQUEST_CODE_LOCATION)
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        when(requestCode){
+            REQUEST_CODE_LOCATION-> if(grantResults.isNotEmpty() && grantResults[0]==PackageManager.PERMISSION_GRANTED){
+                //Ignorar este error
+                map.isMyLocationEnabled=true
+            }else{
+                Toast.makeText(requireContext(),"falta activar ubicacion",Toast.LENGTH_SHORT).show()
+            }
+            else->{}
+        }
+    }
+
     override fun onMapReady(googleMap: GoogleMap) {
-        //mMap=p0
-        /*dataBase.child("usuarios").addValueEventListener(object: ValueEventListener{
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-
-                for (marker in realTimeMarker){
-                    marker.remove()
-                }
-
-                for (snapshot in dataSnapshot.children){
-                    var mp:MapsPojo= snapshot.getValue(MapsPojo::class.java)!!
-                    var latitud:Double=mp.latitud
-                    var longitud:Double=mp.longitud
-                    var markerOptions= MarkerOptions()
-                    markerOptions.position(LatLng(latitud,longitud))
-
-                    tmpRealTimeMarker.add(mMap.addMarker(markerOptions))
-
-
-                }
-                realTimeMarker.clear()
-                realTimeMarker.addAll(tmpRealTimeMarker)*
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-
-            }
-
-        })*/
-
+        map=googleMap
+        enableLocation()
     }
 
     override fun onStart() {
@@ -152,6 +139,12 @@ class SlideshowFragment : Fragment(), OnMapReadyCallback {
     override fun onResume() {
         super.onResume()
         mapView.onResume()
+        if (!::map.isInitialized)return
+        if (!isLocationPermissionGranted()){
+            //ignorar este error
+            map.isMyLocationEnabled=false
+            Toast.makeText(requireContext(),"La ubicacion no esta activada",Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onPause() {
