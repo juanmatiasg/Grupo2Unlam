@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="purple_200">#446E49</color>
-    <color name="purple_500">#A3C1A6</color>
+    <color name="purple_500">#D8ECDA</color> //seleccion en el menu?
     <color name="purple_700">#A3C1A6</color> //color de arriba
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>

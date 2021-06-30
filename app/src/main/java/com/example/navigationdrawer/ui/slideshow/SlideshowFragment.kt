@@ -20,9 +20,8 @@ import com.example.navigationdrawer.databinding.FragmentSlideshowBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.*
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.R
+import com.google.android.gms.maps.model.*
 import com.google.firebase.database.*
 import java.util.*
 import kotlin.collections.ArrayList
@@ -129,6 +128,31 @@ class SlideshowFragment : Fragment(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         map=googleMap
         enableLocation()
+        marcadores()
+    }
+
+    private fun marcadores() {
+        val n1=LatLng(-34.6475238,-58.5632108)
+        val n2=LatLng(-34.6497127,-58.5708497)
+        val n3=LatLng(-34.66881,-58.6072419)
+        val n4=LatLng(-34.6796804,-58.6710999)
+        val n5=LatLng(-34.6573204,-58.6359523)
+
+        map.addMarker(MarkerOptions()
+            .position(n1)
+            .title("Nutricionista"))
+        map.addMarker(MarkerOptions()
+            .position(n2)
+            .title("Nutricionista"))
+        map.addMarker(MarkerOptions()
+            .position(n3)
+            .title("Nutricionista"))
+        map.addMarker(MarkerOptions()
+            .position(n4)
+            .title("Nutricionista"))
+        map.addMarker(MarkerOptions()
+            .position(n5)
+            .title("Nutricionista"))
     }
 
     override fun onStart() {
