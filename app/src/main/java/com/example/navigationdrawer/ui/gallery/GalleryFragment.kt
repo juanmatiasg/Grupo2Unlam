@@ -22,6 +22,7 @@ import kotlinx.android.synthetic.main.fragment_gallery.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.items_favourite.*
 import kotlinx.android.synthetic.main.items_favourite.view.*
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class GalleryFragment : Fragment(), AdapterFavourites.OnMealsListener {
     //cambiar esto
@@ -29,11 +30,13 @@ class GalleryFragment : Fragment(), AdapterFavourites.OnMealsListener {
     private val binding get() = _binding!!
     lateinit var adapterFavourites: AdapterFavourites
 
-    private val mealViewModel by viewModels<GalleryViewModel> {
+   /* private val mealViewModel by viewModels<GalleryViewModel> {
         VMFactory(
             RepoImp(DataSource(AppDataBase.getDatabase(requireActivity().applicationContext)))
         )
-    }
+    }*/
+
+   private val mealViewModel:GalleryViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
