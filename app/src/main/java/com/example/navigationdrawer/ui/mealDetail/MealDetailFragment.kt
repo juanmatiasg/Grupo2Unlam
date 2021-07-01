@@ -18,8 +18,11 @@ import com.example.navigationdrawer.data.model.Meals
 import com.example.navigationdrawer.databinding.FragmentMealDetailBinding
 import com.example.navigationdrawer.domain.RepoImp
 import com.example.navigationdrawer.ui.adapter.AdapterFavourites
+import com.example.navigationdrawer.ui.adapter.AdapterHome
 import com.example.navigationdrawer.ui.adapter.AdapterMeals
 import com.example.navigationdrawer.ui.factory.VMFactory
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.squareup.picasso.Picasso
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -81,10 +84,15 @@ class MealDetailFragment : Fragment() {
             meals = it.getParcelable(AdapterMeals.MEALS_ITEMS)!!
             binding.textViewTitleDetail.text = meals.title
             binding.textViewTitleDescriptionDetail.text=meals.description
-
+            binding.youtubePlay.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
+                override fun onReady(youTubePlayer: YouTubePlayer) {
+                    val expressionString= "https://www.youtube.com/watch?v="
+                    val videoId = meals.strYoutube.replace(expressionString,"")
+                    youTubePlayer.loadVideo(videoId, 0f)
+                }
+            })
             Picasso.get().load(meals.image).into(binding.imageViewMealDetail)
         }
-
 
     }
 

@@ -4,9 +4,8 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:layout_editor_absoluteX="13dp"
+    android:id="@+id/cardView"
 
-    tools:layout_editor_absoluteY="2dp"
     android:layout_width="386dp"
     android:layout_height="150dp"
     android:layout_marginStart="12dp"
@@ -16,7 +15,9 @@
     android:layout_marginRight="12dp"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
+    app:layout_constraintTop_toTopOf="parent"
+    tools:layout_editor_absoluteX="13dp"
+    tools:layout_editor_absoluteY="2dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

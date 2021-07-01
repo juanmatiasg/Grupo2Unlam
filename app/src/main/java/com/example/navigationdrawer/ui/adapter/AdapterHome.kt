@@ -56,4 +56,8 @@ class AdapterHome(private val items: List<Meals>, private val itemClickListener:
         notifyDataSetChanged()
     }*/
     class ViewHolder(binding: ItemsMainBinding):RecyclerView.ViewHolder(binding.root)
+
+    companion object{
+        const val MEAL_ITEMS="MEAL_ITEMS"
+    }
 }
