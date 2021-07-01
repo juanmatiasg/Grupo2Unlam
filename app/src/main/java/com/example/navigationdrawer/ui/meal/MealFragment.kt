@@ -20,6 +20,7 @@ import com.example.navigationdrawer.ui.adapter.AdapterMeals
 import com.example.navigationdrawer.ui.factory.VMFactory
 import com.example.navigationdrawer.vo.Status
 import kotlinx.android.synthetic.main.items_meal.view.*
+import org.koin.android.viewmodel.ext.android.viewModel
 
 //import kotlinx.android.synthetic.main.fragment_meal.*
 
@@ -30,11 +31,15 @@ class MealFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-    private val mealViewModel by viewModels<MealViewModel> {
+    /*private val mealViewModel by viewModels<MealViewModel> {
         VMFactory(
             RepoImp(DataSource(AppDataBase.getDatabase(requireActivity().applicationContext)))
         )
-    }
+    }*/
+
+    private val mealViewModel:MealViewModel by viewModel()
+
+
     private lateinit var adapterMeals: AdapterMeals
 
     override fun onCreateView(

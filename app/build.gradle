@@ -34,7 +34,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    buildFeatures{ viewBinding=true}
+    buildFeatures { viewBinding = true }
 
     kotlinOptions {
         jvmTarget = '1.8'
@@ -102,10 +102,17 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
 
 
-
     def room_version = "2.2.5"
 
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
+
+    /*Inyeccion de dependencias KOIN*/
+    def koin_version = "2.0.0-GA2"
+    implementation "org.koin:koin-android:$koin_version"
+    implementation "org.koin:koin-android-viewmodel:$koin_version"
+    testCompile "org.koin:koin-test:$koin_version"
+
+   
 
 }

@@ -21,13 +21,14 @@ import com.example.navigationdrawer.ui.adapter.AdapterFavourites
 import com.example.navigationdrawer.ui.adapter.AdapterMeals
 import com.example.navigationdrawer.ui.factory.VMFactory
 import com.squareup.picasso.Picasso
+import org.koin.android.viewmodel.ext.android.viewModel
 
 
 class MealDetailFragment : Fragment() {
     private var _binding: FragmentMealDetailBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel by activityViewModels<MealDetailViewModel> {
+    /*private val viewModel by activityViewModels<MealDetailViewModel> {
         VMFactory(
             RepoImp(
                 DataSource(
@@ -35,7 +36,8 @@ class MealDetailFragment : Fragment() {
                 )
             )
         )
-    }
+    }*/
+    private val viewModel :MealDetailViewModel by viewModel()
 
     lateinit var meals: Meals
 
@@ -77,9 +79,7 @@ class MealDetailFragment : Fragment() {
     private fun setupObserver() {
         requireArguments().let {
             meals = it.getParcelable(AdapterMeals.MEALS_ITEMS)!!
-            //viewModel.setIdInformation(meals.id)
             binding.textViewTitleDetail.text = meals.title
-            //binding.textViewNumberCaloriesDetail.text = meals.strYoutube
             binding.textViewTitleDescriptionDetail.text=meals.description
 
             Picasso.get().load(meals.image).into(binding.imageViewMealDetail)

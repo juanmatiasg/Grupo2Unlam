@@ -30,21 +30,27 @@ import com.example.navigationdrawer.ui.gallery.GalleryViewModel
 import com.example.navigationdrawer.ui.meal.MealViewModel
 import com.example.navigationdrawer.vo.Status
 import kotlinx.android.synthetic.main.fragment_home.*
+import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.viewModel
 import java.text.DateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class HomeFragment : Fragment(), AdapterHome.OnMealsListener {
+class HomeFragment : Fragment(),AdapterHome.OnMealsListener {
+
 
     private var _binding: FragmentHomeBinding? = null
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-    private val mainViewModel by viewModels<HomeViewModel> {
+    /*private val mainViewModel by viewModels<HomeViewModel> {
         VMFactory(
             RepoImp(DataSource(AppDataBase.getDatabase(requireActivity().applicationContext)))
         )
-    }
+    }*/
+
+    private val mainViewModel :HomeViewModel by viewModel()
+
     private lateinit var adapterHome: AdapterHome
     private lateinit var meal: Meals
 

@@ -3,11 +3,13 @@ package com.example.navigationdrawer.domain
 import com.example.navigationdrawer.data.entities.MealEntity
 import com.example.navigationdrawer.data.entities.PlannerEntity
 import com.example.navigationdrawer.data.model.ListMeals
+import com.example.navigationdrawer.data.model.Meals
 import com.example.navigationdrawer.data.model.MealsInformation
 import com.example.navigationdrawer.vo.Resource
 
 interface Repo{
     suspend fun getListMeals(term: String):Resource<ListMeals>
+
 
 
     suspend fun getMealsFavoritos():Resource<List<MealEntity>>

@@ -10,13 +10,11 @@ import com.example.navigationdrawer.vo.Resource
 import com.example.navigationdrawer.vo.RetrofitClient
 
 class DataSource(private val appDataBase: AppDataBase) {
+
     suspend fun getListMeals(term: String): Resource<ListMeals> {
         return Resource.success(RetrofitClient.webService.searchListMealsBySearch(term))
     }
-    /*
-    suspend fun getMealsInformation(id:String):Resource<MealsInformation>{
-        return Resource.success(RetrofitClient.webService.getInformationMeals(id))
-    }*/
+
 
     suspend fun insertMeal(meal:MealEntity){
         appDataBase.mealDao().insertMeal(meal)
