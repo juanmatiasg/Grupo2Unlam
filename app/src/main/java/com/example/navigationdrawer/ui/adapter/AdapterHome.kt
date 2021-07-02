@@ -39,6 +39,7 @@ class AdapterHome(private val items: List<Meals>, private val itemClickListener:
             notifyItemRangeRemoved(position, itemCount)
         }
 
+
     }
 
     override fun getItemCount(): Int {

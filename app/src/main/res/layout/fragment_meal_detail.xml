@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.mealDetail.MealDetailFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".ui.mealDetail.MealDetailFragment">
 
     <ImageView
         android:id="@+id/imageView_MealDetail"
@@ -13,18 +13,33 @@
         android:layout_height="219dp"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars" />
 
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="413dp"
+        android:layout_height="612dp"
+        android:layout_marginTop="130dp"
+        android:src="@drawable/backgrounddetail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView_MealDetail" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="439dp"
-        android:background="@drawable/constraint_layour_radius_corner"
+        android:id="@+id/constraintLayout"
+        android:layout_width="420dp"
+        android:layout_height="505dp"
+
+        android:layout_marginTop="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView3"
+        app:layout_constraintVertical_bias="0.0">
 
 
         <TextView
@@ -33,15 +48,15 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="96dp"
             android:layout_marginLeft="96dp"
-            android:gravity="center"
-            android:textSize="20dp"
-            android:fontFamily="sans-serif-condensed"
-            android:textStyle="bold"
-            android:textColor="@color/black"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="96dp"
             android:layout_marginRight="96dp"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="center"
             android:hint="Title"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -51,11 +66,11 @@
             android:layout_width="199dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="115dp"
-            android:backgroundTint="@color/purple_700"
             android:layout_marginLeft="115dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="114dp"
             android:layout_marginRight="114dp"
+            android:backgroundTint="@color/purple_700"
             android:drawableLeft="@drawable/ic_baseline_favorite_border_24"
             android:text="Agregar a favoritos"
             android:textSize="10dp"
@@ -106,13 +121,14 @@
                     android:id="@+id/youtubePlay"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-
                     app:autoPlay="false"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:showFullScreenButton="false" />
+                    app:showFullScreenButton="false">
+
+                </com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView>
 
                 <TextView
                     android:id="@+id/textView_CaloriasDetail"
@@ -178,64 +194,40 @@
         </androidx.cardview.widget.CardView>
 
         <ScrollView
-            android:layout_width="384dp"
-            android:layout_height="143dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginEnd="9dp"
-            android:layout_marginRight="9dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="411dp"
+            android:layout_height="205dp"
+            android:layout_marginTop="8dp"
+            android:fillViewport="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_TitleDescriptionDetail"
-            tools:ignore="MissingPrefix,NotSibling">
+            app:layout_constraintTop_toBottomOf="@+id/cardView2">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:visibility="gone">
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView_ResumenDetail"
+                    android:id="@+id/textView_TitleDescriptionDetail"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="@string/lorem_impsumt"
-                    android:visibility="gone" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="13dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="13dp"
+                    android:fontFamily="sans-serif"
+                    android:text="Descripción"
+                    android:textColor="@color/black"
+                    android:textSize="13dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView2"
+                    app:layout_constraintVertical_bias="1.0" />
+
             </LinearLayout>
         </ScrollView>
 
-        <ScrollView
-            android:layout_width="404dp"
-            android:layout_height="135dp"
-            android:layout_marginTop="7dp"
-            android:layout_marginBottom="32dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.428"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView2"
-            app:layout_constraintVertical_bias="0.0">
-
-            <TextView
-                android:id="@+id/textView_TitleDescriptionDetail"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="13dp"
-                android:layout_marginLeft="13dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="13dp"
-                android:layout_marginRight="13dp"
-                android:fontFamily="sans-serif-condensed"
-                android:text="Descripción"
-                android:textColor="@color/black"
-                android:textSize="13dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.333"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardView2" />
-        </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
