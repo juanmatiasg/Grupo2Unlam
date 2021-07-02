@@ -1,31 +1,21 @@
 package com.example.navigationdrawer.ui.mealDetail
 
-import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.MediaController
 import android.widget.Toast
-import androidx.fragment.app.activityViewModels
 import com.example.navigationdrawer.R
-import com.example.navigationdrawer.data.DataSource
-import com.example.navigationdrawer.data.database.AppDataBase
 import com.example.navigationdrawer.data.entities.MealEntity
 import com.example.navigationdrawer.data.entities.PlannerEntity
 import com.example.navigationdrawer.data.model.Meals
 import com.example.navigationdrawer.databinding.FragmentMealDetailBinding
-import com.example.navigationdrawer.domain.RepoImp
-import com.example.navigationdrawer.ui.adapter.AdapterFavourites
-import com.example.navigationdrawer.ui.adapter.AdapterHome
 import com.example.navigationdrawer.ui.adapter.AdapterMeals
-import com.example.navigationdrawer.ui.factory.VMFactory
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.squareup.picasso.Picasso
 import org.koin.android.viewmodel.ext.android.viewModel
-
 
 class MealDetailFragment : Fragment() {
     private var _binding: FragmentMealDetailBinding? = null
@@ -60,7 +50,7 @@ class MealDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupObserver()
+        setupDetail()
         setupGuardarFavoritos()
         setUpGuardarPlanner()
     }
@@ -79,7 +69,7 @@ class MealDetailFragment : Fragment() {
     }
 
 
-    private fun setupObserver() {
+    private fun setupDetail() {
         requireArguments().let {
             meals = it.getParcelable(AdapterMeals.MEALS_ITEMS)!!
             binding.textViewTitleDetail.text = meals.title
@@ -95,9 +85,6 @@ class MealDetailFragment : Fragment() {
         }
 
     }
-
-
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

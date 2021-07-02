@@ -1,5 +1,6 @@
 package com.example.navigationdrawer.ui.adapter
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -30,7 +31,7 @@ class AdapterHome(private val items: List<Meals>, private val itemClickListener:
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         itemsMainBinding.txtTitleMain.text=items[position].title
         itemsMainBinding.imgVMealMain.loadUrl(items[position].image)
-        itemsMainBinding.txtDescriptionMain.text=items[position].protein
+        itemsMainBinding.txtDescriptionMain.text=items[position].description
         itemsMainBinding.btnUiClearMain.setOnClickListener{
             itemClickListener.deleteFavouriteListener(items[position],position)
             val lista= items as ArrayList
@@ -38,7 +39,11 @@ class AdapterHome(private val items: List<Meals>, private val itemClickListener:
             notifyItemRemoved(position)
             notifyItemRangeRemoved(position, itemCount)
         }
-
+        itemsMainBinding.cardView.setOnClickListener{
+            val bundle=Bundle()
+            bundle.putParcelable(AdapterMeals.MEALS_ITEMS,items[position])
+            it.findNavController().navigate(R.id.action_nav_home_to_mealDetailFragment,bundle)
+        }
 
     }
 

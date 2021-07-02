@@ -25,5 +25,15 @@ class HomeViewModel(private val repo: Repo) : ViewModel() {
             repo.deleteFromPlanner(plannerEntity)
         }
     }
+    /*FindNavControler
+    val fetchListMeal= liveData(Dispatchers.IO) {
+        emit(Resource.loading(data = null))
+        try {
+            emit(repo.getListMealByB())
+        } catch (e: Exception) {
+            emit(Resource.error(data = null, message = e.message ?: "Error Ocurred"))
+
+        }
+    }*/
 
 }
