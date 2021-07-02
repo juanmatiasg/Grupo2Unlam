@@ -14,6 +14,9 @@
             android:id="@+id/action_nav_home_to_nav_mealFragment"
             app:destination="@id/nav_mealFragment" />
         <action
+            android:id="@+id/action_nav_home_to_detailHomeFragment"
+            app:destination="@id/detailHomeFragment" />
+        <action
             android:id="@+id/action_nav_home_to_mealDetailFragment"
             app:destination="@id/mealDetailFragment" />
     </fragment>
@@ -24,8 +27,8 @@
         android:label="@string/menu_favourite"
         tools:layout="@layout/fragment_gallery" >
         <action
-            android:id="@+id/action_nav_gallery_to_mealDetailFragment"
-            app:destination="@id/mealDetailFragment" />
+            android:id="@+id/action_nav_gallery_to_favouriteDetailFragment"
+            app:destination="@id/favouriteDetailFragment" />
     </fragment>
 
     <fragment
@@ -46,4 +49,12 @@
         android:name="com.example.navigationdrawer.ui.mealDetail.MealDetailFragment"
         android:label="fragment_meal_detail"
         tools:layout="@layout/fragment_meal_detail" />
+    <fragment
+        android:id="@+id/detailHomeFragment"
+        android:name="com.example.navigationdrawer.ui.detailFromHome.DetailHomeFragment"
+        android:label="DetailHomeFragment" />
+    <fragment
+        android:id="@+id/favouriteDetailFragment"
+        android:name="com.example.navigationdrawer.ui.detalFavourite.FavouriteDetailFragment"
+        android:label="FavouriteDetailFragment" />
 </navigation>

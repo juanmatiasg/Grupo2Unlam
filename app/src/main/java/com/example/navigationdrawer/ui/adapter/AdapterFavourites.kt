@@ -43,8 +43,8 @@ class AdapterFavourites(private val items: List<Meals>,private val itemClickList
         }
         itemsFavouriteBinding.cardViewFavourite.setOnClickListener{
             val bundle=Bundle()
-            bundle.putParcelable(AdapterMeals.MEALS_ITEMS,items[position])
-            it.findNavController().navigate(R.id.action_nav_gallery_to_mealDetailFragment,bundle)
+            bundle.putParcelable(MEALS_ITEMS,items[position])
+            it.findNavController().navigate(R.id.action_nav_gallery_to_favouriteDetailFragment,bundle)
         }
 
 
@@ -58,6 +58,8 @@ class AdapterFavourites(private val items: List<Meals>,private val itemClickList
 
     class ViewHolder(binding: ItemsFavouriteBinding):RecyclerView.ViewHolder(binding.root)
 
-
+    companion object{
+        const val MEALS_ITEMS ="MEALS_ITEMS"
+    }
 
 }

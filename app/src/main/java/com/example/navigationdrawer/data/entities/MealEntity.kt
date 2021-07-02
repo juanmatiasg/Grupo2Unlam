@@ -16,8 +16,10 @@ data class MealEntity(
     var title: String,
 
     @ColumnInfo(name = "image")
-    var image: String
+    var image: String,
 
+    @ColumnInfo(name = "description")
+    var description: String
 
 
 )

@@ -125,7 +125,7 @@ class HomeFragment : Fragment(),AdapterHome.OnMealsListener {
     }
 
     override fun deleteFavouriteListener(item: Meals, position: Int) {
-        mainViewModel.deleteFromPlanner(PlannerEntity(item.id,item.title,item.image))
+        mainViewModel.deleteFromPlanner(PlannerEntity(item.id,item.title,item.image,item.description))
     }
 
 }

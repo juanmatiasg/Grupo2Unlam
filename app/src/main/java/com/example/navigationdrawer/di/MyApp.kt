@@ -12,6 +12,9 @@ import com.example.navigationdrawer.domain.ApiMeals
 import com.example.navigationdrawer.domain.MealDao
 import com.example.navigationdrawer.domain.Repo
 import com.example.navigationdrawer.domain.RepoImp
+import com.example.navigationdrawer.ui.detailFromHome.DetailHomeViewModel
+import com.example.navigationdrawer.ui.detalFavourite.FavouriteDetailFragment
+import com.example.navigationdrawer.ui.detalFavourite.FavouriteDetailViewModel
 import com.example.navigationdrawer.ui.factory.VMFactory
 import com.example.navigationdrawer.ui.gallery.GalleryViewModel
 import com.example.navigationdrawer.ui.home.HomeFragment
@@ -37,7 +40,9 @@ class MyApp : Application(){
         viewModel { MealViewModel(get()) }
         viewModel { HomeViewModel(get()) }
         viewModel {MealDetailViewModel(get())}
+        viewModel {DetailHomeViewModel(get())}
         viewModel { GalleryViewModel(get()) }
+        viewModel { FavouriteDetailViewModel(get()) }
 
     }
 

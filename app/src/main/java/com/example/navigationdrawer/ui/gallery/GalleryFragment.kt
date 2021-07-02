@@ -88,7 +88,7 @@ class GalleryFragment : Fragment(), AdapterFavourites.OnMealsListener {
 
 
     override fun deleteFavouriteListener(item: Meals, position: Int) {
-        mealViewModel.deleteFavourite(MealEntity(item.id,item.title,item.image))
+        mealViewModel.deleteFavourite(MealEntity(item.id,item.title,item.image,item.description))
     }
 
     override fun onDestroyView() {
