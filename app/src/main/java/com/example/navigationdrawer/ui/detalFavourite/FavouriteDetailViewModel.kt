@@ -10,9 +10,9 @@ import kotlinx.coroutines.launch
 class FavouriteDetailViewModel(private val repo: Repo) : ViewModel() {
 
 
-    fun insertMeal(meals: MealEntity) {
+    fun deleteMeal(meals: MealEntity) {
         viewModelScope.launch {
-            repo.insertMeal(meals)
+            repo.deleteFavourite(meals)
         }
 
     }

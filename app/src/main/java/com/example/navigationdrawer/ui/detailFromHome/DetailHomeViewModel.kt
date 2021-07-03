@@ -18,9 +18,9 @@ class DetailHomeViewModel(private val repo: Repo) : ViewModel() {
 
     }
 
-    fun insertMealPlanner(meal: PlannerEntity){
+    fun deleteMealPlanner(meal: PlannerEntity){
         viewModelScope.launch {
-            repo.insertMealPlanner(meal)
+            repo.deleteFromPlanner(meal)
         }
     }
 

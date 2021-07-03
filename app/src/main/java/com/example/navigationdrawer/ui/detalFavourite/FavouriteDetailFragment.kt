@@ -12,8 +12,6 @@ import com.example.navigationdrawer.data.entities.PlannerEntity
 import com.example.navigationdrawer.data.model.Meals
 import com.example.navigationdrawer.databinding.FragmentFavouriteDetailBinding
 import com.example.navigationdrawer.ui.adapter.AdapterFavourites
-import com.example.navigationdrawer.ui.adapter.AdapterHome
-import com.example.navigationdrawer.ui.detailFromHome.DetailHomeViewModel
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.squareup.picasso.Picasso
@@ -52,14 +50,14 @@ class FavouriteDetailFragment : Fragment() {private var _binding: FragmentFavour
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupDetail()
-        setupGuardarFavoritos()
+        setupEliminarFavoritos()
         setUpGuardarPlanner()
     }
 
-    private fun setupGuardarFavoritos() {
+    private fun setupEliminarFavoritos() {
         binding.buttonFavourite.setOnClickListener {
-            viewModel.insertMeal(MealEntity(meals.id,meals.title,meals.image,meals.description))
-            Toast.makeText(requireContext(), R.string.msjeFavoritos, Toast.LENGTH_SHORT).show()
+            viewModel.deleteMeal(MealEntity(meals.id,meals.title,meals.image,meals.description))
+            Toast.makeText(requireContext(), "Se eliminó de favoritos", Toast.LENGTH_SHORT).show()
         }
     }
     private fun setUpGuardarPlanner(){

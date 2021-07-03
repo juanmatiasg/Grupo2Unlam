@@ -11,10 +11,7 @@ import com.example.navigationdrawer.data.entities.MealEntity
 import com.example.navigationdrawer.data.entities.PlannerEntity
 import com.example.navigationdrawer.data.model.Meals
 import com.example.navigationdrawer.databinding.FragmentDetailHomeBinding
-import com.example.navigationdrawer.databinding.FragmentMealDetailBinding
 import com.example.navigationdrawer.ui.adapter.AdapterHome
-import com.example.navigationdrawer.ui.adapter.AdapterMeals
-import com.example.navigationdrawer.ui.mealDetail.MealDetailViewModel
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.squareup.picasso.Picasso
@@ -54,7 +51,7 @@ class DetailHomeFragment : Fragment() {private var _binding: FragmentDetailHomeB
         super.onViewCreated(view, savedInstanceState)
         setupDetail()
         setupGuardarFavoritos()
-        setUpGuardarPlanner()
+        setUpDeletePlanner()
     }
 
     private fun setupGuardarFavoritos() {
@@ -63,10 +60,10 @@ class DetailHomeFragment : Fragment() {private var _binding: FragmentDetailHomeB
             Toast.makeText(requireContext(), R.string.msjeFavoritos, Toast.LENGTH_SHORT).show()
         }
     }
-    private fun setUpGuardarPlanner(){
+    private fun setUpDeletePlanner(){
         binding.buttonAddPlanner.setOnClickListener {
-            viewModel.insertMealPlanner(PlannerEntity(meals.id,meals.title,meals.image,meals.description))
-            Toast.makeText(requireContext(), R.string.msjePlanner, Toast.LENGTH_SHORT).show()
+            viewModel.deleteMealPlanner(PlannerEntity(meals.id,meals.title,meals.image,meals.description))
+            Toast.makeText(requireContext(), "Se eliminó del planificador", Toast.LENGTH_SHORT).show()
         }
     }
 
