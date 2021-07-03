@@ -10,23 +10,6 @@ import kotlinx.coroutines.launch
 
 class MealDetailViewModel(private val repo: Repo) : ViewModel() {
 
-    private val idInformationMeals = MutableLiveData<String>()
-
-    /*
-    val fetchMealsInformation = idInformationMeals.switchMap {
-        liveData(Dispatchers.IO) {
-            emit(Resource.loading(data = null))
-            try {
-                emit(repo.getMealsInformation(it))
-            } catch (e: Exception) {
-                emit(Resource.error(data = null, message = e.message ?: "Ocurrio un error"))
-            }
-        }
-    }*/
-
-    fun setIdInformation(id: String) {
-        idInformationMeals.value = id
-    }
 
     fun insertMeal(meals:MealEntity){
         viewModelScope.launch {
@@ -40,15 +23,9 @@ class MealDetailViewModel(private val repo: Repo) : ViewModel() {
             repo.insertMealPlanner(meal)
         }
     }
+    /*Launch lanza una nueva corrutina sin bloquear el hilo actual hila de la vista
+    y  devuelve una referencia a la corrutina como trabajo.*/
 
 
-    fun getMealsFavoritos() = liveData(Dispatchers.IO) {
-        emit(Resource.loading(data = null))
-        try {
-            emit(repo.getMealsFavoritos())
-        } catch (e: Exception) {
-            emit(Resource.error(data = null, message = e.message ?: "Ocurrio un error"))
-        }
-    }
 
 }

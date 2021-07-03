@@ -82,9 +82,7 @@ class GalleryFragment : Fragment(), AdapterFavourites.OnMealsListener {
         })
     }
 
-    private fun deleteFavourites(){
-       // mealViewModel.deleteFavourite(mealEntity)
-    }
+
 
     override fun deleteFavouriteListener(item: Meals, position: Int) {
         mealViewModel.deleteFavourite(MealEntity(item.id,item.title,item.image,item.description,item.strYoutube))

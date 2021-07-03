@@ -12,10 +12,10 @@ import java.lang.Exception
 class MealViewModel(private val repo: Repo) : ViewModel() {
 
     private val term = MutableLiveData<String>()
-    /*
-    init {
-            setComida("pizza")
-    }*/
+
+    /*Dispatcher Este despachador est optimizado para realizar ENTRADA y Ssalida
+    * de Disco o Red fuera del subproceso principal.
+    * Por Ejmplo Room , leer desde archivo o escribir en ellos y ejecutar operaciones de red*/
 
     val fetchMeals = term.distinctUntilChanged().switchMap {
         liveData(Dispatchers.IO) {
@@ -44,40 +44,6 @@ class MealViewModel(private val repo: Repo) : ViewModel() {
         term.value = otroTerm
     }
 
-    /*
-    /*Agregado*/
-    private val idInformationMeals = MutableLiveData<String>()
 
-    val fetchMealsInformation = idInformationMeals.switchMap {
-        liveData(Dispatchers.IO) {
-            emit(Resource.loading(data = null))
-            try {
-                emit(repo.getMealsInformation(it))
-            } catch (e: Exception) {
-                emit(Resource.error(data = null, message = e.message ?: "Ocurrio un error"))
-            }
-        }
-    }
-
-    fun setIdInformation(id: String) {
-        idInformationMeals.value = id
-    }*/
-
-    fun insertMeal(meals:MealEntity){
-        viewModelScope.launch {
-            repo.insertMeal(meals)
-        }
-
-    }
-
-    /*
-    fun getMealsFavoritos() = liveData(Dispatchers.IO) {
-        emit(Resource.loading(data = null))
-        try {
-            emit(repo.getMealsFavoritos())
-        } catch (e: Exception) {
-            emit(Resource.error(data = null, message = e.message ?: "Ocurrio un error"))
-        }
-    }*/
 
 }

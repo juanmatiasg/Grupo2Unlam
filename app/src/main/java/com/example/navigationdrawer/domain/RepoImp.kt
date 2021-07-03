@@ -13,10 +13,7 @@ class RepoImp(private val dataSource: DataSource):Repo{
     override suspend fun getListMeals(term: String): Resource<ListMeals> {
         return dataSource.getListMeals(term)
     }
-    /*
-    override suspend fun getMealsInformation(id: String): Resource<MealsInformation> {
-        return dataSource.getMealsInformation(id)
-    }*/
+
 
     override suspend fun getMealsFavoritos(): Resource<List<MealEntity>> {
         return dataSource.getMealsFavoritos()
@@ -47,8 +44,6 @@ class RepoImp(private val dataSource: DataSource):Repo{
         dataSource.deleteFromPlanner(meal)
     }
 
-    /*override suspend fun deleteFavourite(meal: Meals) {
-        dataSource.deleteFavourite(meal)
-    }*/
+
 
 }
