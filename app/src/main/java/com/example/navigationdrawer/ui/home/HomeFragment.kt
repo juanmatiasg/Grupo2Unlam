@@ -87,7 +87,7 @@ class HomeFragment : Fragment(),AdapterHome.OnMealsListener {
                 Status.LOADING ->{}
                 Status.SUCCESS ->{
                     val lista = it.data!!.map {
-                        Meals(it.id,it.title,it.image,description = "",protein = "",strYoutube = "")
+                        Meals(it.id,it.title,it.image,description = it.description,protein = "",strYoutube = it.strYoutube)
                     }
                     binding.recyclerViewMain.adapter = AdapterHome(lista,this)
 
@@ -123,7 +123,7 @@ class HomeFragment : Fragment(),AdapterHome.OnMealsListener {
     }
 
     override fun deleteFavouriteListener(item: Meals, position: Int) {
-        mainViewModel.deleteFromPlanner(PlannerEntity(item.id,item.title,item.image,item.description))
+        mainViewModel.deleteFromPlanner(PlannerEntity(item.id,item.title,item.image,item.description,item.strYoutube))
     }
 
 }

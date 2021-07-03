@@ -57,13 +57,13 @@ class MealDetailFragment : Fragment() {
 
     private fun setupGuardarFavoritos() {
         binding.buttonFavourite.setOnClickListener {
-            viewModel.insertMeal(MealEntity(meals.id,meals.title,meals.image,meals.description))
+            viewModel.insertMeal(MealEntity(meals.id,meals.title,meals.image,meals.description,meals.strYoutube))
             Toast.makeText(requireContext(), R.string.msjeFavoritos,Toast.LENGTH_SHORT).show()
         }
     }
     private fun setUpGuardarPlanner(){
         binding.buttonAddPlanner.setOnClickListener {
-            viewModel.insertMealPlanner(PlannerEntity(meals.id,meals.title,meals.image,meals.description))
+            viewModel.insertMealPlanner(PlannerEntity(meals.id,meals.title,meals.image,meals.description,meals.strYoutube))
             Toast.makeText(requireContext(), R.string.msjePlanner,Toast.LENGTH_SHORT).show()
         }
     }

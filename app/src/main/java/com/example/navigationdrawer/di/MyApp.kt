@@ -5,8 +5,6 @@ import com.example.navigationdrawer.data.DataSource
 import com.example.navigationdrawer.data.database.AppDataBase
 import com.example.navigationdrawer.domain.Repo
 import com.example.navigationdrawer.domain.RepoImp
-import com.example.navigationdrawer.ui.detailFromHome.DetailHomeViewModel
-import com.example.navigationdrawer.ui.detalFavourite.FavouriteDetailViewModel
 import com.example.navigationdrawer.ui.favourite.FavouriteViewModel
 import com.example.navigationdrawer.ui.home.HomeViewModel
 import com.example.navigationdrawer.ui.meal.MealViewModel
@@ -26,9 +24,7 @@ class MyApp : Application(){
         viewModel { MealViewModel(get()) }
         viewModel { HomeViewModel(get()) }
         viewModel {MealDetailViewModel(get())}
-        viewModel {DetailHomeViewModel(get())}
         viewModel { FavouriteViewModel(get()) }
-        viewModel { FavouriteDetailViewModel(get()) }
 
     }
 
