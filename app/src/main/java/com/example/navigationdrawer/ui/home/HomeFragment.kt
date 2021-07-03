@@ -93,7 +93,7 @@ class HomeFragment : Fragment(), AdapterHome.OnMealsListener {
                 Status.LOADING ->{}
                 Status.SUCCESS ->{
                     val lista = it.data!!.map {
-                        Meals(it.id,it.title,it.image,description = "",protein = "",strYoutube = "")
+                        Meals(it.id,it.title,it.image,it.description,protein = "",strYoutube = it.strYoutube)
                     }
                     binding.recyclerViewMain.adapter = AdapterHome(lista,this)
 
@@ -105,10 +105,16 @@ class HomeFragment : Fragment(), AdapterHome.OnMealsListener {
     }
 
 
+
+
     private fun navegarAFragmentMeal(){
         binding.btnAddMealMain.setOnClickListener {
             findNavController().navigate(R.id.nav_mealFragment)
         }
+    }
+
+    override fun deleteFavouriteListener(item: Meals, position: Int) {
+        mainViewModel.deleteFromPlanner(PlannerEntity(item.id,item.title,item.image,item.description,item.strYoutube))
     }
 
 
@@ -118,8 +124,6 @@ class HomeFragment : Fragment(), AdapterHome.OnMealsListener {
         _binding = null
     }
 
-    override fun deleteFavouriteListener(item: Meals, position: Int) {
-        mainViewModel.deleteFromPlanner(PlannerEntity(item.id,item.title,item.image))
-    }
+
 
 }

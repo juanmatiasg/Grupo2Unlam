@@ -69,7 +69,7 @@ class GalleryFragment : Fragment(), AdapterFavourites.OnMealsListener {
                 Status.LOADING ->{}
                 Status.SUCCESS ->{
                     val lista = it.data!!.map {
-                        Meals(it.id,it.title,it.image,description = "",protein = "",strYoutube = "")
+                        Meals(it.id,it.title,it.image,it.description,protein = "",strYoutube = it.strYoutube)
                     }
                     binding.rvFavoritos.adapter = AdapterFavourites(lista,this)
 
@@ -87,7 +87,7 @@ class GalleryFragment : Fragment(), AdapterFavourites.OnMealsListener {
     }
 
     override fun deleteFavouriteListener(item: Meals, position: Int) {
-        mealViewModel.deleteFavourite(MealEntity(item.id,item.title,item.image))
+        mealViewModel.deleteFavourite(MealEntity(item.id,item.title,item.image,item.description,item.strYoutube))
     }
 
     override fun onDestroyView() {

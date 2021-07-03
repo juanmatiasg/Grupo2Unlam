@@ -4,9 +4,8 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:layout_editor_absoluteX="13dp"
+    android:id="@+id/cardViewHome"
 
-    tools:layout_editor_absoluteY="2dp"
     android:layout_width="386dp"
     android:layout_height="150dp"
     android:layout_marginStart="12dp"
@@ -16,7 +15,9 @@
     android:layout_marginRight="12dp"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
+    app:layout_constraintTop_toTopOf="parent"
+    tools:layout_editor_absoluteX="13dp"
+    tools:layout_editor_absoluteY="2dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -41,31 +42,28 @@
         <TextView
             android:id="@+id/txtTitle_Main"
             android:layout_width="194dp"
-            android:layout_height="93dp"
-            android:layout_marginTop="44dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
+            android:layout_height="wrap_content"
+
             android:fontFamily="sans-serif-condensed-medium"
             android:hint="Title"
             android:textColor="@color/black"
             android:textSize="25dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toEndOf="@+id/imgVMeal_Main"
+            app:layout_constraintTop_toBottomOf="@+id/btnUiClear_Main" />
 
         <TextView
-            android:id="@+id/txtDescription_Main"
-            android:layout_width="218dp"
-            android:layout_height="76dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:hint="@string/lorem_impsumt"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imgVMeal_Main"
-            app:layout_constraintTop_toBottomOf="@+id/txtTitle_Main" />
+            android:id="@+id/textViewDescriptionMain"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="Descripcion"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/txtTitle_Main"
+            app:layout_constraintStart_toStartOf="@+id/txtTitle_Main"
+            app:layout_constraintTop_toBottomOf="@+id/txtTitle_Main"></TextView>
 
         <ImageButton
             android:id="@+id/btnUiEdit_Main"
@@ -87,10 +85,8 @@
             android:layout_width="24dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="162dp"
-            android:layout_marginLeft="162dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="24dp"
-            android:layout_marginRight="24dp"
             android:background="@color/white"
             app:layout_constraintEnd_toStartOf="@+id/btnUiEdit_Main"
             app:layout_constraintHorizontal_bias="1.0"
