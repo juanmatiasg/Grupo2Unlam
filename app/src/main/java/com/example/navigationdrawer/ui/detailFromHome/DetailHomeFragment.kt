@@ -12,6 +12,7 @@ import com.example.navigationdrawer.data.entities.PlannerEntity
 import com.example.navigationdrawer.data.model.Meals
 import com.example.navigationdrawer.databinding.FragmentDetailHomeBinding
 import com.example.navigationdrawer.ui.adapter.AdapterHome
+import com.example.navigationdrawer.ui.adapter.AdapterMeals
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.squareup.picasso.Picasso
@@ -70,7 +71,7 @@ class DetailHomeFragment : Fragment() {private var _binding: FragmentDetailHomeB
 
     private fun setupDetail() {
         requireArguments().let {
-            meals = it.getParcelable(AdapterHome.MEAL_ITEMS)!!
+            meals = it.getParcelable(AdapterMeals.MEALS_ITEMS)!!
             binding.textViewTitleDetail.text = meals.title
             binding.textViewTitleDescriptionDetail.text=meals.description
             binding.youtubePlay.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {

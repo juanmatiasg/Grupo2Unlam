@@ -1,11 +1,10 @@
-package com.example.navigationdrawer.ui.slideshow
+package com.example.navigationdrawer.ui.help
 
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,27 +14,20 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 //import com.example.navigationdrawer.data.model.Maps
-import com.example.navigationdrawer.data.model.MapsPojo
-import com.example.navigationdrawer.databinding.FragmentSlideshowBinding
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
+import com.example.navigationdrawer.databinding.FragmentAyudaBinding
 import com.google.android.gms.maps.*
-import com.google.android.gms.maps.R
 import com.google.android.gms.maps.model.*
 import com.google.firebase.database.*
 import java.util.*
-import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
-import kotlin.math.log
 
 
-class SlideshowFragment : Fragment(), OnMapReadyCallback {
+class HelpFragment : Fragment(), OnMapReadyCallback {
     //cambiar esto
-    private var _binding: FragmentSlideshowBinding? = null
+    private var _binding: FragmentAyudaBinding? = null
 
     private val binding get() = _binding!!
 
-    private lateinit var slideshowViewModel: SlideshowViewModel
+    private lateinit var helpViewModel: HelpViewModel
 
     private lateinit var map:GoogleMap
     private lateinit var mapView: MapView
@@ -51,9 +43,9 @@ class SlideshowFragment : Fragment(), OnMapReadyCallback {
         savedInstanceState: Bundle?
     ): View? {
         //cambiar esto
-        slideshowViewModel =
-            ViewModelProvider(this).get(SlideshowViewModel::class.java)
-        _binding = FragmentSlideshowBinding.inflate(layoutInflater,container,false)
+        helpViewModel =
+            ViewModelProvider(this).get(HelpViewModel::class.java)
+        _binding = FragmentAyudaBinding.inflate(layoutInflater,container,false)
 
         mapView=binding.mapView
         mapView.getMapAsync(this)

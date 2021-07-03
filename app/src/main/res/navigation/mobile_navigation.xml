@@ -14,28 +14,21 @@
             android:id="@+id/action_nav_home_to_nav_mealFragment"
             app:destination="@id/nav_mealFragment" />
         <action
-            android:id="@+id/action_nav_home_to_detailHomeFragment"
-            app:destination="@id/detailHomeFragment" />
-        <action
             android:id="@+id/action_nav_home_to_mealDetailFragment"
             app:destination="@id/mealDetailFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="com.example.navigationdrawer.ui.gallery.GalleryFragment"
+        android:name="com.example.navigationdrawer.ui.favourite.FavouriteFragment"
         android:label="@string/menu_favourite"
-        tools:layout="@layout/fragment_gallery" >
-        <action
-            android:id="@+id/action_nav_gallery_to_favouriteDetailFragment"
-            app:destination="@id/favouriteDetailFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_favourite" />
 
     <fragment
         android:id="@+id/nav_slideshow"
-        android:name="com.example.navigationdrawer.ui.slideshow.SlideshowFragment"
+        android:name="com.example.navigationdrawer.ui.help.HelpFragment"
         android:label="@string/menu_help"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_ayuda" />
     <fragment
         android:id="@+id/nav_mealFragment"
         android:name="com.example.navigationdrawer.ui.meal.MealFragment"

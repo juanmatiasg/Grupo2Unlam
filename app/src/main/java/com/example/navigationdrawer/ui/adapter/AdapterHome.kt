@@ -31,7 +31,7 @@ class AdapterHome(private val items: List<Meals>, private val itemClickListener:
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         itemsMainBinding.txtTitleMain.text=items[position].title
         itemsMainBinding.imgVMealMain.loadUrl(items[position].image)
-        itemsMainBinding.txtDescriptionMain.text=items[position].description
+        itemsMainBinding.txtDescriptionPlannerMain.text=items[position].description
         itemsMainBinding.btnUiClearMain.setOnClickListener{
             itemClickListener.deleteFavouriteListener(items[position],position)
             val lista= items as ArrayList
@@ -41,8 +41,8 @@ class AdapterHome(private val items: List<Meals>, private val itemClickListener:
         }
         itemsMainBinding.cardView.setOnClickListener{
             val bundle=Bundle()
-            bundle.putParcelable(AdapterHome.MEAL_ITEMS,items[position])
-            it.findNavController().navigate(R.id.action_nav_home_to_detailHomeFragment,bundle)
+            bundle.putParcelable(AdapterMeals.MEALS_ITEMS,items[position])
+            it.findNavController().navigate(R.id.action_nav_home_to_mealDetailFragment,bundle)
         }
 
     }
@@ -63,7 +63,5 @@ class AdapterHome(private val items: List<Meals>, private val itemClickListener:
     }*/
     class ViewHolder(binding: ItemsMainBinding):RecyclerView.ViewHolder(binding.root)
 
-    companion object{
-        const val MEAL_ITEMS="MEAL_ITEMS"
-    }
+
 }

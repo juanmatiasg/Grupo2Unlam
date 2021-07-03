@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F6F3F3"
-    tools:context=".ui.slideshow.SlideshowFragment">
+    tools:context=".ui.help.HelpFragment">
 
     <ImageView
         android:id="@+id/imgBackground"

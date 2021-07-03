@@ -1,4 +1,4 @@
-package com.example.navigationdrawer.ui.gallery
+package com.example.navigationdrawer.ui.favourite
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
@@ -9,7 +9,7 @@ import com.example.navigationdrawer.vo.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class GalleryViewModel(private val repo: Repo):ViewModel(){
+class FavouriteViewModel(private val repo: Repo):ViewModel(){
     fun getMealsFavoritos() = liveData(Dispatchers.IO) {
         emit(Resource.loading(data = null))
         try {

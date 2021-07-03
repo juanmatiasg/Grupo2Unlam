@@ -41,11 +41,10 @@
 
         <TextView
             android:id="@+id/txtTitle_Main"
-            android:layout_width="194dp"
-            android:layout_height="93dp"
+            android:layout_width="195dp"
+            android:layout_height="86dp"
             android:layout_marginTop="44dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
             android:fontFamily="sans-serif-condensed-medium"
             android:hint="Title"
             android:textColor="@color/black"
@@ -55,15 +54,13 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/txtDescription_Main"
-            android:layout_width="218dp"
-            android:layout_height="76dp"
+            android:id="@+id/txtDescriptionPlanner_Main"
+            android:layout_width="177dp"
+            android:layout_height="11dp"
             android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
             android:hint="@string/lorem_impsumt"
-            android:visibility="gone"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imgVMeal_Main"
             app:layout_constraintTop_toBottomOf="@+id/txtTitle_Main" />
