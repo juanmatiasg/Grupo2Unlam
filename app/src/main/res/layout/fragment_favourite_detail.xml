@@ -9,55 +9,41 @@
 
     <ImageView
         android:id="@+id/imageView_MealDetail"
-        android:layout_width="match_parent"
-        android:layout_height="219dp"
+        android:layout_width="336dp"
+        android:layout_height="256dp"
+        android:layout_marginTop="28dp"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars" />
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="413dp"
-        android:layout_height="612dp"
-        android:layout_marginTop="130dp"
-        android:src="@drawable/backgrounddetail"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView_MealDetail" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
-        android:layout_width="420dp"
-        android:layout_height="505dp"
+        android:layout_width="410dp"
+        android:layout_height="317dp"
 
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView3"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@+id/imageView_MealDetail">
 
 
         <TextView
             android:id="@+id/textView_titleDetail"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="96dp"
-            android:layout_marginLeft="96dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="96dp"
-            android:layout_marginRight="96dp"
             android:fontFamily="sans-serif-condensed"
             android:gravity="center"
             android:hint="Title"
             android:textColor="@color/black"
-            android:textSize="20dp"
+            android:textSize="50dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -65,11 +51,9 @@
             android:id="@+id/buttonFavourite"
             android:layout_width="199dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="115dp"
-            android:layout_marginLeft="115dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="114dp"
-            android:layout_marginRight="114dp"
+            android:layout_marginStart="107dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="107dp"
             android:backgroundTint="@color/purple_700"
             android:drawableLeft="@drawable/ic_baseline_favorite_border_24"
             android:text="Eliminar de favoritos"
@@ -79,23 +63,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView_titleDetail" />
 
-
         <Button
             android:id="@+id/buttonAddPlanner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="115dp"
-            android:layout_marginLeft="115dp"
-            android:layout_marginTop="7dp"
-            android:layout_marginEnd="114dp"
-            android:layout_marginRight="114dp"
+            android:layout_marginStart="92dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="92dp"
             android:backgroundTint="#FF0000"
             android:drawableLeft="@drawable/ic_baseline_fact_check_24"
             android:text="Agregar al planificador"
             android:textSize="10dp"
             app:cornerRadius="21dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.531"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonFavourite" />
 
@@ -104,10 +84,9 @@
             android:layout_width="241dp"
             android:layout_height="107dp"
             android:layout_marginStart="85dp"
-            android:layout_marginLeft="85dp"
             android:layout_marginTop="7dp"
             android:layout_marginEnd="85dp"
-            android:layout_marginRight="85dp"
+            android:visibility="gone"
             app:cardCornerRadius="18dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -198,6 +177,7 @@
             android:layout_height="205dp"
             android:layout_marginTop="8dp"
             android:fillViewport="true"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView2">
@@ -205,7 +185,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/textView_TitleDescriptionDetail"

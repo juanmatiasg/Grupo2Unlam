@@ -14,15 +14,19 @@
             android:id="@+id/action_nav_home_to_nav_mealFragment"
             app:destination="@id/nav_mealFragment" />
         <action
-            android:id="@+id/action_nav_home_to_mealDetailFragment"
-            app:destination="@id/mealDetailFragment" />
+            android:id="@+id/action_nav_home_to_detailHomeFragment"
+            app:destination="@id/detailHomeFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/nav_gallery"
         android:name="com.example.navigationdrawer.ui.favourite.FavouriteFragment"
         android:label="@string/menu_favourite"
-        tools:layout="@layout/fragment_favourite" />
+        tools:layout="@layout/fragment_favourite" >
+        <action
+            android:id="@+id/action_nav_gallery_to_favouriteDetailFragment"
+            app:destination="@id/favouriteDetailFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_slideshow"
