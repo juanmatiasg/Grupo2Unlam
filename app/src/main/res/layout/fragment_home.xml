@@ -89,20 +89,20 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewMain"
-        android:layout_width="411dp"
-        android:layout_height="245dp"
+        android:layout_width="410dp"
+        android:layout_height="wrap_content"
         android:background="#F6F3F3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnAddMeal_Main"
+        app:layout_constraintVertical_bias="0.0"
         tools:listitem="@layout/items_main" />
 
     <Button
         android:id="@+id/btnAddMeal_Main"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginTop="8dp"
         android:backgroundTint="#E65252"
 
