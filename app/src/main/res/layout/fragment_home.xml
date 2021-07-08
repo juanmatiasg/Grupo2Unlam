@@ -87,45 +87,62 @@
         app:layout_constraintTop_toTopOf="@+id/imgBackgroudTitleDay_Main"
         app:layout_constraintVertical_bias="0.296" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewMain"
-        android:layout_width="410dp"
-        android:layout_height="wrap_content"
-        android:background="#F6F3F3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAddMeal_Main"
-        app:layout_constraintVertical_bias="0.0"
-        tools:listitem="@layout/items_main" />
-
     <Button
         android:id="@+id/btnAddMeal_Main"
         android:layout_width="wrap_content"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:backgroundTint="#E65252"
 
+        android:backgroundTint="#E65252"
         android:drawableLeft="@drawable/ic_baseline_add_24"
         android:text="Agregar comida"
         android:textSize="10dp"
         app:cornerRadius="21dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/btnClearMenu" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="115dp"
-        android:layout_marginLeft="115dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="115dp"
-        android:layout_marginRight="115dp"
         android:text="Edite el menú del día a su gusto"
         android:textSize="13dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgBackgroudTitleDay_Main" />
+
+    <Button
+        android:id="@+id/btnClearMenu"
+        android:layout_width="205dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="103dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="103dp"
+        android:backgroundTint="#ECE7E7"
+        android:drawableLeft="@drawable/ic_baseline_fastfood_24"
+        android:text="Comenzar nuevo menú"
+        android:textColor="#323131"
+        android:textSize="10dp"
+        app:cornerRadius="21dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewMain"
+        android:layout_width="408dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:background="#F6F3F3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAddMeal_Main"
+        app:layout_constraintVertical_bias="0.0"
+        tools:listitem="@layout/items_main" />
 </androidx.constraintlayout.widget.ConstraintLayout>

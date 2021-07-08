@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.findNavController
 import com.example.navigationdrawer.R
 import com.example.navigationdrawer.data.entities.MealEntity
 import com.example.navigationdrawer.data.entities.PlannerEntity
@@ -65,6 +66,7 @@ class MealDetailFragment : Fragment() {
         binding.buttonAddPlanner.setOnClickListener {
             viewModel.insertMealPlanner(PlannerEntity(meals.id,meals.title,meals.image,meals.description,meals.strYoutube))
             Toast.makeText(requireContext(), R.string.msjePlanner,Toast.LENGTH_SHORT).show()
+            it.findNavController().navigate(R.id.action_mealDetailFragment_to_nav_home)
         }
     }
 

@@ -41,5 +41,8 @@ class DataSource(private val appDataBase: AppDataBase) {
     suspend fun deleteFromPlanner(meal: PlannerEntity){
         appDataBase.mealDao().deleleFromPlanner(meal)
     }
+    suspend fun deleteAllPlanner(){
+        appDataBase.mealDao().deleteAllPlanner()
+    }
 
 }

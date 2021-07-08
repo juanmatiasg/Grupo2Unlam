@@ -25,6 +25,13 @@ class HomeViewModel(private val repo: Repo) : ViewModel() {
             repo.deleteFromPlanner(plannerEntity)
         }
     }
+
+    fun deleteAllPlanner(){
+        viewModelScope.launch {
+            repo.deleteAllPlanner()
+        }
+    }
+
     /*FindNavControler
     val fetchListMeal= liveData(Dispatchers.IO) {
         emit(Resource.loading(data = null))

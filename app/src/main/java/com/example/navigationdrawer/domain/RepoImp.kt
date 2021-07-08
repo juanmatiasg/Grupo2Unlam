@@ -44,6 +44,9 @@ class RepoImp(private val dataSource: DataSource):Repo{
         dataSource.deleteFromPlanner(meal)
     }
 
+    override suspend fun deleteAllPlanner() {
+        dataSource.deleteAllPlanner()
+    }
 
 
 }

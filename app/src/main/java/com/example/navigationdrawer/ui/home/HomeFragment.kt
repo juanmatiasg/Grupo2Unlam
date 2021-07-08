@@ -5,8 +5,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.navigationdrawer.R
@@ -60,6 +62,15 @@ class HomeFragment : Fragment(),AdapterHome.OnMealsListener {
         setUpObserverAdicional()
         setupRecycler()
         navegarAFragmentMeal()
+        limpiarPlanner()
+    }
+
+    private fun limpiarPlanner() {
+        binding.btnClearMenu.setOnClickListener {
+            mainViewModel.deleteAllPlanner()
+            it.findNavController().navigate(R.id.action_nav_home_to_nav_mealFragment)
+            Toast.makeText(requireContext(),"Comenzó un nuevo menú",Toast.LENGTH_SHORT).show()
+        }
     }
 
 

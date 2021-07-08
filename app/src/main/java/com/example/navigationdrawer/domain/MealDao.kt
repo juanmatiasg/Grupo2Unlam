@@ -26,4 +26,7 @@ interface MealDao {
     @Delete
     suspend fun deleleFromPlanner(meal: PlannerEntity)
 
+    @Query("DELETE FROM table_planner")
+    suspend fun deleteAllPlanner()
+
 }
