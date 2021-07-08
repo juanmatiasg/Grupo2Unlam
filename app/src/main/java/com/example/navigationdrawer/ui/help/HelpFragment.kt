@@ -64,7 +64,7 @@ class HelpFragment : Fragment(), OnMapReadyCallback {
     private fun botonEmergencia() {
         binding.button.setOnClickListener {
             var i: Intent = Intent(Intent.ACTION_CALL);
-            i.setData(Uri.parse("tel:+5491123995681"));
+            i.setData(Uri.parse("tel:08003330160"));
             startActivity(i);
         }
     }

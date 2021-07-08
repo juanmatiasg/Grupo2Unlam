@@ -70,4 +70,14 @@
         app:layout_constraintEnd_toEndOf="@+id/imgBackground"
         app:layout_constraintStart_toStartOf="@+id/imgBackground"
         app:layout_constraintTop_toBottomOf="@+id/txtDescription" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="226dp"
+        android:layout_height="41dp"
+        android:gravity="center"
+        android:text="En caso de intoxicación presione el boton de emergencia"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgBackground" />
 </androidx.constraintlayout.widget.ConstraintLayout>
