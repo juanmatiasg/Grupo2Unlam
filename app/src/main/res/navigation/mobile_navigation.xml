@@ -44,8 +44,8 @@
     <fragment
         android:id="@+id/mealDetailFragment"
         android:name="com.example.navigationdrawer.ui.mealDetail.MealDetailFragment"
-        android:label="fragment_meal_detail"
-        tools:layout="@layout/fragment_meal_detail" >
+        android:label="@string/meal_detail"
+        tools:layout="@layout/fragment_meal_detail">
         <action
             android:id="@+id/action_mealDetailFragment_to_nav_home"
             app:destination="@id/nav_home" />
