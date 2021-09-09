@@ -14,6 +14,17 @@ class MealViewModel(private val repo: Repo) : ViewModel() {
     private val term = MutableLiveData<String>()
 
 
+    /*
+        tragosData es un MutableLiveData
+        distinctUntilChanger () -
+        distingir a nosotros en el buscador, y si buscamos nos van a traer una lista de comidas , pero si volvemos apretar
+        el boton buscar ,
+        no va a buscar de nuevo porque no ha cambiado ese valor de mutableLiveData ,
+        por esoo el ultimo valor que ha buscado es distinto al valor que ha puesto en el SearchView
+        el switchMap nos permite obtener esa informacion que tiene el MutableLiveData y retornar un LiveData
+    */
+
+
     val fetchMeals = term.distinctUntilChanged().switchMap {
         liveData(Dispatchers.IO) {
             emit(Resource.loading(data = null))

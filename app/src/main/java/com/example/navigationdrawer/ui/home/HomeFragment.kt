@@ -38,7 +38,7 @@ class HomeFragment : Fragment(),AdapterHome.OnMealsListener {
     }*/
 
     private val mainViewModel :HomeViewModel by viewModel()
-    private val mealsViewModel: MealViewModel by viewModel()
+    //private val mealsViewModel: MealViewModel by viewModel()
 
     private lateinit var adapterHome: AdapterHome
     private lateinit var meal: Meals
@@ -59,7 +59,7 @@ class HomeFragment : Fragment(),AdapterHome.OnMealsListener {
         super.onViewCreated(view, savedInstanceState)
         setDate()
         setupObserver()
-        setUpObserverAdicional()
+        //setUpObserverAdicional()
         setupRecycler()
         navegarAFragmentMeal()
         limpiarPlanner()
@@ -108,7 +108,7 @@ class HomeFragment : Fragment(),AdapterHome.OnMealsListener {
             }
         })
     }
-    private fun setUpObserverAdicional(){
+    /*private fun setUpObserverAdicional(){
         mealsViewModel.fetchListMeal.observe(viewLifecycleOwner, Observer {
                 when(it.status){
                     Status.LOADING ->{}
@@ -118,7 +118,7 @@ class HomeFragment : Fragment(),AdapterHome.OnMealsListener {
                     Status.ERROR ->{}
                 }
             })
-        }
+        }*/
 
     private fun navegarAFragmentMeal(){
         binding.btnAddMealMain.setOnClickListener {
