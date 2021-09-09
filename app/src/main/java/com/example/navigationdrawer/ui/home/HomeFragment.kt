@@ -122,7 +122,7 @@ class HomeFragment : Fragment(),AdapterHome.OnMealsListener {
 
     private fun navegarAFragmentMeal(){
         binding.btnAddMealMain.setOnClickListener {
-            findNavController().navigate(R.id.nav_mealFragment)
+            findNavController().navigate(R.id.registerFragment)
         }
     }
 
