@@ -25,6 +25,14 @@
     
     
     
-    <string name="inputNameRegister">Nombre:</string>
+    <string name="inputNameRegister">Nombre</string>
+    <string name="inputSurnameRegister">Apellido</string>
+    <string name="inputEmailRegister">Email</string>
+    <string name="inputPasswordRegistrar">Contraseña</string>
+    <string name="inputConfirmYourPasswordRegister">Confirme contraseña</string>
+    <string name="inputYourWeightRegister">Peso en Kg: (Apoximado)</string>
+    <string name="inputYourHeightRegister">Altura en cm: (Aproximado)</string>
+    <string name="selectYourDayOfBirthdayRegister">Fecha de nacimiento:</string>
+    <string name="selectYourGenderRegister">Género:</string>
 
 </resources>
