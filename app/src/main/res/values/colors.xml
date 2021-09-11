@@ -10,5 +10,6 @@
 
     <color name="firstColorGradient">#CCEB78</color>
     <color name="secondColorGradient">#FFE782</color>
+    <color name="principalColor">#88B8FF</color>
 
 </resources>

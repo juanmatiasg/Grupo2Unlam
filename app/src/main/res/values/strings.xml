@@ -34,5 +34,6 @@
     <string name="inputYourHeightRegister">Altura en cm: (Aproximado)</string>
     <string name="selectYourDayOfBirthdayRegister">Fecha de nacimiento:</string>
     <string name="selectYourGenderRegister">Género:</string>
+    <string name="hintGenderMenu">Selecione una opción...</string>
 
 </resources>
