@@ -17,6 +17,8 @@ import com.example.navigationdrawer.databinding.FragmentRegisterBinding
 import com.example.navigationdrawer.ui.adapter.AdapterHome
 import com.example.navigationdrawer.ui.home.HomeViewModel
 import com.example.navigationdrawer.vo.Status
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.ktx.Firebase
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.text.DateFormat
 import java.util.*
@@ -29,6 +31,8 @@ class RegisterFragment : Fragment() {
 
     private val mainViewModel : RegisterViewModel by viewModel()
 
+    private lateinit var auth: FirebaseAuth
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,8 +43,11 @@ class RegisterFragment : Fragment() {
         _binding = FragmentRegisterBinding.inflate(layoutInflater,container,false)
 
         val view = binding.root
+
+        auth = Firebase.auth
         return view
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //setDate()
