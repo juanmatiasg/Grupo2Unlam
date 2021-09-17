@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@id/splashScreenFragment">
 
     <fragment
         android:id="@+id/nav_home"
@@ -16,9 +16,6 @@
         <action
             android:id="@+id/action_nav_home_to_mealDetailFragment"
             app:destination="@id/mealDetailFragment" />
-        <action
-            android:id="@+id/action_nav_home_to_registerFragment"
-            app:destination="@id/registerFragment" />
     </fragment>
 
     <fragment
@@ -57,5 +54,29 @@
         android:id="@+id/registerFragment"
         android:name="com.example.navigationdrawer.ui.registrer.RegisterFragment"
         android:label="fragment_register"
-        tools:layout="@layout/fragment_register" />
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashScreenFragment"
+        android:name="com.example.navigationdrawer.ui.splashScreen.SplashScreenFragment"
+        tools:layout="@layout/fragment_splash_screen">
+        <action
+            android:id="@+id/action_splashScreenFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.navigationdrawer.ui.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
 </navigation>

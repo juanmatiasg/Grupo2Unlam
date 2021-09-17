@@ -2,6 +2,7 @@ package com.example.navigationdrawer
 
 import android.os.Bundle
 import android.view.Menu
+import android.view.View
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
@@ -30,14 +31,47 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        appBarConfiguration = AppBarConfiguration(setOf(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_mealFragment), drawerLayout)
+        appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.splashScreenFragment, R.id.loginFragment, R.id.registerFragment,
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_mealFragment
+            ), drawerLayout
+        )
+
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.splashScreenFragment -> {
+                    supportActionBar?.hide()
+                }
+                R.id.loginFragment -> {
+                    supportActionBar?.hide()
+                }
+                R.id.registerFragment -> {
+                    supportActionBar?.hide()
+                }
+                R.id.nav_home->{
+                    supportActionBar?.show()
+                }
+                R.id.nav_gallery->{
+                    supportActionBar?.show()
+                }
+                R.id.nav_slideshow->{
+                    supportActionBar?.show()
+                }
+                R.id.nav_mealFragment->{
+                    supportActionBar?.show()
+                }
+            }
+        }
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
+
         menuInflater.inflate(R.menu.main, menu)
         return true
     }

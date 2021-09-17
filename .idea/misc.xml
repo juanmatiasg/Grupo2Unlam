@@ -3,6 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/gmati/Grupo2Unlam/app/src/main/res/drawable-v24/ic_baseline_call_24.xml" value="0.21458333333333332" />
+        <entry key="..\:/Users/gmati/Grupo2Unlam/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.23802083333333332" />
+        <entry key="..\:/Users/gmati/Grupo2Unlam/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.21458333333333332" />
+        <entry key="..\:/Users/gmati/Grupo2Unlam/app/src/main/res/drawable/ic_vector.xml" value="0.23802083333333332" />
+        <entry key="..\:/Users/gmati/Grupo2Unlam/app/src/main/res/layout/activity_main.xml" value="0.278125" />
+        <entry key="..\:/Users/gmati/Grupo2Unlam/app/src/main/res/layout/app_bar_main.xml" value="0.278125" />
+        <entry key="..\:/Users/gmati/Grupo2Unlam/app/src/main/res/layout/content_main.xml" value="0.278125" />
+        <entry key="..\:/Users/gmati/Grupo2Unlam/app/src/main/res/layout/fragment_ayuda.xml" value="0.278125" />
+        <entry key="..\:/Users/gmati/Grupo2Unlam/app/src/main/res/layout/fragment_home.xml" value="0.278125" />
+        <entry key="..\:/Users/gmati/Grupo2Unlam/app/src/main/res/layout/fragment_login.xml" value="0.25" />
+        <entry key="..\:/Users/gmati/Grupo2Unlam/app/src/main/res/layout/fragment_register.xml" value="0.278125" />
+        <entry key="..\:/Users/gmati/Grupo2Unlam/app/src/main/res/layout/fragment_splash_screen.xml" value="0.1984375" />
+        <entry key="..\:/Users/gmati/Grupo2Unlam/app/src/main/res/mipmap-anydpi-v26/ic_launcher_logo_meal.xml" value="0.21458333333333332" />
+        <entry key="..\:/Users/gmati/Grupo2Unlam/app/src/main/res/mipmap-anydpi-v26/ic_launcher_logo_meal_round.xml" value="0.21458333333333332" />
         <entry key="app/src/main/res/drawable/background_buttons.xml" value="0.33" />
         <entry key="app/src/main/res/drawable/background_gradient.xml" value="0.371875" />
         <entry key="app/src/main/res/drawable/border_input_text.xml" value="0.371875" />
