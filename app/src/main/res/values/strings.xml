@@ -35,5 +35,8 @@
     <string name="hintGenderMenu">Selecione una opción...</string>
     <string name="iniciar_sesion">Iniciar Sesión</string>
     <string name="meal_planner">My Meal Planner</string>
+    <string name="title_confirmEmail">Se registró correctamente</string>
+    <string name="subtitle_confirmEmail">Verifique su email\n para iniciar sesión</string>
+    <string name="btn_confirmEmail"><u>Ir a iniciar sesión</u></string>
 
 </resources>
