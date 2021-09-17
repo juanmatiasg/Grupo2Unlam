@@ -56,6 +56,7 @@
         app:layout_constraintTop_toBottomOf="@+id/IconSignUpGoogleIV">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#85FFFFFF"/>
@@ -75,6 +76,7 @@
         app:layout_constraintTop_toBottomOf="@+id/inputName">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextSurname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#85FFFFFF"/>
@@ -94,6 +96,7 @@
         app:layout_constraintTop_toBottomOf="@+id/inputSurname">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#85FFFFFF"/>
@@ -113,6 +116,7 @@
         app:layout_constraintTop_toBottomOf="@+id/inputEmail">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#85FFFFFF"/>
@@ -132,6 +136,7 @@
         app:layout_constraintTop_toBottomOf="@+id/inputPassword">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextConfirmPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#85FFFFFF"/>
