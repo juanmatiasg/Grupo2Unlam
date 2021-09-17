@@ -9,8 +9,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.navigationdrawer.R
 import com.example.navigationdrawer.databinding.FragmentRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
@@ -32,7 +30,7 @@ class RegisterFragment : Fragment() {
 
     ): View? {
         _binding = FragmentRegisterBinding.inflate(layoutInflater, container, false)
-        auth = Firebase.auth
+        //auth = Firebase.auth
         return binding.root
     }
 
@@ -40,7 +38,7 @@ class RegisterFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //setDate()
         //navToOtherFragment()
-        binding.btnNextStepSignUp.setOnClickListener { navigateToLogin() }
+        binding.btnNextStepSignUp.setOnClickListener { navigateToStepTwo() }
     }
 
     private fun navigateToLogin() {
@@ -48,10 +46,8 @@ class RegisterFragment : Fragment() {
     }
 
 
-    private fun navToOtherFragment() {
-        /*binding.btnAddMealMain.setOnClickListener {
-            findNavController().navigate(R.id.registerFragment)
-        }*/
+    private fun navigateToStepTwo() {
+        findNavController().navigate(R.id.action_registerFragment_to_registerStepTwoFragment)
     }
 
 
