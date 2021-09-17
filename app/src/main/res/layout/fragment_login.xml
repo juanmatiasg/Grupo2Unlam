@@ -34,18 +34,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewLogoLogin" />
 
+
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="107dp"
         android:fontFamily="@font/nunito"
         android:text="Ingresar con Google"
         android:textColor="#000000"
         android:textFontWeight="200"
+        android:textSize="16dp"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.149"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/imageView4"
         app:layout_constraintTop_toBottomOf="@+id/textViewIniciarSesion" />
 
@@ -53,32 +57,32 @@
         android:id="@+id/imageView4"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginStart="76dp"
+        android:layout_marginStart="107dp"
         android:src="@drawable/component_21__button_login_with_google_account"
         app:layout_constraintBottom_toBottomOf="@+id/textView4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView4" />
-
+        app:layout_constraintTop_toTopOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.428" />
 
     <TextView
         android:id="@+id/textViewOlvidoSuContraseña"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="66dp"
         android:layout_marginTop="16dp"
-        android:fontFamily="@font/nunito"
+        android:fontFamily="@font/nunito_extralight"
         android:text="Olvidó su contraseña?"
         android:textColor="#000000"
         android:textFontWeight="200"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/textInputLayout2"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="364dp"
+        android:layout_height="60dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="24dp"
         android:layout_marginRight="20dp"
@@ -87,20 +91,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:startIconDrawable="@drawable/ic_baseline_account_circle_24">
+        app:startIconDrawable="@drawable/ic_baseline_account_circle_24"
+        app:startIconTint="@color/principalColor">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:background="#FFFFFF"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:background="#85FFFFFF"
+            android:fontFamily="@font/roboto_thin"
+            android:textFontWeight="300"/>
     </com.google.android.material.textfield.TextInputLayout>
 
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout2"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="364dp"
+        android:layout_height="60dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="20dp"
@@ -109,13 +116,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
-        app:startIconDrawable="@drawable/ic_vector">
+        app:startIconDrawable="@drawable/ic_vector"
+        app:startIconTint="@color/principalColor">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:background="#FFFFFF"
+            android:layout_height="wrap_content"
+            android:background="#85FFFFFF"
+            android:fontFamily="@font/roboto_thin"
             android:inputType="textPassword"
-            android:layout_height="wrap_content" />
+            android:textFontWeight="300"/>
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -123,8 +133,9 @@
         android:id="@+id/recuperarAquiButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginEnd="68dp"
-        android:fontFamily="@font/nunito"
+        android:fontFamily="@font/nunito_bold"
         android:lineHeight="73sp"
         android:text="Recuperar aquí"
         android:textColor="#88B8FF"
@@ -133,6 +144,8 @@
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="@+id/textViewOlvidoSuContraseña"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.028"
+        app:layout_constraintStart_toEndOf="@+id/textViewOlvidoSuContraseña"
         app:layout_constraintTop_toTopOf="@+id/textViewOlvidoSuContraseña"
         app:layout_constraintVertical_bias="0.0">
 
@@ -140,27 +153,31 @@
 
     <Button
         android:id="@+id/buttonIniciarSesion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="#CCEB78"
+        android:layout_width="200dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/background_buttons"
         android:fontFamily="@font/nunito"
         android:text="Iniciar Sesión"
+        android:textAllCaps="false"
         android:textColor="#88B8FF"
         android:textFontWeight="700"
-        android:textStyle="normal"
+        android:textSize="19dp"
+        app:backgroundTint="#CCEB78"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recuperarAquiButton" />
+        app:layout_constraintTop_toBottomOf="@+id/recuperarAquiButton"
+        app:strokeColor="#88B8FF"
+        app:strokeWidth="1dp" />
 
     <TextView
         android:id="@+id/textViewAunNoEstaRegistrado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
+        android:layout_marginStart="61dp"
         android:layout_marginTop="16dp"
-        android:fontFamily="@font/nunito"
+        android:fontFamily="@font/nunito_extralight"
         android:text="Aún no está registrado?"
         android:textColor="#000000"
         android:textFontWeight="200"
@@ -174,7 +191,9 @@
         android:id="@+id/registrarAquiButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/nunito"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="12dp"
+        android:fontFamily="@font/nunito_bold"
         android:lineHeight="73sp"
         android:text="Regístrese aquí"
         android:textColor="#88B8FF"
@@ -183,6 +202,7 @@
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="@+id/textViewAunNoEstaRegistrado"
         app:layout_constraintEnd_toEndOf="@+id/recuperarAquiButton"
+        app:layout_constraintStart_toEndOf="@+id/textViewAunNoEstaRegistrado"
         app:layout_constraintTop_toTopOf="@+id/textViewAunNoEstaRegistrado"
         app:layout_constraintVertical_bias="0.0">
 

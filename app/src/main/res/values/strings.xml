@@ -22,7 +22,7 @@
     <string name="msjeFavoritos">Se guardo en favoritos</string>
     <string name="msjePlanner">Se guardo en la planificacion del dia</string>
 
-
+    <!-- TODO: Texts -->
     <string name="inputNameRegister">Nombre</string>
     <string name="inputSurnameRegister">Apellido</string>
     <string name="inputEmailRegister">Email</string>
