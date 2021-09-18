@@ -1,5 +1,6 @@
 package com.example.navigationdrawer.ui.registrer
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull
 import androidx.core.view.get
 import androidx.navigation.fragment.findNavController
 import com.example.navigationdrawer.R
+import com.example.navigationdrawer.data.model.User
 import com.example.navigationdrawer.databinding.FragmentRegisterBinding
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
@@ -19,10 +21,6 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import org.koin.android.viewmodel.ext.android.viewModel
 
-data class DataUser(
-    var email: String,
-    var password: String
-)
 
 class RegisterFragment : Fragment() {
 
@@ -34,11 +32,11 @@ class RegisterFragment : Fragment() {
 
     private lateinit var auth: FirebaseAuth
 
-     private var name: String = ""
-     private var surname: String = ""
-     var email: String = ""
-     var password: String = ""
-     private var confirmPassword: String = ""
+    private var name: String = ""
+    private var surname: String = ""
+    var email: String= ""
+    var password: String= ""
+    private var confirmPassword: String= ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -68,14 +66,14 @@ class RegisterFragment : Fragment() {
     }
 
     private fun checkData(){
-        this.name=binding.editTextName.text.toString()
-        this.surname=binding.editTextSurname.text.toString()
-        this.email=binding.editTextEmail.text.toString()
-        this.password=binding.editTextPassword.text.toString()
-        this.confirmPassword=binding.editTextConfirmPassword.text.toString()
+        name= binding.editTextName.text.toString()
+        surname=binding.editTextSurname.text.toString()
+        email=binding.editTextEmail.text.toString()
+        password=binding.editTextPassword.text.toString()
+        confirmPassword=binding.editTextConfirmPassword.text.toString()
 
         if(name.isNotEmpty() && surname.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() && confirmPassword.isNotEmpty()){
-            if (password.length >=6) {
+            if (binding.editTextPassword.text.toString().length >=6) {
                 navigateToStepTwo()
             }else{
                 Toast.makeText(requireContext(),"La contraseña debe tener al menos 6 caracteres",Toast.LENGTH_LONG).show()
@@ -85,15 +83,6 @@ class RegisterFragment : Fragment() {
         }
     }
 
-    private fun registerUser() {
-        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,password).addOnCompleteListener {
-            if(it.isSuccessful){
-                navigateToStepTwo()
-            }else{
-                Toast.makeText(requireContext(),"error registerUser",Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()

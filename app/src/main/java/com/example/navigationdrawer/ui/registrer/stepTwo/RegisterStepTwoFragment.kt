@@ -25,16 +25,15 @@ class RegisterStepTwoFragment: Fragment() {
 
     private val mainViewModel: RegisterStepTwoViewModel by viewModel()
 
+    var registerFragment = RegisterFragment()
 
-    var dateOfBirth: String = ""
-    var weight: String = ""
-    var height: String = ""
-    var gender: String = ""
+    private var dateOfBirth: String= ""
+    private var weight: String =""
+    private var height: String=""
+    private var gender: String= ""
+
     lateinit var safeEmail: String
     lateinit var safePassword: String
-
-    private var registerFirstStep= RegisterFragment()
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,8 +58,9 @@ class RegisterStepTwoFragment: Fragment() {
         weight=binding.inputTextWeight.text.toString()
         height=binding.inputTextHeight.text.toString()
         gender=binding.inputTextGender.text.toString()
-        safeEmail=registerFirstStep.email
-        safePassword=registerFirstStep.password
+
+        safeEmail= registerFragment.email
+        safePassword= registerFragment.password
 
         if (dateOfBirth.isNotEmpty() && weight.isNotEmpty() && height.isNotEmpty() && gender.isNotEmpty() && safeEmail.isNotEmpty() && safePassword.isNotEmpty()){
             registerUser()
