@@ -19,6 +19,10 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import org.koin.android.viewmodel.ext.android.viewModel
 
+data class DataUser(
+    var email: String,
+    var password: String
+)
 
 class RegisterFragment : Fragment() {
 
@@ -30,11 +34,11 @@ class RegisterFragment : Fragment() {
 
     private lateinit var auth: FirebaseAuth
 
-    private var name: String = ""
-    private var surname: String = ""
-    private var email: String = ""
-    private var password: String = ""
-    private var confirmPassword: String = ""
+     private var name: String = ""
+     private var surname: String = ""
+     var email: String = ""
+     var password: String = ""
+     private var confirmPassword: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -72,11 +76,10 @@ class RegisterFragment : Fragment() {
 
         if(name.isNotEmpty() && surname.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() && confirmPassword.isNotEmpty()){
             if (password.length >=6) {
-                registerUser()
+                navigateToStepTwo()
             }else{
                 Toast.makeText(requireContext(),"La contraseña debe tener al menos 6 caracteres",Toast.LENGTH_LONG).show()
             }
-            registerUser()
         }else{
             Toast.makeText(requireContext(),"Compruebe los datos",Toast.LENGTH_SHORT).show()
         }
