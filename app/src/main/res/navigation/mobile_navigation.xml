@@ -61,6 +61,9 @@
         <action
             android:id="@+id/action_registerFragment_to_registerStepTwoFragment"
             app:destination="@id/registerStepTwoFragment" />
+        <action
+            android:id="@+id/action_registerFragment_to_confirmEmailFragment"
+            app:destination="@id/confirmEmailFragment" />
     </fragment>
     <fragment
         android:id="@+id/splashScreenFragment"

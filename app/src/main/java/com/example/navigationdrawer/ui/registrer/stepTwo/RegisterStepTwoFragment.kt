@@ -59,8 +59,8 @@ class RegisterStepTwoFragment: Fragment() {
         height=binding.inputTextHeight.text.toString()
         gender=binding.inputTextGender.text.toString()
 
-        safeEmail= registerFragment.email
-        safePassword= registerFragment.password
+        //safeEmail= registerFragment.email
+        //safePassword= registerFragment.password
 
         if (dateOfBirth.isNotEmpty() && weight.isNotEmpty() && height.isNotEmpty() && gender.isNotEmpty() && safeEmail.isNotEmpty() && safePassword.isNotEmpty()){
             registerUser()

@@ -34,9 +34,14 @@ class RegisterFragment : Fragment() {
 
     private var name: String = ""
     private var surname: String = ""
-    var email: String= ""
-    var password: String= ""
+    private var email: String= ""
+    private var password: String= ""
     private var confirmPassword: String= ""
+    private var dateOfBirth: String= ""
+    private var weight: String= ""
+    private var height: String= ""
+    private var gender: String= ""
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,14 +50,14 @@ class RegisterFragment : Fragment() {
 
     ): View? {
         _binding = FragmentRegisterBinding.inflate(layoutInflater, container, false)
-        auth = Firebase.auth
+        auth = FirebaseAuth.getInstance()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnNextStepSignUp.setOnClickListener { /*navigateToStepTwo()*/ checkData() }
+        binding.btnFinishLogUp.setOnClickListener { /*navigateToStepTwo()*/ checkData() }
         binding.tvBtnGoToLogIn.setOnClickListener { navigateToLogin() }
     }
 
@@ -71,16 +76,35 @@ class RegisterFragment : Fragment() {
         email=binding.editTextEmail.text.toString()
         password=binding.editTextPassword.text.toString()
         confirmPassword=binding.editTextConfirmPassword.text.toString()
+        dateOfBirth= binding.inputTextDateOfBirth.text.toString()
+        weight= binding.inputTextWeight.text.toString()
+        height= binding.inputTextHeight.text.toString()
+        gender= binding.inputTextGender.text.toString()
 
         if(name.isNotEmpty() && surname.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() && confirmPassword.isNotEmpty()){
             if (binding.editTextPassword.text.toString().length >=6) {
-                navigateToStepTwo()
+                Toast.makeText(requireContext(),"your email: ${(email)}",Toast.LENGTH_SHORT).show()
+                registerUser()
             }else{
                 Toast.makeText(requireContext(),"La contraseña debe tener al menos 6 caracteres",Toast.LENGTH_LONG).show()
             }
         }else{
             Toast.makeText(requireContext(),"Compruebe los datos",Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun registerUser(){
+        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
+            if(it.isSuccessful){
+                navigatoToConfirmEmail()
+            }else{
+                Toast.makeText(requireContext(),"error registerUser",Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun navigatoToConfirmEmail(){
+        findNavController().navigate(R.id.action_registerFragment_to_confirmEmailFragment)
     }
 
 

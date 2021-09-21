@@ -25,7 +25,7 @@ abstract class AppDataBase : RoomDatabase() {
             INSTANCE = INSTANCE ?: Room.databaseBuilder(
                 context.applicationContext,
                 AppDataBase::class.java,
-                "DBMeals_API_v2.0.22"
+                "DBMeals_API_v2.0.23"
             )
                 .build()
             return INSTANCE!!

@@ -107,10 +107,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
 
 
-    def room_version = "2.2.5"
-
+    def room_version = "2.3.0"
     implementation "androidx.room:room-runtime:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
 
     /*Inyeccion de dependencias KOIN*/
     def koin_version = "2.0.0-GA2"
