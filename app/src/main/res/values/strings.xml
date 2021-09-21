@@ -41,4 +41,8 @@
     <string name="subtitle_confirmEmail">Verifique su email\n para iniciar sesión</string>
     <string name="btn_confirmEmail"><u>Ir a iniciar sesión</u></string>
 
+
+    <!--TODO: Carousel Section -->
+    <string name="item_carousel"><u>Eliminar</u></string>
+
 </resources>
