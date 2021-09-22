@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/background_gradient"
@@ -116,16 +116,32 @@
             android:hint="@string/inputPasswordRegistrar"
             android:textColorHint="@color/principalColor"
             app:layout_constraintEnd_toEndOf="parent"
+            app:endIconMode="password_toggle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/inputEmail">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextPassword"
                 android:layout_width="match_parent"
+                android:inputType="textPassword"
                 android:layout_height="wrap_content"
                 android:background="#85FFFFFF" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
+
+        <TextView
+            android:id="@+id/errorFormatPassword"
+            android:layout_width="364dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:fontFamily="@font/nunito_extralight"
+            android:visibility="gone"
+            android:textSize="12dp"
+            android:text="@string/errorFormatPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inputPassword" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/inputConfirmPassword"
@@ -135,17 +151,33 @@
             android:layout_marginTop="8dp"
             android:hint="@string/inputConfirmYourPasswordRegister"
             android:textColorHint="@color/principalColor"
+            app:endIconMode="password_toggle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/inputPassword">
+            app:layout_constraintTop_toBottomOf="@+id/errorFormatPassword">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextConfirmPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textPassword"
                 android:background="#85FFFFFF" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/errorConfirmPassword"
+            android:layout_width="364dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/nunito_extralight"
+            android:text="@string/errorConfirmPassword"
+            android:textColor="@color/red"
+            android:textSize="12dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/inputConfirmPassword" />
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -153,12 +185,12 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="364dp"
             android:layout_height="69dp"
-            android:layout_marginTop="26dp"
+            android:layout_marginTop="16dp"
             android:hint="@string/selectYourDayOfBirthdayRegister"
             android:textColorHint="@color/principalColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/inputConfirmPassword">
+            app:layout_constraintTop_toBottomOf="@+id/errorConfirmPassword">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/inputTextDateOfBirth"
@@ -173,7 +205,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="364dp"
             android:layout_height="69dp"
-            android:layout_marginTop="26dp"
+            android:layout_marginTop="16dp"
             android:hint="@string/inputYourWeightRegister"
             android:textColorHint="@color/principalColor"
             app:layout_constraintEnd_toEndOf="parent"
@@ -193,7 +225,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="364dp"
             android:layout_height="69dp"
-            android:layout_marginTop="26dp"
+            android:layout_marginTop="16dp"
             android:hint="@string/inputYourHeightRegister"
             android:textColorHint="@color/principalColor"
             app:layout_constraintEnd_toEndOf="parent"
@@ -213,7 +245,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="364dp"
             android:layout_height="69dp"
-            android:layout_marginTop="26dp"
+            android:layout_marginTop="16dp"
             android:hint="@string/selectYourGenderRegister"
             android:textColorHint="@color/principalColor"
             app:hintTextColor="@color/principalColor"
@@ -255,11 +287,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="89dp"
             android:layout_marginTop="24dp"
+            android:layout_marginBottom="16dp"
             android:fontFamily="@font/nunito"
             android:text="Ya está registrado?"
             android:textColor="@color/black"
             android:textFontWeight="200"
             android:textSize="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_finishLogUp" />
 
