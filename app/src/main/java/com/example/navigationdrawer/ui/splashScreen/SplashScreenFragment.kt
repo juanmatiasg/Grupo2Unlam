@@ -36,7 +36,7 @@ class SplashScreenFragment : Fragment() {
             // Inicia la actividad principal de tu aplicación
 
             findNavController().navigate(R.id.action_splashScreenFragment_to_loginFragment) /*Cierra la actividad*/
-        },5000)
+        },3000)
 
     }
 

@@ -2,6 +2,7 @@ package com.example.navigationdrawer.ui.registrer
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,8 +16,10 @@ import com.example.navigationdrawer.data.model.User
 import com.example.navigationdrawer.databinding.FragmentRegisterBinding
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -50,7 +53,7 @@ class RegisterFragment : Fragment() {
 
     ): View? {
         _binding = FragmentRegisterBinding.inflate(layoutInflater, container, false)
-        auth = FirebaseAuth.getInstance()
+
         return binding.root
     }
 
@@ -59,6 +62,8 @@ class RegisterFragment : Fragment() {
 
         binding.btnFinishLogUp.setOnClickListener { /*navigateToStepTwo()*/ checkData() }
         binding.tvBtnGoToLogIn.setOnClickListener { navigateToLogin() }
+
+        auth = FirebaseAuth.getInstance()
     }
 
     private fun navigateToLogin() {
@@ -94,13 +99,16 @@ class RegisterFragment : Fragment() {
     }
 
     private fun registerUser(){
-        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
-            if(it.isSuccessful){
-                navigatoToConfirmEmail()
-            }else{
-                Toast.makeText(requireContext(),"error registerUser",Toast.LENGTH_SHORT).show()
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    navigatoToConfirmEmail()
+                } else if (task.exception is FirebaseAuthUserCollisionException) {
+                    Toast.makeText(requireContext(),"El usuario ya existe",Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(requireContext(),"failed in registerUser", Toast.LENGTH_SHORT).show()
+                }
             }
-        }
     }
 
     private fun navigatoToConfirmEmail(){
