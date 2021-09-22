@@ -40,5 +40,6 @@
     <string name="title_confirmEmail">Se registró correctamente</string>
     <string name="subtitle_confirmEmail">Verifique su email\n para iniciar sesión</string>
     <string name="btn_confirmEmail"><u>Ir a iniciar sesión</u></string>
-
+    <string name="errorFormatPassword">La contraseña debe tener al menos una letra mayúscula y/o un carácter especial.</string>
+    <string name="errorConfirmPassword">La contraseña debe ser igual a la ingresada anteriormente</string>
 </resources>

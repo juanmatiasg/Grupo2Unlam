@@ -87,11 +87,20 @@ class RegisterFragment : Fragment() {
         gender= binding.inputTextGender.text.toString()
 
         if(name.isNotEmpty() && surname.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() && confirmPassword.isNotEmpty()){
-            if (binding.editTextPassword.text.toString().length >=6) {
-                Toast.makeText(requireContext(),"your email: ${(email)}",Toast.LENGTH_SHORT).show()
-                registerUser()
+            if(password.equals(confirmPassword)) {
+                if (binding.editTextPassword.text.toString().length >= 6) {
+                    Toast.makeText(requireContext(), "your email: ${(email)}", Toast.LENGTH_SHORT)
+                        .show()
+                    registerUser()
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "La contraseña debe tener al menos 6 caracteres",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
             }else{
-                Toast.makeText(requireContext(),"La contraseña debe tener al menos 6 caracteres",Toast.LENGTH_LONG).show()
+                binding.errorConfirmPassword.visibility= View.VISIBLE
             }
         }else{
             Toast.makeText(requireContext(),"Compruebe los datos",Toast.LENGTH_SHORT).show()
