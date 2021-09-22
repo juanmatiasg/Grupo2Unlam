@@ -11,7 +11,6 @@ import com.example.navigationdrawer.ui.home.HomeViewModel
 import com.example.navigationdrawer.ui.meal.MealViewModel
 import com.example.navigationdrawer.ui.mealDetail.MealDetailViewModel
 import com.example.navigationdrawer.ui.registrer.RegisterViewModel
-import com.example.navigationdrawer.ui.registrer.stepTwo.RegisterStepTwoViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.android.viewmodel.dsl.viewModel
@@ -29,7 +28,6 @@ class MyApp : Application(){
         viewModel {MealDetailViewModel(get())}
         viewModel { FavouriteViewModel(get()) }
         viewModel { RegisterViewModel(get()) }
-        viewModel{ RegisterStepTwoViewModel(get())}
         viewModel { ConfirmEmailViewModel(get()) }
 
     }

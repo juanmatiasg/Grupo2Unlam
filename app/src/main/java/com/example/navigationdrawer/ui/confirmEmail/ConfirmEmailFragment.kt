@@ -8,8 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.navigationdrawer.R
 import com.example.navigationdrawer.databinding.FragmentConfirmEmailBinding
-import com.example.navigationdrawer.databinding.FragmentLogupStepTwoBinding
-import com.example.navigationdrawer.ui.registrer.stepTwo.RegisterStepTwoViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class ConfirmEmailFragment: Fragment() {
