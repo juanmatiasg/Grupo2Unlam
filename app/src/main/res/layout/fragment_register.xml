@@ -138,7 +138,7 @@
             android:fontFamily="@font/nunito_extralight"
             android:visibility="gone"
             android:textSize="12dp"
-            android:text="aslsak"
+            android:text="errorFormatPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/inputPassword" />
@@ -171,7 +171,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:fontFamily="@font/nunito_extralight"
-            android:text="kasdlak"
+            android:text="ErrorConfirmPassword"
             android:textColor="@color/red"
             android:textSize="12dp"
             android:visibility="gone"

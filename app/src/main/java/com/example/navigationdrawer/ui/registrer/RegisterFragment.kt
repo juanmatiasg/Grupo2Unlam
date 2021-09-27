@@ -20,9 +20,8 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.Dispatchers.IO
-import okhttp3.Dispatcher
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
@@ -55,14 +54,13 @@ class RegisterFragment : Fragment() {
     ): View? {
         _binding = FragmentRegisterBinding.inflate(layoutInflater, container, false)
 
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnFinishLogUp.setOnClickListener {  checkData() }
+        binding.btnFinishLogUp.setOnClickListener { /*navigateToStepTwo()*/ checkData() }
         binding.tvBtnGoToLogIn.setOnClickListener { navigateToLogin() }
 
         auth = FirebaseAuth.getInstance()
@@ -70,6 +68,11 @@ class RegisterFragment : Fragment() {
 
     private fun navigateToLogin() {
         findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+    }
+
+
+    private fun navigateToStepTwo() {
+        findNavController().navigate(R.id.action_registerFragment_to_registerStepTwoFragment)
     }
 
     private fun checkData(){
@@ -86,6 +89,8 @@ class RegisterFragment : Fragment() {
         if(name.isNotEmpty() && surname.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() && confirmPassword.isNotEmpty()){
             if(password.equals(confirmPassword)) {
                 if (binding.editTextPassword.text.toString().length >= 6) {
+                    Toast.makeText(requireContext(), "your email: ${(email)}", Toast.LENGTH_SHORT)
+                        .show()
                     registerUser()
                 } else {
                     Toast.makeText(
@@ -104,10 +109,10 @@ class RegisterFragment : Fragment() {
 
     private fun registerUser(){
         auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener {
-                if (it.isSuccessful) {
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
                     navigatoToConfirmEmail()
-                } else if (it.exception is FirebaseAuthUserCollisionException) {
+                } else if (task.exception is FirebaseAuthUserCollisionException) {
                     Toast.makeText(requireContext(),"El usuario ya existe",Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(requireContext(),"failed in registerUser", Toast.LENGTH_SHORT).show()
