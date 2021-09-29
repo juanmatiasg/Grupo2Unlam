@@ -10,15 +10,20 @@
 
             android:title="@string/menu_home" />
         <item
+            android:id="@+id/nav_planificador"
+            android:icon="@drawable/ic_restaurante"
+
+            android:title="@string/menu_planificador" />
+        <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_baseline_favorite_24"
 
             android:title="@string/menu_favourite" />
         <item
             android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_baseline_help_24"
+            android:icon="@drawable/ic_perfil"
 
-            android:title="@string/menu_help" />
+            android:title="@string/menu_perfil" />
 
     </group>
 </menu>

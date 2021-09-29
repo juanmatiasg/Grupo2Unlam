@@ -13,6 +13,8 @@
     <string name="menu_help">Help</string>
     <string name="menu_meal">Meal</string>
     <string name="meal_detail">Detalles</string>
+    <string name="menu_planificador">Planificador</string>
+    <string name="menu_perfil">Perfil</string>
     <string name="textView_title">Title</string>
     <string name="placeHolder_title">Search for Meals</string>
     <string name="searchForMeals">Search for Meals</string>
