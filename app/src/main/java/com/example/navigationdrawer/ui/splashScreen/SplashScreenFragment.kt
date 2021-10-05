@@ -35,8 +35,8 @@ class SplashScreenFragment : Fragment() {
             // Este método se ejecutará una vez que termine el temporizador
             // Inicia la actividad principal de tu aplicación
 
-            findNavController().navigate(R.id.action_splashScreenFragment_to_loginFragment) /*Cierra la actividad*/
-        },3000)
+            findNavController().navigate(R.id.action_splashScreenFragment_to_nav_home) /*Cierra la actividad*/
+        },1500)
 
     }
 

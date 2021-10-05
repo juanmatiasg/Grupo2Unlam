@@ -72,7 +72,7 @@ class RegisterFragment : Fragment() {
 
 
     private fun navigateToStepTwo() {
-        findNavController().navigate(R.id.action_registerFragment_to_registerStepTwoFragment)
+        //findNavController().navigate(R.id.action_registerFragment_to_registerStepTwoFragment)
     }
 
     private fun checkData(){

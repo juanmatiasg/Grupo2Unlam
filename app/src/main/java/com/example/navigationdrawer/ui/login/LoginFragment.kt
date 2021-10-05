@@ -14,9 +14,7 @@ import androidx.room.Update
 import com.example.navigationdrawer.R
 import com.example.navigationdrawer.databinding.FragmentHomeBinding
 import com.example.navigationdrawer.databinding.FragmentLoginBinding
-import com.firebase.ui.auth.AuthUI
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.material.snackbar.Snackbar

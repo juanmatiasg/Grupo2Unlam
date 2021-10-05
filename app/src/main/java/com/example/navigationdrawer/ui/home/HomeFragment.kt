@@ -31,14 +31,8 @@ class HomeFragment : Fragment(),AdapterHome.OnMealsListener {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-    /*private val mainViewModel by viewModels<HomeViewModel> {
-        VMFactory(
-            RepoImp(DataSource(AppDataBase.getDatabase(requireActivity().applicationContext)))
-        )
-    }*/
 
     private val mainViewModel :HomeViewModel by viewModel()
-    //private val mealsViewModel: MealViewModel by viewModel()
 
     private lateinit var adapterHome: AdapterHome
     private lateinit var meal: Meals
@@ -108,17 +102,6 @@ class HomeFragment : Fragment(),AdapterHome.OnMealsListener {
             }
         })
     }
-    /*private fun setUpObserverAdicional(){
-        mealsViewModel.fetchListMeal.observe(viewLifecycleOwner, Observer {
-                when(it.status){
-                    Status.LOADING ->{}
-                    Status.SUCCESS ->{
-                        Log.d("Lista de Favoritos","${it.data}")
-                    }
-                    Status.ERROR ->{}
-                }
-            })
-        }*/
 
     private fun navegarAFragmentMeal(){
         binding.btnAddMealMain.setOnClickListener {
