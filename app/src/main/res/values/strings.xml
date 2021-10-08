@@ -44,5 +44,9 @@
 
     <!--TODO: Carousel Section -->
     <string name="item_carousel"><u>Eliminar</u></string>
+    <string name="title_activity_new_main">NewMainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 
 </resources>
