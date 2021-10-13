@@ -36,7 +36,7 @@ class ConfirmEmailFragment: Fragment() {
     }
 
     private fun navigateToLogin() {
-        findNavController().navigate(R.id.action_confirmEmailFragment_to_loginFragment)
+        //findNavController().navigate(R.id.action_confirmEmailFragment_to_loginFragment)
     }
 
 

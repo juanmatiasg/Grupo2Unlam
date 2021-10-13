@@ -30,11 +30,11 @@ class AdapterMeals (private val items: List<Meals>):RecyclerView.Adapter<Recycle
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         itemsMealBinding.textViewTitle.text = items[position].title
         itemsMealBinding.imageView.loadUrl(items[position].image)
-        itemsMealBinding.cardView.setOnClickListener {
+        /*itemsMealBinding.cardView.setOnClickListener {
             val bundle = Bundle()
             bundle.putParcelable(MEALS_ITEMS,items[position])
             it.findNavController().navigate(R.id.action_nav_mealFragment_to_mealDetailFragment,bundle)
-        }
+        }*/
     }
 
     private fun ImageView.loadUrl(url:String){

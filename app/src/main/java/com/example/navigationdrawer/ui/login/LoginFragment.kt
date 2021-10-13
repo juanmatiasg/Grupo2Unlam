@@ -105,10 +105,10 @@ class LoginFragment : Fragment() {
     }
 
     private fun navigateToRegister() {
-        findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+        //findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
     }
     private fun navigateToHome(){
-        findNavController().navigate(R.id.action_loginFragment_to_nav_home)
+        //findNavController().navigate(R.id.action_loginFragment_to_nav_home)
     }
 
     override fun onDestroy() {

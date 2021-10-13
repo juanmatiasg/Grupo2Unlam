@@ -41,11 +41,11 @@ class AdapterFavourites(private val items: List<Meals>,private val itemClickList
             notifyItemRemoved(position)
             notifyItemRangeRemoved(position, itemCount)
         }
-        itemsFavouriteBinding.cardViewFavourite.setOnClickListener{
+        /*itemsFavouriteBinding.cardViewFavourite.setOnClickListener{
             val bundle=Bundle()
             bundle.putParcelable(MEALS_ITEMS,items[position])
             it.findNavController().navigate(R.id.action_nav_gallery_to_mealDetailFragment,bundle)
-        }
+        }*/
 
 
     }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.bottomNavigation.dashboard.FavouriteFragment">
+    tools:context=".ui.favourite.FavouriteFragment">
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -16,4 +16,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/items_favourite"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

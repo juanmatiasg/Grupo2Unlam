@@ -62,7 +62,7 @@ class HomeFragment : Fragment(),AdapterHome.OnMealsListener {
     private fun limpiarPlanner() {
         binding.btnClearMenu.setOnClickListener {
             mainViewModel.deleteAllPlanner()
-            it.findNavController().navigate(R.id.action_nav_home_to_nav_mealFragment)
+            //it.findNavController().navigate(R.id.action_nav_home_to_nav_mealFragment)
             Toast.makeText(requireContext(),"Comenzó un nuevo menú",Toast.LENGTH_SHORT).show()
         }
     }
@@ -105,7 +105,7 @@ class HomeFragment : Fragment(),AdapterHome.OnMealsListener {
 
     private fun navegarAFragmentMeal(){
         binding.btnAddMealMain.setOnClickListener {
-            findNavController().navigate(R.id.registerFragment)
+            //findNavController().navigate(R.id.registerFragment)
         }
     }
 

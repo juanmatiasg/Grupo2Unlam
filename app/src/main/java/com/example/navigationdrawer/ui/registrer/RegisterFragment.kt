@@ -67,7 +67,7 @@ class RegisterFragment : Fragment() {
     }
 
     private fun navigateToLogin() {
-        findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+        //findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
     }
 
 
@@ -121,7 +121,7 @@ class RegisterFragment : Fragment() {
     }
 
     private fun navigatoToConfirmEmail(){
-        findNavController().navigate(R.id.action_registerFragment_to_confirmEmailFragment)
+        //findNavController().navigate(R.id.action_registerFragment_to_confirmEmailFragment)
     }
 
 

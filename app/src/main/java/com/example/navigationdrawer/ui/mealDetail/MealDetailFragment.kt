@@ -66,7 +66,7 @@ class MealDetailFragment : Fragment() {
         binding.buttonAddPlanner.setOnClickListener {
             viewModel.insertMealPlanner(PlannerEntity(meals.id,meals.title,meals.image,meals.description,meals.strYoutube))
             Toast.makeText(requireContext(), R.string.msjePlanner,Toast.LENGTH_SHORT).show()
-            it.findNavController().navigate(R.id.action_mealDetailFragment_to_nav_home)
+            //it.findNavController().navigate(R.id.action_mealDetailFragment_to_nav_home)
         }
     }
 

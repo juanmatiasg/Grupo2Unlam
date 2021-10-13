@@ -1,42 +1,33 @@
 {
   "project_info": {
-    "project_number": "525799460487",
-    "firebase_url": "https://mealapp-74107-default-rtdb.firebaseio.com",
-    "project_id": "mealapp-74107",
-    "storage_bucket": "mealapp-74107.appspot.com"
+    "project_number": "612243079660",
+    "project_id": "my-meal-planner-a8d59",
+    "storage_bucket": "my-meal-planner-a8d59.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:525799460487:android:01d331b0a6728bce0ff222",
+        "mobilesdk_app_id": "1:612243079660:android:b8c9730973fefba48c80c9",
         "android_client_info": {
           "package_name": "com.example.navigationdrawer"
         }
       },
       "oauth_client": [
         {
-          "client_id": "525799460487-72vnj8lpur118i8nibrdbgihqdlv8l11.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.navigationdrawer",
-            "certificate_hash": "256cb827d4ff3e10be24840bffba5c0ac984e89f"
-          }
-        },
-        {
-          "client_id": "525799460487-0pi7n12qa5vlbaihvk74rn6a9n7ogufq.apps.googleusercontent.com",
+          "client_id": "612243079660-fapka87kjh5cfgfp6pb6lqpk68d6a0sl.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBCnUhAKCcdDX7azT9yl9E5IeXugIqvxo0"
+          "current_key": "AIzaSyCmVFhYjvgrzCiszRb9e7uofSXCrwWqgd4"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "525799460487-0pi7n12qa5vlbaihvk74rn6a9n7ogufq.apps.googleusercontent.com",
+              "client_id": "612243079660-fapka87kjh5cfgfp6pb6lqpk68d6a0sl.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

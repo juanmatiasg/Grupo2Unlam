@@ -39,11 +39,11 @@ class AdapterHome(private val items: List<Meals>, private val itemClickListener:
             notifyItemRemoved(position)
             notifyItemRangeRemoved(position, itemCount)
         }
-        itemsMainBinding.cardView.setOnClickListener{
+        /*itemsMainBinding.cardView.setOnClickListener{
             val bundle=Bundle()
             bundle.putParcelable(AdapterMeals.MEALS_ITEMS,items[position])
             it.findNavController().navigate(R.id.action_nav_home_to_mealDetailFragment,bundle)
-        }
+        }*/
 
     }
 
