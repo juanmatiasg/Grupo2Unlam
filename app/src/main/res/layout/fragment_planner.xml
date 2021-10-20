@@ -1,14 +1,243 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.PlannerFragment">
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/buttonGoToAllMeals"
+                layout="@layout/row_button_go_to_all_meals"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <FrameLayout
+                android:id="@+id/frame_desayuno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/buttonGoToAllMeals">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:fontFamily="@font/nunito_bold"
+                            android:text="Desayuno"
+                            android:textColor="#88B8FF"
+                            android:textSize="33dp" />
+
+                        <Button
+                            android:id="@+id/limpiarTodoDesayuno"
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="-5dp"
+                            android:fontFamily="@font/nunito"
+                            android:gravity="center_vertical"
+                            android:text="Limpiar todo"
+                            android:textAllCaps="false"
+                            android:textColor="#2FA804"
+                            android:textSize="14dp" />
+                    </LinearLayout>
+
+                    <include
+                        android:id="@+id/carouselDesayuno"
+                        layout="@layout/row_carrousel"
+                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content"/>
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/frame_almuerzo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/frame_desayuno">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:fontFamily="@font/nunito_bold"
+                            android:text="Almuerzo"
+                            android:textColor="#88B8FF"
+                            android:textSize="33dp" />
+
+                        <Button
+                            android:id="@+id/limpiarTodoAlmuerzo"
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="-5dp"
+                            android:fontFamily="@font/nunito"
+                            android:gravity="center_vertical"
+                            android:text="Limpiar todo"
+                            android:textAllCaps="false"
+                            android:textColor="#2FA804"
+                            android:textSize="14dp" />
+                    </LinearLayout>
+
+                    <include
+                        android:id="@+id/carouselAlmuerzo"
+                        layout="@layout/row_carrousel"
+                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content"/>
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+
+            <FrameLayout
+                android:id="@+id/frame_merienda"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/frame_almuerzo">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:fontFamily="@font/nunito_bold"
+                            android:text="Merienda"
+                            android:textColor="#88B8FF"
+                            android:textSize="33dp" />
+
+                        <Button
+                            android:id="@+id/limpiarTodoMerienda"
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="-5dp"
+                            android:fontFamily="@font/nunito"
+                            android:gravity="center_vertical"
+                            android:text="Limpiar todo"
+                            android:textAllCaps="false"
+                            android:textColor="#2FA804"
+                            android:textSize="14dp" />
+                    </LinearLayout>
+
+                    <include
+                        android:id="@+id/carouselMerienda"
+                        layout="@layout/row_carrousel"
+                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content" />
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/frame_cena"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/frame_almuerzo">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:fontFamily="@font/nunito_bold"
+                            android:text="Cena"
+                            android:textColor="#88B8FF"
+                            android:textSize="33dp" />
+
+                        <Button
+                            android:id="@+id/limpiarTodoCena"
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="-5dp"
+                            android:fontFamily="@font/nunito"
+                            android:gravity="center_vertical"
+                            android:text="Limpiar todo"
+                            android:textAllCaps="false"
+                            android:textColor="#2FA804"
+                            android:textSize="14dp" />
+                    </LinearLayout>
+
+                    <include
+                        android:id="@+id/carouselCena"
+                        layout="@layout/row_carrousel"
+                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content"/>
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -56,7 +56,7 @@ class HomeFragment : Fragment(),AdapterHome.OnMealsListener {
         //setUpObserverAdicional()
         setupRecycler()
         navegarAFragmentMeal()
-        limpiarPlanner()
+        //limpiarPlanner()
     }
 
     private fun limpiarPlanner() {

@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -46,15 +46,15 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.401"
-                app:srcCompat="@drawable/ic_baseline_add_circle_24" />
+                app:srcCompat="@drawable/ic_add_circle_outline" />
 
             <TextView
                 android:id="@+id/textViewAddRecipes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito"
+                android:fontFamily="@font/nunito_light"
                 android:gravity="center"
-                android:text="@string/agregar_receta"
+                android:text="Agregar receta"
                 android:textColor="#000000"
                 android:textFontWeight="300"
                 app:layout_constraintBottom_toBottomOf="parent"
