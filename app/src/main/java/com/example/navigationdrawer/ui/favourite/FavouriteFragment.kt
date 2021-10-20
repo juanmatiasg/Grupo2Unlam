@@ -58,6 +58,7 @@ class FavouriteFragment : Fragment(), AdapterFavourites.OnMealsListener {
     }
 
     private fun setupObserver() {
+        /*
         mealViewModel.getMealsFavoritos().observe(viewLifecycleOwner, Observer {
             when(it.status){
                 Status.LOADING ->{}
@@ -68,12 +69,11 @@ class FavouriteFragment : Fragment(), AdapterFavourites.OnMealsListener {
                     binding.rvFavoritos.adapter = AdapterFavourites(lista,this)
 
 
-
                     //Log.d("Lista de Favoritos","${it.data}")
                 }
                 Status.ERROR ->{}
             }
-        })
+        })*/
     }
 
 

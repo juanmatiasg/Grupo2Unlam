@@ -52,7 +52,7 @@ class HomeFragment : Fragment(),AdapterHome.OnMealsListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setDate()
-        setupObserver()
+        //setupObserver()
         //setUpObserverAdicional()
         setupRecycler()
         navegarAFragmentMeal()
