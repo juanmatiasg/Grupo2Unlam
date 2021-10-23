@@ -44,7 +44,7 @@ class RegisterFragment : Fragment() {
 
         val view = binding.root
 
-        auth = Firebase.auth
+        //auth = Firebase.auth
         return view
     }
 
