@@ -14,7 +14,11 @@
         android:id="@+id/navigation_planner"
         android:name="com.example.navigationdrawer.ui.planner.PlannerFragment"
         android:label="navigation_planner"
-        tools:layout="@layout/fragment_planner"/>
+        tools:layout="@layout/fragment_planner">
+        <action
+            android:id="@+id/action_navigation_planner_to_navigation_meal"
+            app:destination="@id/navigation_meal" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_favourite"
         android:name="com.example.navigationdrawer.ui.favourite.FavouriteFragment"
@@ -25,4 +29,18 @@
         android:name="com.example.navigationdrawer.ui.profile.ProfileFragment"
         android:label="navigation_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/navigation_meal"
+        android:name="com.example.navigationdrawer.ui.meal.MealFragment"
+        tools:layout="@layout/fragment_meal"
+        android:label="MealFragment" >
+        <action
+            android:id="@+id/action_navigation_meal_to_mealDetailFragment"
+            app:destination="@id/mealDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mealDetailFragment"
+        android:name="com.example.navigationdrawer.ui.mealDetail.MealDetailFragment"
+        android:label="fragment_meal_detail"
+        tools:layout="@layout/fragment_meal_detail" />
 </navigation>

@@ -1,6 +1,9 @@
 package com.example.navigationdrawer.di
 
 import android.app.Application
+import android.content.Context
+import androidx.room.Database
+import androidx.room.Room
 import com.example.navigationdrawer.data.DataSource
 import com.example.navigationdrawer.data.database.AppDataBase
 import com.example.navigationdrawer.domain.Repo
@@ -21,8 +24,8 @@ class MyApp : Application(){
 
     val apiModule = module {
 
-
-        single{DataSource(AppDataBase.getDatabase(get()))}
+        single {getDatabase(get())}
+        single{DataSource(get())}
         single<Repo>{RepoImp(get())}
         viewModel { MealViewModel(get()) }
         viewModel { HomeViewModel(get()) }
@@ -40,6 +43,10 @@ class MyApp : Application(){
             androidContext(this@MyApp)
             modules(apiModule)
         }
+    }
+
+    fun getDatabase(context: Context): AppDataBase {
+        return Room.databaseBuilder(context,AppDataBase::class.java,"db").build()
     }
 
 }

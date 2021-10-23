@@ -28,14 +28,7 @@ class MealFragment : Fragment() {
 
     private var _binding: FragmentMealBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
-    /*private val mealViewModel by viewModels<MealViewModel> {
-        VMFactory(
-            RepoImp(DataSource(AppDataBase.getDatabase(requireActivity().applicationContext)))
-        )
-    }*/
 
     private val mealViewModel:MealViewModel by viewModel()
 
@@ -57,8 +50,8 @@ class MealFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupRecycler()
         setupObserver()//muestra la comida por defecto
-        setUpMealObserver()//busca la comida
-        searchComida()//busca la comida
+        //setUpMealObserver()//busca la comida
+        //searchComida()//busca la comida
     }
 
     private fun setupRecycler() {
@@ -81,7 +74,7 @@ class MealFragment : Fragment() {
                     Status.SUCCESS -> {
                         binding.progressBar.visibility = View.INVISIBLE
                         binding.recyclerViewMeal.visibility = View.VISIBLE
-                        adapterMeals = AdapterMeals(result.data!!.meals)
+                        adapterMeals = AdapterMeals(/*result.data!!.meals*/listOf())
                         binding.recyclerViewMeal.adapter = adapterMeals
                         //result.data?.let { listMeals -> retrieveList(listMeals.meals) }
                     }
