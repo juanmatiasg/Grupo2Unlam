@@ -1,6 +1,8 @@
 package com.example.navigationdrawer.ui.registrer
 
+import android.app.Application
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.NonNull
+import androidx.annotation.RequiresApi
 import androidx.core.view.get
 import androidx.navigation.fragment.findNavController
 import com.example.navigationdrawer.R
@@ -20,9 +23,11 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.Dispatchers
+import org.koin.android.ext.android.bind
 import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.dsl.koinApplication
 
 
 class RegisterFragment : Fragment() {
@@ -31,19 +36,17 @@ class RegisterFragment : Fragment() {
 
     private val binding get() = _binding!!
 
-    private val mainViewModel: RegisterViewModel by viewModel()
-
     private lateinit var auth: FirebaseAuth
 
     private var name: String = ""
     private var surname: String = ""
-    private var email: String= ""
-    private var password: String= ""
-    private var confirmPassword: String= ""
-    private var dateOfBirth: String= ""
-    private var weight: String= ""
-    private var height: String= ""
-    private var gender: String= ""
+    private var email: String = ""
+    private var password: String = ""
+    private var confirmPassword: String = ""
+    private var dateOfBirth: String = ""
+    private var weight: String = ""
+    private var height: String = ""
+    private var gender: String = ""
 
 
     override fun onCreateView(
@@ -57,71 +60,45 @@ class RegisterFragment : Fragment() {
         return binding.root
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.btnFinishLogUp.setOnClickListener { /*navigateToStepTwo()*/ checkData() }
-        binding.tvBtnGoToLogIn.setOnClickListener { navigateToLogin() }
-
         auth = FirebaseAuth.getInstance()
+
+        binding.btnFinishLogUp.setOnClickListener { register() }
+
     }
 
-    private fun navigateToLogin() {
-        findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
-    }
+       private fun register() {
+        email = binding.editTextEmail.text.toString()
+        password = binding.editTextPassword.toString()
 
-
-    private fun navigateToStepTwo() {
-        findNavController().navigate(R.id.action_registerFragment_to_registerStepTwoFragment)
-    }
-
-    private fun checkData(){
-        name= binding.editTextName.text.toString()
-        surname=binding.editTextSurname.text.toString()
-        email=binding.editTextEmail.text.toString()
-        password=binding.editTextPassword.text.toString()
-        confirmPassword=binding.editTextConfirmPassword.text.toString()
-        dateOfBirth= binding.inputTextDateOfBirth.text.toString()
-        weight= binding.inputTextWeight.text.toString()
-        height= binding.inputTextHeight.text.toString()
-        gender= binding.inputTextGender.text.toString()
-
-        if(name.isNotEmpty() && surname.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() && confirmPassword.isNotEmpty()){
-            if(password.equals(confirmPassword)) {
-                if (binding.editTextPassword.text.toString().length >= 6) {
-                    Toast.makeText(requireContext(), "your email: ${(email)}", Toast.LENGTH_SHORT)
-                        .show()
-                    registerUser()
-                } else {
-                    Toast.makeText(
-                        requireContext(),
-                        "La contraseña debe tener al menos 6 caracteres",
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
-            }else{
-                binding.errorConfirmPassword.visibility= View.VISIBLE
-            }
-        }else{
-            Toast.makeText(requireContext(),"Compruebe los datos",Toast.LENGTH_SHORT).show()
+        if (!email.isNullOrEmpty() && !password.isNullOrEmpty()) {
+            registerUser()
+        } else {
+            Toast.makeText(
+                requireContext(),
+                "Por favor completa los datos correspondientes",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
-    private fun registerUser(){
-        auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    navigatoToConfirmEmail()
-                } else if (task.exception is FirebaseAuthUserCollisionException) {
-                    Toast.makeText(requireContext(),"El usuario ya existe",Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(requireContext(),"failed in registerUser", Toast.LENGTH_SHORT).show()
-                }
-            }
-    }
 
-    private fun navigatoToConfirmEmail(){
-        findNavController().navigate(R.id.action_registerFragment_to_confirmEmailFragment)
+    private fun registerUser() {
+        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(
+            OnCompleteListener {
+                if (it.isSuccessful) {
+                    findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "No pudo haber registrado el usuario",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            })
+
     }
 
 

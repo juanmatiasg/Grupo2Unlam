@@ -16,15 +16,19 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.NavHost
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.example.navigationdrawer.databinding.ActivityMainBinding
 import com.example.navigationdrawer.ui.home.HomeFragment
-import com.firebase.ui.auth.AuthUI
-import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
-import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
-import com.google.firebase.auth.FirebaseAuth
+
+
+import com.google.android.material.bottomnavigation.BottomNavigationView
+
+
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,13 +40,20 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         val navView = binding.buttonNavigation
 
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.fragmentContainerView3) as NavHostFragment
         val navController = navHostFragment.navController
 
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if(destination.id == R.id.loginFragment ||destination.id == R.id.splashScreenFragment) {
+                navView.visibility = View.GONE
+            }
+            else{
+                navView.visibility = View.VISIBLE
+            }
+        }
 
         navView.setupWithNavController(navController)
 
