@@ -21,7 +21,9 @@ class MyApp : Application(){
 
     val apiModule = module {
 
-        single{DataSource(AppDataBase.getDatabase(get()))}
+        //single{DataSource(AppDataBase.getDatabase(get()))}
+        single { AppDataBase.getDatabase(get()) }
+        single { DataSource(get()) }
         single<Repo>{RepoImp(get())}
         viewModel { MealViewModel(get()) }
         viewModel { HomeViewModel(get()) }
