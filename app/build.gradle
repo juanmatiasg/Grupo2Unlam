@@ -53,6 +53,7 @@ dependencies {
     implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
     implementation 'androidx.compose.animation:animation-core:1.0.0-beta04'
     implementation 'androidx.constraintlayout:constraintlayout-compose:1.0.0-rc01'
+    implementation 'com.google.android.gms:play-services-ads:20.4.0'
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
