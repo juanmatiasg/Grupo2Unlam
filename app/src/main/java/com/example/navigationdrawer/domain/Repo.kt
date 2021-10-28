@@ -27,4 +27,5 @@ interface Repo{
     suspend fun deleteFromPlanner(meal: PlannerEntity)
 
     suspend fun deleteAllPlanner()
+
 }

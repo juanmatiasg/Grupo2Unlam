@@ -1,5 +1,7 @@
 package com.example.navigationdrawer.data
 
+import android.app.Application
+import android.widget.Toast
 import com.example.navigationdrawer.data.database.AppDataBase
 import com.example.navigationdrawer.data.entities.MealEntity
 import com.example.navigationdrawer.data.entities.PlannerEntity
@@ -8,6 +10,8 @@ import com.example.navigationdrawer.data.model.Meals
 import com.example.navigationdrawer.data.model.MealsInformation
 import com.example.navigationdrawer.vo.Resource
 import com.example.navigationdrawer.vo.RetrofitClient
+import com.google.firebase.auth.FirebaseAuth
+import java.util.concurrent.Executors
 
 class DataSource(private val appDataBase: AppDataBase) {
 
@@ -16,10 +20,11 @@ class DataSource(private val appDataBase: AppDataBase) {
     }
 
 
-    suspend fun insertMeal(meal:MealEntity){
+    suspend fun insertMeal(meal: MealEntity) {
         appDataBase.mealDao().insertMeal(meal)
     }
-    suspend fun insertMealPlanner(meal:PlannerEntity){
+
+    suspend fun insertMealPlanner(meal: PlannerEntity) {
         appDataBase.mealDao().insertMealPlanner(meal)
     }
 
@@ -27,7 +32,7 @@ class DataSource(private val appDataBase: AppDataBase) {
         return Resource.success(appDataBase.mealDao().getListMeal())
     }
 
-    suspend fun getListMealByB():Resource<ListMeals>{
+    suspend fun getListMealByB(): Resource<ListMeals> {
         return Resource.success(RetrofitClient.webService.getListMeal())
     }
 
@@ -35,14 +40,21 @@ class DataSource(private val appDataBase: AppDataBase) {
         return Resource.success(appDataBase.mealDao().getListPlanner())
     }
 
-    suspend fun deleteFavourite(meal: MealEntity){
+    suspend fun deleteFavourite(meal: MealEntity) {
         appDataBase.mealDao().deleteMealFromFavourites(meal)
     }
-    suspend fun deleteFromPlanner(meal: PlannerEntity){
+
+    suspend fun deleteFromPlanner(meal: PlannerEntity) {
         appDataBase.mealDao().deleleFromPlanner(meal)
     }
-    suspend fun deleteAllPlanner(){
+
+    suspend fun deleteAllPlanner() {
         appDataBase.mealDao().deleteAllPlanner()
     }
+
+
+
+
+
 
 }

@@ -10,8 +10,6 @@ import kotlinx.coroutines.launch
 
 class MealDetailViewModel(private val repo: Repo) : ViewModel() {
 
-
-
     fun insertMeal(meals:MealEntity){
         viewModelScope.launch {
             repo.insertMeal(meals)

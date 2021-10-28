@@ -17,7 +17,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.navigationdrawer.databinding.FragmentAyudaBinding
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.*
-import com.google.firebase.database.*
 import java.util.*
 
 
