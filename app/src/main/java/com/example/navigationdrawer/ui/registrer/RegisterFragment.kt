@@ -89,7 +89,7 @@ class RegisterFragment : Fragment() {
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(
             OnCompleteListener {
                 if (it.isSuccessful) {
-                    findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+                    //findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
                 } else {
                     Toast.makeText(
                         requireContext(),

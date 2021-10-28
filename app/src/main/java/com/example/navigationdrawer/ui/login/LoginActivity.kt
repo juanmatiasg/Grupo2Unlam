@@ -1,52 +1,38 @@
 package com.example.navigationdrawer.ui.login
 
-import android.content.ContentValues.TAG
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.navigation.fragment.findNavController
+import com.example.navigationdrawer.MainActivity
 import com.example.navigationdrawer.R
+import com.example.navigationdrawer.databinding.ActivityLoginBinding
 import com.example.navigationdrawer.databinding.FragmentLoginBinding
+import com.example.navigationdrawer.ui.registrer.RegisterActivity
 import com.google.firebase.auth.FirebaseAuth
 
-
-class LoginFragment : Fragment() {
-
-    private var _binding: FragmentLoginBinding? = null
-    private val binding get() = _binding!!
+class LoginActivity : AppCompatActivity() {
+    private lateinit  var binding: ActivityLoginBinding
 
     private var email: String = ""
     private var password: String = ""
     lateinit var mAuth: FirebaseAuth
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-    }
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentLoginBinding.inflate(layoutInflater, container, false)
-
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        mAuth = FirebaseAuth.getInstance()
         binding.buttonIniciarSesion.setOnClickListener { login() }
         binding.registrarAquiButton.setOnClickListener { registrarUsuario() }
     }
 
     private fun registrarUsuario() {
-        //findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+        val intent = Intent(this,RegisterActivity::class.java)
+        startActivity(intent)
     }
 
     private fun login() {
@@ -58,7 +44,7 @@ class LoginFragment : Fragment() {
             loginUser()
         } else {
             Toast.makeText(
-                requireContext(),
+                this,
                 "Por favor ingrese los campos completos",
                 Toast.LENGTH_SHORT
             ).show()
@@ -67,22 +53,16 @@ class LoginFragment : Fragment() {
     }
 
     private fun loginUser() {
+        val intent = Intent(this,MainActivity::class.java)
+
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
             if (it.isSuccessful) {
-                //findNavController().navigate(R.id.action_loginFragment_to_nav_home)
+                startActivity(intent)
             } else {
-                Toast.makeText(requireContext(), "No se pudo iniciar sesion", Toast.LENGTH_SHORT)
+                Toast.makeText(this, "No se pudo iniciar sesion", Toast.LENGTH_SHORT)
                     .show()
             }
         }
     }
 
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
-
-
 }
-
