@@ -102,7 +102,7 @@
         app:layout_constraintStart_toEndOf="@+id/contador_agua"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-    <Button
+    <ImageButton
         android:id="@+id/button_mas_agua"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -114,7 +114,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <Button
+    <ImageButton
         android:id="@+id/button_menos_agua"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
