@@ -44,5 +44,6 @@
 
     <!--TODO: Carousel Section -->
     <string name="item_carousel"><u>Eliminar</u></string>
+    <string name="title_activity_planner_with_compose">PlannerWithComposeActivity</string>
 
 </resources>

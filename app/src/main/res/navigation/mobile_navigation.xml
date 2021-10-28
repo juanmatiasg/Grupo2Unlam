@@ -54,37 +54,18 @@
         android:id="@+id/registerFragment"
         android:name="com.example.navigationdrawer.ui.registrer.RegisterFragment"
         android:label="fragment_register"
-        tools:layout="@layout/fragment_register" >
-        <action
-            android:id="@+id/action_registerFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_register" />
     <fragment
         android:id="@+id/splashScreenFragment"
         android:name="com.example.navigationdrawer.ui.splashScreen.SplashScreenFragment"
-        tools:layout="@layout/fragment_splash_screen">
-        <action
-            android:id="@+id/action_splashScreenFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_splash_screen"/>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.navigationdrawer.ui.login.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
-        <action
-            android:id="@+id/action_loginFragment_to_registerFragment"
-            app:destination="@id/registerFragment" />
-        <action
-            android:id="@+id/action_loginFragment_to_nav_home"
-            app:destination="@id/nav_home" />
-    </fragment>
+        tools:layout="@layout/fragment_login" />
     <fragment
         android:id="@+id/confirmEmailFragment"
         android:name="com.example.navigationdrawer.ui.confirmEmail.ConfirmEmailFragment"
-        android:label="ConfirmEmailFragment" >
-        <action
-            android:id="@+id/action_confirmEmailFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-    </fragment>
+        android:label="ConfirmEmailFragment" />
 </navigation>
