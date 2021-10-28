@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.navigationdrawer.R
-import kotlinx.android.synthetic.main.app_bar_main.*
 
 
 class SplashScreenFragment : Fragment() {

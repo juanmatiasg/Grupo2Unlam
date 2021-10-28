@@ -13,6 +13,7 @@ import com.example.navigationdrawer.databinding.FragmentLoginBinding
 import com.example.navigationdrawer.ui.registrer.RegisterActivity
 import com.google.firebase.auth.FirebaseAuth
 
+
 class LoginActivity : AppCompatActivity() {
     private lateinit  var binding: ActivityLoginBinding
 
@@ -20,12 +21,14 @@ class LoginActivity : AppCompatActivity() {
     private var password: String = ""
     lateinit var mAuth: FirebaseAuth
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        mAuth = FirebaseAuth.getInstance()
         binding.buttonIniciarSesion.setOnClickListener { login() }
         binding.registrarAquiButton.setOnClickListener { registrarUsuario() }
     }
@@ -53,10 +56,10 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun loginUser() {
-        val intent = Intent(this,MainActivity::class.java)
 
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
             if (it.isSuccessful) {
+                val intent = Intent(this,MainActivity::class.java)
                 startActivity(intent)
             } else {
                 Toast.makeText(this, "No se pudo iniciar sesion", Toast.LENGTH_SHORT)
@@ -64,5 +67,7 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
+
+
 
 }

@@ -46,14 +46,14 @@ class MainActivity : AppCompatActivity() {
             .findFragmentById(R.id.fragmentContainerView3) as NavHostFragment
         val navController = navHostFragment.navController
 
-        navController.addOnDestinationChangedListener { _, destination, _ ->
+        /*navController.addOnDestinationChangedListener { _, destination, _ ->
             if(destination.id == R.id.loginFragment ||destination.id == R.id.splashScreenFragment) {
                 navView.visibility = View.GONE
             }
             else{
                 navView.visibility = View.VISIBLE
             }
-        }
+        }*/
 
         navView.setupWithNavController(navController)
 
