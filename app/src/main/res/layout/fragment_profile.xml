@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F6F3F3">
+
+
+    <Button
+        android:id="@+id/btn_logOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="13dp"
+        android:backgroundTint="@color/white"
+        android:drawableEnd="@drawable/ic_input"
+        android:fontFamily="@font/nunito"
+        android:text="Cerrar sesión"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/profile_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:fontFamily="@font/nunito_bold"
+        android:text="Perfil"
+        android:textColor="#88B8FF"
+        android:textSize="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_logOut" />
+
+    <ImageView
+        android:id="@+id/background_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="78dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_title"
+        app:srcCompat="@drawable/background_data" />
+
+    <ImageView
+        android:id="@+id/ic_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintStart_toStartOf="@+id/background_data"
+        app:layout_constraintTop_toBottomOf="@+id/profile_picture"
+        app:srcCompat="@drawable/ic_vector__1_"
+        tools:ignore="VectorDrawableCompat" />
+
+    <ImageView
+        android:id="@+id/profile_picture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-50dp"
+        app:layout_constraintEnd_toEndOf="@+id/background_data"
+        app:layout_constraintStart_toStartOf="@+id/background_data"
+        app:layout_constraintTop_toTopOf="@+id/background_data"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/tv_nameandsurname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Name Surname"
+        android:fontFamily="@font/nunito_extralight"
+        android:textSize="20dp"
+        android:textColor="#88B8FF"
+        app:layout_constraintBottom_toBottomOf="@+id/ic_profile"
+        app:layout_constraintStart_toEndOf="@+id/ic_profile"
+        app:layout_constraintTop_toTopOf="@+id/ic_profile" />
+
+    <ImageView
+        android:id="@+id/ic_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="@+id/background_data"
+        app:layout_constraintTop_toBottomOf="@+id/ic_profile"
+        app:srcCompat="@drawable/ic_vector"
+        tools:ignore="VectorDrawableCompat" />
+
+    <TextView
+        android:id="@+id/tv_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="email@email.com.ar"
+        android:textColor="#88B8FF"
+        android:fontFamily="@font/nunito_extralight"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/ic_email"
+        app:layout_constraintStart_toEndOf="@+id/ic_email"
+        app:layout_constraintTop_toTopOf="@+id/ic_email" />
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/background_data"
+        app:layout_constraintStart_toStartOf="@+id/background_data"
+        app:layout_constraintTop_toBottomOf="@+id/ic_email">
+
+        <ImageView
+            android:id="@+id/ic_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_fitness_center" />
+
+        <TextView
+            android:id="@+id/tv_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/nunito_extralight"
+            android:paddingLeft="8dp"
+            android:text="Peso"
+            android:textColor="#88B8FF"
+            android:textSize="20dp" />
+
+        <Space
+            android:layout_width="40dp"
+            android:layout_height="10dp" />
+
+        <ImageView
+            android:id="@+id/ic_height"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingLeft="50dp"
+            android:src="@drawable/ic_accessibility" />
+
+
+        <TextView
+            android:id="@+id/tv_height"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_extralight"
+            android:paddingLeft="8dp"
+            android:text="Altura"
+            android:textColor="#88B8FF"
+            android:textSize="20dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/background_data"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="@+id/background_data"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <ImageView
+            android:id="@+id/ic_years"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_person" />
+
+        <TextView
+            android:id="@+id/tv_years"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/nunito_extralight"
+            android:paddingLeft="8dp"
+            android:text="Edad"
+            android:textColor="#88B8FF"
+            android:textSize="20dp" />
+
+        <Space
+            android:layout_width="40dp"
+            android:layout_height="10dp" />
+
+        <ImageView
+            android:id="@+id/ic_gender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingLeft="50dp"
+            android:src="@drawable/ic_wc" />
+
+
+        <TextView
+            android:id="@+id/tv_gender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_extralight"
+            android:paddingLeft="8dp"
+            android:text="Género"
+            android:textColor="#88B8FF"
+            android:textSize="20dp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_editProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:backgroundTint="#CCEB78"
+        android:fontFamily="@font/nunito"
+        android:gravity="center"
+        android:text="Editar perfil"
+        android:textAllCaps="false"
+        android:textSize="22dp"
+        app:layout_constraintEnd_toEndOf="@+id/background_data"
+        app:layout_constraintStart_toStartOf="@+id/background_data"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
