@@ -23,6 +23,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import org.koin.android.ext.android.bind
@@ -37,6 +38,8 @@ class RegisterFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var auth: FirebaseAuth
+
+    val db = Firebase.firestore
 
     private var name: String = ""
     private var surname: String = ""
@@ -66,10 +69,33 @@ class RegisterFragment : Fragment() {
         auth = FirebaseAuth.getInstance()
 
         binding.btnFinishLogUp.setOnClickListener { register() }
-
+        saveIntoDatabaseFirebase()
     }
 
-       private fun register() {
+    private fun saveIntoDatabaseFirebase() {
+        this.name = binding.editTextName.text.toString()
+        this.surname = binding.editTextSurname.text.toString()
+        this.dateOfBirth = binding.inputTextDateOfBirth.text.toString()
+        this.weight = binding.inputTextWeight.text.toString()
+        this.height = binding.inputTextHeight.text.toString()
+        this.gender = binding.inputTextGender.text.toString()
+
+        val user = hashMapOf(
+            "name" to this.name,
+            "surname" to this.surname,
+            "dateOfBirth" to this.dateOfBirth,
+            "weight" to this.weight,
+            "height" to this.height,
+            "gender" to this.gender
+        )
+
+        db.collection("users").document(this.email)
+            .set(user)
+            .addOnSuccessListener { Log.d("SUCCESS", "DocumentSnapshot successfully written!") }
+            .addOnFailureListener { e -> Log.w("FAILURE", "Error writing document", e) }
+    }
+
+    private fun register() {
         email = binding.editTextEmail.text.toString()
         password = binding.editTextPassword.toString()
 

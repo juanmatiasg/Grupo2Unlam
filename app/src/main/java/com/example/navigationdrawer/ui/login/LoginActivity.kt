@@ -31,6 +31,12 @@ class LoginActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
         binding.buttonIniciarSesion.setOnClickListener { login() }
         binding.registrarAquiButton.setOnClickListener { registrarUsuario() }
+        binding.registrarAquiButton.setOnClickListener { goToRegisterActivivity() }
+    }
+
+    private fun goToRegisterActivivity() {
+        val i = Intent(this@LoginActivity,RegisterActivity::class.java)
+        startActivity(i)
     }
 
     private fun registrarUsuario() {

@@ -1,6 +1,7 @@
 package com.example.navigationdrawer.ui.home
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
@@ -30,14 +31,10 @@ import java.text.DateFormat
 import java.util.*
 
 class HomeFragment : Fragment(), AdapterHome.OnMealsListener {
-    private val REQUIRED_PERMISSION = arrayOf(Manifest.permission.CAMERA)
-    private lateinit var registerPermissionLaunchar: ActivityResultLauncher<Array<String>>
 
     private var _binding: FragmentHomeBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
+
     /*private val mainViewModel by viewModels<HomeViewModel> {
         VMFactory(
             RepoImp(DataSource(AppDataBase.getDatabase(requireActivity().applicationContext)))
@@ -45,10 +42,12 @@ class HomeFragment : Fragment(), AdapterHome.OnMealsListener {
     }*/
 
     private val mainViewModel: HomeViewModel by viewModel()
-    //private val mealsViewModel: MealViewModel by viewModel()
 
     private lateinit var adapterHome: AdapterHome
     private lateinit var meal: Meals
+
+    private val REQUIRED_PERMISSION = arrayOf(Manifest.permission.CAMERA)
+    private lateinit var registerPermissionLaunchar: ActivityResultLauncher<Array<String>>
 
 
     override fun onCreateView(
@@ -58,46 +57,56 @@ class HomeFragment : Fragment(), AdapterHome.OnMealsListener {
 
     ): View? {
         _binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
-
-        val view = binding.root
-        return view
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setDate()
         setupObserver()
-        //setUpObserverAdicional()
         setupRecycler()
         navegarAFragmentMeal()
         limpiarPlanner()
-        binding.buttonQr.setOnClickListener { launchCameraClicked() }
-    }
 
+        createPermissionLauncher()
+        binding.buttonQr.setOnClickListener { launchCameraClicked() }
+
+    }
 
     private fun createPermissionLauncher() {
         registerPermissionLaunchar =
             registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permission ->
                 if (permission[Manifest.permission.CAMERA] == true) {
                     launchCamera()
-                } else {
-                    Toast.makeText(
-                        requireContext(),
-                        "Se necesita los permisos para lanzar la camara",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                }
+                else{
+                    Toast.makeText(requireContext(),"Se necesita los permisos para lanzar la camara",Toast.LENGTH_SHORT).show()
                 }
             }
 
+    }
+
+    private fun launchCameraClicked(){
+        if(arePermissionGranted()){
+            launchCamera()
+        }
+        else{
+            askPermission() // como pido permiso si no fueron otorgados
+        }
+    }
+
+    private fun launchCamera() {
+        findNavController().navigate(R.id.action_nav_home_to_cameraFragment)
     }
 
     private fun askPermission() {
         registerPermissionLaunchar.launch(REQUIRED_PERMISSION)
     }
 
-    private fun arePermissionGranted(): Boolean = REQUIRED_PERMISSION.all {
-        ContextCompat.checkSelfPermission(requireContext(), it) == PackageManager.PERMISSION_GRANTED
+    private fun arePermissionGranted(): Boolean = REQUIRED_PERMISSION.all{
+        ContextCompat.checkSelfPermission(requireContext(),it) == PackageManager.PERMISSION_GRANTED
     }
+
 
     private fun limpiarPlanner() {
         binding.btnClearMenu.setOnClickListener {
@@ -151,50 +160,17 @@ class HomeFragment : Fragment(), AdapterHome.OnMealsListener {
             }
         })
     }
-    /*private fun setUpObserverAdicional(){
-        mealsViewModel.fetchListMeal.observe(viewLifecycleOwner, Observer {
-                when(it.status){
-                    Status.LOADING ->{}
-                    Status.SUCCESS ->{
-                        Log.d("Lista de Favoritos","${it.data}")
-                    }
-                    Status.ERROR ->{}
-                }
-            })
-        }*/
-
     private fun navegarAFragmentMeal() {
         binding.btnAddMealMain.setOnClickListener {
             findNavController().navigate(R.id.action_nav_home_to_nav_mealFragment)
         }
     }
 
-    private fun permissionLauncher() {
-        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permission ->
-            if (permission[Manifest.permission.CAMERA] == true) {
-                launchCamera()
-            } else {
-                Toast.makeText(
-                    requireContext(),
-                    "Se necesita los permisos para lanzar la camara",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        }
-    }
 
-    private fun launchCamera() {
 
-        findNavController().navigate(R.id.action_nav_home_to_cameraFragment)
-    }
 
-    private fun launchCameraClicked() {
-        if (arePermissionGranted()) {
-            launchCamera()
-        } else {
-            askPermission() // como pido permiso si no fueron otorgados
-        }
-    }
+
+
 
 
     override fun onDestroyView() {
