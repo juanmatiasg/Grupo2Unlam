@@ -1,11 +1,16 @@
 package com.example.navigationdrawer.ui.home
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
@@ -24,10 +29,12 @@ import org.koin.android.viewmodel.ext.android.viewModel
 import java.text.DateFormat
 import java.util.*
 
-class HomeFragment : Fragment(),AdapterHome.OnMealsListener {
-
+class HomeFragment : Fragment(), AdapterHome.OnMealsListener {
+    private val REQUIRED_PERMISSION = arrayOf(Manifest.permission.CAMERA)
+    private lateinit var registerPermissionLaunchar: ActivityResultLauncher<Array<String>>
 
     private var _binding: FragmentHomeBinding? = null
+
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -37,7 +44,7 @@ class HomeFragment : Fragment(),AdapterHome.OnMealsListener {
         )
     }*/
 
-    private val mainViewModel :HomeViewModel by viewModel()
+    private val mainViewModel: HomeViewModel by viewModel()
     //private val mealsViewModel: MealViewModel by viewModel()
 
     private lateinit var adapterHome: AdapterHome
@@ -45,16 +52,17 @@ class HomeFragment : Fragment(),AdapterHome.OnMealsListener {
 
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
 
     ): View? {
-        _binding = FragmentHomeBinding.inflate(layoutInflater,container,false)
+        _binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
 
         val view = binding.root
         return view
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setDate()
@@ -63,23 +71,48 @@ class HomeFragment : Fragment(),AdapterHome.OnMealsListener {
         setupRecycler()
         navegarAFragmentMeal()
         limpiarPlanner()
+        binding.buttonQr.setOnClickListener { launchCameraClicked() }
+    }
+
+
+    private fun createPermissionLauncher() {
+        registerPermissionLaunchar =
+            registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permission ->
+                if (permission[Manifest.permission.CAMERA] == true) {
+                    launchCamera()
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "Se necesita los permisos para lanzar la camara",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+
+    }
+
+    private fun askPermission() {
+        registerPermissionLaunchar.launch(REQUIRED_PERMISSION)
+    }
+
+    private fun arePermissionGranted(): Boolean = REQUIRED_PERMISSION.all {
+        ContextCompat.checkSelfPermission(requireContext(), it) == PackageManager.PERMISSION_GRANTED
     }
 
     private fun limpiarPlanner() {
         binding.btnClearMenu.setOnClickListener {
             mainViewModel.deleteAllPlanner()
             it.findNavController().navigate(R.id.action_nav_home_to_nav_mealFragment)
-            Toast.makeText(requireContext(),"Comenzó un nuevo menú",Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Comenzó un nuevo menú", Toast.LENGTH_SHORT).show()
         }
     }
 
 
     private fun setDate() {
-        val calendar= Calendar.getInstance()
-        val currentDay= DateFormat.getDateInstance().format(calendar.time)
-        binding.txtDayDateMain.text=currentDay
+        val calendar = Calendar.getInstance()
+        val currentDay = DateFormat.getDateInstance().format(calendar.time)
+        binding.txtDayDateMain.text = currentDay
     }
-
 
 
     private fun setupRecycler() {
@@ -91,20 +124,30 @@ class HomeFragment : Fragment(),AdapterHome.OnMealsListener {
             binding.recyclerViewMain.adapter = adapterHome*/
         }
     }
+
     private fun setupObserver() {
 
         mainViewModel.getMealsHome().observe(viewLifecycleOwner, Observer {
-            when(it.status){
-                Status.LOADING ->{}
-                Status.SUCCESS ->{
+            when (it.status) {
+                Status.LOADING -> {
+                }
+                Status.SUCCESS -> {
                     val lista = it.data!!.map {
-                        Meals(it.id,it.title,it.image,description = it.description,protein = "",strYoutube = it.strYoutube)
+                        Meals(
+                            it.id,
+                            it.title,
+                            it.image,
+                            description = it.description,
+                            protein = "",
+                            strYoutube = it.strYoutube
+                        )
                     }
-                    binding.recyclerViewMain.adapter = AdapterHome(lista,this)
+                    binding.recyclerViewMain.adapter = AdapterHome(lista, this)
 
                     //Log.d("Lista de Favoritos","${it.data}")
                 }
-                Status.ERROR ->{}
+                Status.ERROR -> {
+                }
             }
         })
     }
@@ -120,12 +163,38 @@ class HomeFragment : Fragment(),AdapterHome.OnMealsListener {
             })
         }*/
 
-    private fun navegarAFragmentMeal(){
+    private fun navegarAFragmentMeal() {
         binding.btnAddMealMain.setOnClickListener {
             findNavController().navigate(R.id.action_nav_home_to_nav_mealFragment)
         }
     }
 
+    private fun permissionLauncher() {
+        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permission ->
+            if (permission[Manifest.permission.CAMERA] == true) {
+                launchCamera()
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    "Se necesita los permisos para lanzar la camara",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
+
+    private fun launchCamera() {
+
+        findNavController().navigate(R.id.action_nav_home_to_cameraFragment)
+    }
+
+    private fun launchCameraClicked() {
+        if (arePermissionGranted()) {
+            launchCamera()
+        } else {
+            askPermission() // como pido permiso si no fueron otorgados
+        }
+    }
 
 
     override fun onDestroyView() {
@@ -134,7 +203,17 @@ class HomeFragment : Fragment(),AdapterHome.OnMealsListener {
     }
 
     override fun deleteFavouriteListener(item: Meals, position: Int) {
-        mainViewModel.deleteFromPlanner(PlannerEntity(item.id,item.title,item.image,item.description,item.strYoutube))
+        mainViewModel.deleteFromPlanner(
+            PlannerEntity(
+                item.id,
+                item.title,
+                item.image,
+                item.description,
+                item.strYoutube
+            )
+        )
     }
 
 }
+
+

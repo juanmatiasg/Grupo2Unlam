@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_nav_home_to_mealDetailFragment"
             app:destination="@id/mealDetailFragment" />
+        <action
+            android:id="@+id/action_nav_home_to_cameraFragment"
+            app:destination="@id/cameraFragment" />
     </fragment>
 
     <fragment
@@ -68,4 +71,9 @@
         android:id="@+id/confirmEmailFragment"
         android:name="com.example.navigationdrawer.ui.confirmEmail.ConfirmEmailFragment"
         android:label="ConfirmEmailFragment" />
+    <fragment
+        android:id="@+id/cameraFragment"
+        android:name="com.example.navigationdrawer.ui.camera.CameraFragment"
+        android:label="fragment_camera"
+        tools:layout="@layout/fragment_camera" />
 </navigation>
