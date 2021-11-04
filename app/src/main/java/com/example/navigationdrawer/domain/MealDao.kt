@@ -3,6 +3,7 @@ package com.example.navigationdrawer.domain
 import androidx.room.*
 import com.example.navigationdrawer.data.entities.MealEntity
 import com.example.navigationdrawer.data.entities.PlannerEntity
+import com.example.navigationdrawer.data.entities.SaveEmailEntity
 
 
 @Dao
@@ -28,5 +29,8 @@ interface MealDao {
 
     @Query("DELETE FROM table_planner")
     suspend fun deleteAllPlanner()
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertSaveEmail(email: SaveEmailEntity)
 
 }

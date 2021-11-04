@@ -5,6 +5,7 @@ import android.widget.Toast
 import com.example.navigationdrawer.data.database.AppDataBase
 import com.example.navigationdrawer.data.entities.MealEntity
 import com.example.navigationdrawer.data.entities.PlannerEntity
+import com.example.navigationdrawer.data.entities.SaveEmailEntity
 import com.example.navigationdrawer.data.model.ListMeals
 import com.example.navigationdrawer.data.model.Meals
 import com.example.navigationdrawer.data.model.MealsInformation
@@ -52,9 +53,9 @@ class DataSource(private val appDataBase: AppDataBase) {
         appDataBase.mealDao().deleteAllPlanner()
     }
 
-
-
-
+    suspend fun insertSaveEmail(email: SaveEmailEntity) {
+        appDataBase.mealDao().insertSaveEmail(email)
+    }
 
 
 }

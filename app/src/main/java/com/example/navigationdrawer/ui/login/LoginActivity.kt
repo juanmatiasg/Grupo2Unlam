@@ -8,18 +8,21 @@ import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.navigation.fragment.findNavController
 import com.example.navigationdrawer.MainActivity
 import com.example.navigationdrawer.R
+import com.example.navigationdrawer.data.entities.SaveEmailEntity
 import com.example.navigationdrawer.databinding.ActivityLoginBinding
 import com.example.navigationdrawer.databinding.FragmentLoginBinding
 import com.example.navigationdrawer.ui.registrer.RegisterActivity
 import com.google.firebase.auth.FirebaseAuth
+import org.koin.android.viewmodel.ext.android.viewModel
 
 
 class LoginActivity : AppCompatActivity() {
-    private lateinit  var binding: ActivityLoginBinding
+    private lateinit var binding: ActivityLoginBinding
 
     private var email: String = ""
     private var password: String = ""
     lateinit var mAuth: FirebaseAuth
+    private val loginViewModel: LoginViewModel by viewModel()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,12 +38,12 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun goToRegisterActivivity() {
-        val i = Intent(this@LoginActivity,RegisterActivity::class.java)
+        val i = Intent(this@LoginActivity, RegisterActivity::class.java)
         startActivity(i)
     }
 
     private fun registrarUsuario() {
-        val intent = Intent(this,RegisterActivity::class.java)
+        val intent = Intent(this, RegisterActivity::class.java)
         startActivity(intent)
     }
 
@@ -65,7 +68,8 @@ class LoginActivity : AppCompatActivity() {
 
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
             if (it.isSuccessful) {
-                val intent = Intent(this,MainActivity::class.java)
+                loginViewModel.saveEmail(SaveEmailEntity().email = email)
+                val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             } else {
                 Toast.makeText(this, "No se pudo iniciar sesion", Toast.LENGTH_SHORT)
@@ -73,7 +77,6 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
-
 
 
 }

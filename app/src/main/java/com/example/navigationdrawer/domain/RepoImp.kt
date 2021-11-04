@@ -3,6 +3,7 @@ package com.example.navigationdrawer.domain
 import com.example.navigationdrawer.data.DataSource
 import com.example.navigationdrawer.data.entities.MealEntity
 import com.example.navigationdrawer.data.entities.PlannerEntity
+import com.example.navigationdrawer.data.entities.SaveEmailEntity
 import com.example.navigationdrawer.data.model.ListMeals
 import com.example.navigationdrawer.data.model.Meals
 import com.example.navigationdrawer.data.model.MealsInformation
@@ -48,7 +49,9 @@ class RepoImp(private val dataSource: DataSource):Repo{
         dataSource.deleteAllPlanner()
     }
 
-
+    override suspend fun insertSaveEmail(email: SaveEmailEntity) {
+        dataSource.insertSaveEmail(email)
+    }
 
 
 }
