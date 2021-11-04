@@ -10,6 +10,8 @@ import com.google.mlkit.vision.common.InputImage
 
 class BarCode(): ImageAnalysis.Analyzer {
 
+    val scanner = BarcodeScanning.getClient()
+
     val options = BarcodeScannerOptions.Builder()
         .setBarcodeFormats(
             Barcode.FORMAT_QR_CODE,
@@ -18,18 +20,15 @@ class BarCode(): ImageAnalysis.Analyzer {
         )
         .build()
 
-
     @androidx.camera.core.ExperimentalGetImage
-    override fun analyze(image: ImageProxy) {
+    override fun analyze(imageProxy: ImageProxy) {
 
-        image.image?.run {
-            val image = InputImage.fromMediaImage(this, image.imageInfo.rotationDegrees)
-            val scanner = BarcodeScanning.getClient()
+        imageProxy.image?.run {
+            val image = InputImage.fromMediaImage(this, imageProxy.imageInfo.rotationDegrees)
 
-            val result = scanner.process(image).addOnSuccessListener { barcodes ->
+
+            scanner.process(image).addOnSuccessListener { barcodes ->
                 for (barcode in barcodes) {
-                    val bounds = barcode.boundingBox
-                    val corners = barcode.cornerPoints
 
                     val rawValue = barcode.rawValue
 
@@ -58,6 +57,8 @@ class BarCode(): ImageAnalysis.Analyzer {
                 }
             }.addOnFailureListener {
                 Log.e("barCodeScanner", it.message, it)
+            }.addOnCompleteListener{
+                imageProxy.close()
             }
         }
     }

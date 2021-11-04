@@ -107,8 +107,10 @@ class CameraFragment : Fragment() {
                 cameraProvider.bindToLifecycle(
                     this,
                     cameraSelector,
+                    barCodeAnalyzer,
                     preview,
                     imageCapture,
+
 
                 )
 
