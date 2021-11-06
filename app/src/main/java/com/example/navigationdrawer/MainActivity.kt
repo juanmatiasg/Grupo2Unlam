@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
 
         navView.menu.findItem(R.id.logOut).setOnMenuItemClickListener { menuItem ->
             val alertDialog = AlertDialog.Builder(this@MainActivity)
-            alertDialog.setMessage("Deséas salir de la Aplicación ")
+            alertDialog.setMessage("Deséas salir de la Aplicación? ")
             alertDialog.setCancelable(false)
             alertDialog.setPositiveButton("Ok", object : DialogInterface.OnClickListener {
                 override fun onClick(dialog: DialogInterface?, p1: Int) {
