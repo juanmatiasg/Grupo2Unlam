@@ -76,9 +76,9 @@
         android:name="com.example.navigationdrawer.ui.camera.CameraFragment"
         android:label="fragment_camera"
         tools:layout="@layout/fragment_camera" />
-    <dialog
-        android:id="@+id/dialogCustomFragment"
-        android:name="com.example.navigationdrawer.ui.customdialog.DialogCustomFragment"
-        android:label="fragment_dialog_custom"
-        tools:layout="@layout/fragment_dialog_custom" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.navigationdrawer.ui.profile.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile"/>
 </navigation>
