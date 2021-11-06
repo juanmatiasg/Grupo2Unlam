@@ -3,6 +3,7 @@ package com.example.navigationdrawer.ui.login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.navigation.fragment.findNavController
@@ -12,13 +13,15 @@ import com.example.navigationdrawer.databinding.ActivityLoginBinding
 import com.example.navigationdrawer.databinding.FragmentLoginBinding
 import com.example.navigationdrawer.ui.registrer.RegisterActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 
 
 class LoginActivity : AppCompatActivity() {
-    private lateinit  var binding: ActivityLoginBinding
+    private lateinit var binding: ActivityLoginBinding
 
-    private var email: String = ""
-    private var password: String = ""
+    lateinit var email: String
+    lateinit var password: String
+
     lateinit var mAuth: FirebaseAuth
 
 
@@ -29,51 +32,67 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         mAuth = FirebaseAuth.getInstance()
-        binding.buttonIniciarSesion.setOnClickListener { login() }
+        binding.buttonIniciarSesion.setOnClickListener { signInUser() }
         binding.registrarAquiButton.setOnClickListener { registrarUsuario() }
-        binding.registrarAquiButton.setOnClickListener { goToRegisterActivivity() }
     }
 
-    private fun goToRegisterActivivity() {
-        val i = Intent(this@LoginActivity,RegisterActivity::class.java)
-        startActivity(i)
-    }
 
-    private fun registrarUsuario() {
-        val intent = Intent(this,RegisterActivity::class.java)
-        startActivity(intent)
-    }
-
-    private fun login() {
+    private fun signInUser() {
         email = binding.editTextEmailLogin.text.toString()
         password = binding.editTextPasswordLogin.text.toString()
 
-
-        if (email.isNotEmpty() && password.isNotEmpty()) {
-            loginUser()
+        if (email.isNullOrEmpty()) {
+            binding.editTextEmailLogin.error = "El email es obligatorio"
+        } else if (password.isNullOrEmpty()) {
+            binding.editTextPasswordLogin.error = "La contrasena es obligatorio"
         } else {
-            Toast.makeText(
-                this,
-                "Por favor ingrese los campos completos",
-                Toast.LENGTH_SHORT
-            ).show()
+            loginUser()
         }
 
     }
 
     private fun loginUser() {
 
+        binding.buttonIniciarSesion.visibility = View.INVISIBLE
+        binding.progressBar.visibility = View.VISIBLE
+
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
             if (it.isSuccessful) {
-                val intent = Intent(this,MainActivity::class.java)
-                startActivity(intent)
+                val user = mAuth.currentUser
+                updateUI(user)
+
+                binding.buttonIniciarSesion.visibility = View.VISIBLE
+                binding.progressBar.visibility = View.INVISIBLE
+
+
             } else {
+                binding.progressBar.visibility = View.INVISIBLE
+                binding.buttonIniciarSesion.visibility = View.VISIBLE
                 Toast.makeText(this, "No se pudo iniciar sesion", Toast.LENGTH_SHORT)
                     .show()
             }
         }
     }
 
+    private fun updateUI(user: FirebaseUser?) {
+        if(user != null){
+            val intent = Intent(this,MainActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+    /*Este metodo comprobamos si el usuario  previamente ya ha iniciado la sesion*/
+    override fun onStart() {
+        super.onStart()
+        val currentUser = mAuth.currentUser
+        updateUI(currentUser)
+    }
+
+
+    private fun registrarUsuario() {
+        val intent = Intent(this, RegisterActivity::class.java)
+        startActivity(intent)
+    }
 
 
 }

@@ -1,36 +1,25 @@
 package com.example.navigationdrawer
 
 import android.Manifest
-import android.content.Intent
+import android.content.DialogInterface
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.view.Menu
-import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.navigation.NavigationView
-import androidx.navigation.findNavController
+import androidx.appcompat.app.AlertDialog
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
-import androidx.navigation.NavHost
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.onNavDestinationSelected
 import com.example.navigationdrawer.databinding.ActivityMainBinding
-import com.example.navigationdrawer.ui.home.HomeFragment
 
 
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
 
 
 class MainActivity : AppCompatActivity() {
@@ -41,10 +30,13 @@ class MainActivity : AppCompatActivity() {
     private val REQUIRED_PERMISSION = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION)
     private lateinit var registerPermissionLaunchar: ActivityResultLauncher<Array<String>>
 
+    private lateinit var mAuth: FirebaseAuth
+
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mAuth = FirebaseAuth.getInstance()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -54,19 +46,34 @@ class MainActivity : AppCompatActivity() {
             .findFragmentById(R.id.fragmentContainerView3) as NavHostFragment
         navController = navHostFragment.navController
 
-        createPermissionLauncher()
 
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (destination.id == R.id.nav_slideshow) {
-                launchLocationClicked()
-            }
-
+        navView.menu.findItem(R.id.logOut).setOnMenuItemClickListener { menuItem ->
+            val alertDialog = AlertDialog.Builder(this@MainActivity)
+            alertDialog.setMessage("Deséas salir de la Aplicación ")
+            alertDialog.setCancelable(false)
+            alertDialog.setPositiveButton("Ok", object : DialogInterface.OnClickListener {
+                override fun onClick(dialog: DialogInterface?, p1: Int) {
+                     mAuth.signOut()
+                     finish()
+                }
+            })
+            alertDialog.setNegativeButton("Cancel", object : DialogInterface.OnClickListener {
+                override fun onClick(dialog: DialogInterface?, p1: Int) {
+                    dialog!!.cancel()
+                }
+            })
+            val titulo = alertDialog.create()
+            titulo.setTitle("Salida")
+            titulo.show()
+            true
         }
 
 
         navView.setupWithNavController(navController)
 
+
     }
+
 
     private fun createPermissionLauncher() {
         registerPermissionLaunchar =
@@ -83,11 +90,10 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
-    private fun launchLocationClicked(){
-        if(arePermissionGranted()){
-           navController.navigate(R.id.nav_slideshow)
-        }
-        else{
+    private fun launchLocationClicked() {
+        if (arePermissionGranted()) {
+            navController.navigate(R.id.nav_slideshow)
+        } else {
             askPermission() // como pido permiso si no fueron otorgados
         }
     }
@@ -96,8 +102,8 @@ class MainActivity : AppCompatActivity() {
         registerPermissionLaunchar.launch(REQUIRED_PERMISSION)
     }
 
-    private fun arePermissionGranted(): Boolean = REQUIRED_PERMISSION.all{
-        ContextCompat.checkSelfPermission(this,it) == PackageManager.PERMISSION_GRANTED
+    private fun arePermissionGranted(): Boolean = REQUIRED_PERMISSION.all {
+        ContextCompat.checkSelfPermission(this, it) == PackageManager.PERMISSION_GRANTED
     }
 
 
