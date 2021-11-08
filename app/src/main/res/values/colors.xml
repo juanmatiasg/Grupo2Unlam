@@ -7,6 +7,8 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFF</color> //color de titulo - meal activity
+    <color name="celeste">#88B8FF</color> //perfil
+    <color name="gris">#C4C4C4</color> //fondo perfil
 
     <color name="firstColorGradient">#CCEB78</color>
     <color name="secondColorGradient">#FFE782</color>
