@@ -24,6 +24,9 @@
         android:layout_height="wrap_content"
         app:menu="@menu/button_menu"
         app:labelVisibilityMode="labeled"
+        app:itemTextColor="#236BD6"
+        app:itemRippleColor="#2573E7"
+        app:itemIconTint="#88B8FF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

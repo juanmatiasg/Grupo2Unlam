@@ -17,23 +17,32 @@ import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.navigationdrawer.R
 import com.example.navigationdrawer.data.entities.PlannerEntity
 import com.example.navigationdrawer.data.model.Meals
 import com.example.navigationdrawer.databinding.FragmentHomeBinding
+import com.example.navigationdrawer.databinding.FragmentNewHomeBinding
 import com.example.navigationdrawer.ui.adapter.AdapterHome
 import com.example.navigationdrawer.ui.meal.MealViewModel
 import com.example.navigationdrawer.vo.Status
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.items_main.view.*
+import org.koin.android.ext.android.bind
 import org.koin.android.viewmodel.ext.android.viewModel
+import java.lang.Exception
 import java.text.DateFormat
 import java.util.*
 
 class HomeFragment : Fragment(), AdapterHome.OnMealsListener {
 
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentNewHomeBinding? = null
     private val binding get() = _binding!!
+    lateinit var mAuth: FirebaseAuth
+    private val db = Firebase.firestore
 
     /*private val mainViewModel by viewModels<HomeViewModel> {
         VMFactory(
@@ -50,23 +59,30 @@ class HomeFragment : Fragment(), AdapterHome.OnMealsListener {
     private lateinit var registerPermissionLaunchar: ActivityResultLauncher<Array<String>>
 
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
 
     ): View? {
-        _binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentNewHomeBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        mAuth = FirebaseAuth.getInstance()
+
         setDate()
+        setName()
+        setCount()
         setupObserver()
         setupRecycler()
         navegarAFragmentMeal()
-        limpiarPlanner()
+        //limpiarPlanner()
+
 
         createPermissionLauncher()
         binding.buttonQr.setOnClickListener { launchCameraClicked() }
@@ -108,19 +124,46 @@ class HomeFragment : Fragment(), AdapterHome.OnMealsListener {
     }
 
 
-    private fun limpiarPlanner() {
+    /*private fun limpiarPlanner() {
         binding.btnClearMenu.setOnClickListener {
             mainViewModel.deleteAllPlanner()
             it.findNavController().navigate(R.id.action_nav_home_to_nav_mealFragment)
             Toast.makeText(requireContext(), "Comenzó un nuevo menú", Toast.LENGTH_SHORT).show()
         }
-    }
+    }*/
 
 
     private fun setDate() {
         val calendar = Calendar.getInstance()
         val currentDay = DateFormat.getDateInstance().format(calendar.time)
-        binding.txtDayDateMain.text = currentDay
+        binding.date.text = currentDay
+    }
+
+    private fun setName(){
+        try {
+            db.collection("users").document(mAuth.uid.toString()).get().addOnSuccessListener {
+                binding.name.text = it.getString("name")
+            }
+        }
+        catch (e: Exception){
+            Log.e("ProfileFragment","Error")
+        }
+    }
+
+    private fun setCount(){
+        var count: Int = 0
+
+        binding.addGlass.setOnClickListener {
+          binding.countNumber.text = "${++count}"
+        }
+
+        binding.removeGlass.setOnClickListener {
+            if(count >= -0) {
+                binding.countNumber.text = "${--count}"
+            }else{
+                binding.countNumber.text = "${0}"
+            }
+        }
     }
 
 
@@ -128,7 +171,7 @@ class HomeFragment : Fragment(), AdapterHome.OnMealsListener {
 
         binding.recyclerViewMain.apply {
             setHasFixedSize(true)
-            layoutManager = GridLayoutManager(requireContext(), 1)
+            layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
             /*adapterHome = AdapterHome(arrayListOf(),this)
             binding.recyclerViewMain.adapter = adapterHome*/
         }
@@ -165,11 +208,6 @@ class HomeFragment : Fragment(), AdapterHome.OnMealsListener {
             findNavController().navigate(R.id.action_nav_home_to_nav_mealFragment)
         }
     }
-
-
-
-
-
 
 
 

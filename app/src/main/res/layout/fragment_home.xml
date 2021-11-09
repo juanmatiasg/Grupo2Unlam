@@ -154,7 +154,8 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:clickable="true"
-        android:src="@drawable/ic_baseline_camera_alt_24"
+        android:src="@drawable/ic_center_focus_weak"
+        android:backgroundTint="#FFE782"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="SpeakableTextPresentCheck" />

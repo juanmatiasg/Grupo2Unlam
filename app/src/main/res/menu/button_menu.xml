@@ -2,27 +2,26 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/nav_home"
-        android:icon="@drawable/ic_baseline_home_24"
-        android:title="@string/menu_home" />
+        android:icon="@drawable/ic_home"
+        android:title="Inicio" />
     <item
         android:id="@+id/nav_gallery"
-        android:icon="@drawable/ic_baseline_favorite_24"
+        android:icon="@drawable/ic_favorite"
 
-        android:title="@string/menu_favourite" />
+        android:title="Favoritos" />
     <item
         android:id="@+id/nav_slideshow"
-        android:icon="@drawable/ic_baseline_help_24"
-        android:title="@string/menu_help" />
-
+        android:icon="@drawable/ic_restaurant"
+        android:title="Planificador" />
     <item
         android:id="@+id/profileFragment"
-        android:icon="@drawable/ic_baseline_food_bank_24"
-        android:title="@string/menu_help" />
+        android:icon="@drawable/ic_person"
+        android:title="Perfil" />
 
     <item
         android:id="@+id/logOut"
-        android:icon="@drawable/ic_baseline_power_settings_new_24"
-        android:title="@string/logOut" />
+        android:icon="@drawable/ic_input"
+        android:title="Cerrar Sesión" />
 
 
 </menu>

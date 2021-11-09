@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context=".ui.planner.PlannerFragment">
+
+        <Button
+            android:id="@+id/btnAddMeal_Main"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_marginTop="16dp"
+            android:drawableEnd="@drawable/ic_baseline_search_24"
+            android:drawableTint="@color/white"
+            android:backgroundTint="#CCEB78"
+            android:textAllCaps="false"
+            android:text="Ver todas las comidas"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+        <TextView
+            android:id="@+id/tituloDesayuno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/nunito_bold"
+            android:text="Desayuno"
+            android:textColor="#88B8FF"
+            android:gravity="center"
+            android:textSize="33dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnAddMeal_Main" />
+
+        <TextView
+            android:id="@+id/limpiarDesayuno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/nunito_light"
+            android:text="Limpiar todo"
+            android:textColor="#2FA804"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tituloDesayuno"
+            app:layout_constraintStart_toEndOf="@+id/tituloDesayuno"
+            app:layout_constraintTop_toTopOf="@+id/tituloDesayuno" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_desayuno"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tituloDesayuno"
+            tools:itemCount="1"
+            tools:listitem="@layout/item_carousel" />
+
+
+        <TextView
+            android:id="@+id/tituloAlmuerzo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/nunito_bold"
+            android:text="Almuerzo"
+            android:textColor="#88B8FF"
+            android:gravity="center"
+            android:textSize="33dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rv_desayuno" />
+
+        <TextView
+            android:id="@+id/btnLimpiarAlmuerzo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/nunito_light"
+            android:text="Limpiar todo"
+            android:textColor="#2FA804"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tituloAlmuerzo"
+            app:layout_constraintStart_toEndOf="@+id/tituloAlmuerzo"
+            app:layout_constraintTop_toTopOf="@+id/tituloAlmuerzo" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvAlmuerzo"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tituloAlmuerzo"
+            tools:itemCount="1"
+            tools:listitem="@layout/item_carousel" />
+
+
+        <TextView
+            android:id="@+id/tituloMerienda"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/nunito_bold"
+            android:text="Merienda"
+            android:textColor="#88B8FF"
+            android:gravity="center"
+            android:textSize="33dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rvAlmuerzo" />
+
+        <TextView
+            android:id="@+id/btnLimpiarMerienda"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/nunito_light"
+            android:text="Limpiar todo"
+            android:textColor="#2FA804"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tituloMerienda"
+            app:layout_constraintStart_toEndOf="@+id/tituloMerienda"
+            app:layout_constraintTop_toTopOf="@+id/tituloMerienda" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvMerienda"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tituloMerienda"
+            tools:itemCount="1"
+            tools:listitem="@layout/item_carousel" />
+
+        <TextView
+            android:id="@+id/tituloCena"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/nunito_bold"
+            android:text="Cena"
+            android:textColor="#88B8FF"
+            android:gravity="center"
+            android:textSize="33dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rvMerienda" />
+
+        <TextView
+            android:id="@+id/btnLimpiarCena"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/nunito_light"
+            android:text="Limpiar todo"
+            android:textColor="#2FA804"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tituloCena"
+            app:layout_constraintStart_toEndOf="@+id/tituloCena"
+            app:layout_constraintTop_toTopOf="@+id/tituloCena" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCena"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tituloCena"
+            tools:itemCount="1"
+            tools:listitem="@layout/item_carousel" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
