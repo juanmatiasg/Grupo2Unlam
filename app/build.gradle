@@ -64,6 +64,10 @@ android {
     buildFeatures{
         viewBinding = true
     }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.0.1'
+    }
 }
 
 dependencies {
@@ -171,6 +175,13 @@ dependencies {
     implementation 'com.google.mlkit:barcode-scanning:17.0.0' // Eso de manera local
     // implementation 'com.google.android.gms:play-services-mlkit-barcode-scanning:16.2.1' // eso es para Firebase
 
+    //Jetpack Comopose
+    implementation 'androidx.activity:activity-compose:1.3.1'
+    implementation 'androidx.compose.material:material:1.0.1'
+    implementation 'androidx.compose.animation:animation:1.0.1'
+    implementation 'androidx.compose.ui:ui-tooling:1.0.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07'
+    androidTestImplementation 'androidx.compose.ui:ui-test-junit4:1.0.1'
 
 
 }

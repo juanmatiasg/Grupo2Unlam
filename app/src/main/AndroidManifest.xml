@@ -2,28 +2,20 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.navigationdrawer">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <!-- Camara -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- Camara -->
     <uses-feature android:name="android.hardware.camera.any" />
-    <uses-permission android:name="android.permission.CAMERA" />
 
-    <!--Usar el permiso para la llamada -->
-    <uses-permission android:name="android.permission.CALL_PHONE" />
-
-
-    <!--Mapa -->
-
-    <!-- Provides location accuracy to within a city block.-->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- Usar el permiso para la llamada -->
+    <uses-permission android:name="android.permission.CALL_PHONE" /> <!-- Mapa -->
+    <!-- Provides location accuracy to within a city block. -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
-    <!-- Provides a more accurate location than one provided when you request ACCESS_COARSE_LOCATION.
+    <!--
+ Provides a more accurate location than one provided when you request ACCESS_COARSE_LOCATION.
      This permission is necessary for some connectivity tasks, such as connecting to nearby
-     devices over Bluetooth Low Energy (BLE). -->
+     devices over Bluetooth Low Energy (BLE).
+    -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
-
 
     <application
         android:name=".di.MyApp"
@@ -33,6 +25,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NavigationDrawer">
+        <activity
+            android:name=".ui.animationProfile.ImageProfileActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.planner.PlannerActivity"
             android:exported="false"

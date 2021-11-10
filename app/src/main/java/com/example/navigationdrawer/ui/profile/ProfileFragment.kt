@@ -7,15 +7,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.compose.runtime.Composable
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.navigationdrawer.R
 import com.example.navigationdrawer.data.entities.MealEntity
 import com.example.navigationdrawer.data.entities.PlannerEntity
 import com.example.navigationdrawer.data.model.Meals
+import com.example.navigationdrawer.data.model.User
 import com.example.navigationdrawer.databinding.FragmentMealDetailBinding
 import com.example.navigationdrawer.databinding.FragmentProfileBinding
 import com.example.navigationdrawer.ui.adapter.AdapterMeals
+import com.example.navigationdrawer.ui.animationProfile.ImageProfileActivity
 import com.example.navigationdrawer.ui.login.LoginActivity
 import com.example.navigationdrawer.ui.mealDetail.MealDetailViewModel
 import com.google.firebase.auth.FirebaseAuth
@@ -51,6 +56,7 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         getDataProfile()
+        binding.profilePicture.setOnClickListener{ launchImageProfile() }
     }
 
     private fun getDataProfile(){
@@ -71,6 +77,10 @@ class ProfileFragment : Fragment() {
             Log.e("ProfileFragment","Error")
         }
 
+    }
+
+    private fun launchImageProfile() {
+        findNavController().navigate(R.id.action_profileFragment_to_imageProfileActivity2)
     }
 
 
