@@ -97,7 +97,7 @@ class CameraFragment : Fragment() {
                 .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                 .build()
                 .also {
-                    it.setAnalyzer(executorCamera, BarCode())
+                    it.setAnalyzer(executorCamera, BarCode{onSucceded(it)})
                 }
 
             try {
@@ -179,6 +179,15 @@ class CameraFragment : Fragment() {
     companion object {
         private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
         private const val TAG = "CameraActivity"
+    }
+
+    @Synchronized
+    fun onSucceded(url: String){
+        executorCamera.shutdown()
+        var intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        startActivity(intent)
+        activity!!.finish()
+
     }
 
 }

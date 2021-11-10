@@ -12,7 +12,7 @@ import com.google.mlkit.vision.barcode.BarcodeScannerOptions
 import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.google.mlkit.vision.common.InputImage
 
-class BarCode(): ImageAnalysis.Analyzer {
+class BarCode(onSuccesListener: (String) ->Unit): ImageAnalysis.Analyzer {
 
     val scanner = BarcodeScanning.getClient()
 
@@ -55,6 +55,7 @@ class BarCode(): ImageAnalysis.Analyzer {
                         Barcode.TYPE_URL -> {
                             val title = barcode.url!!.title
                             val url = barcode.url!!.url
+
 
 
                             Log.i("barCodeScanner", "title: $title url $url")
