@@ -10,8 +10,6 @@ import com.example.navigationdrawer.vo.Resource
 interface Repo{
     suspend fun getListMeals(term: String):Resource<ListMeals>
 
-
-
     suspend fun getMealsFavoritos():Resource<List<MealEntity>>
 
     suspend fun insertMeal(meal:MealEntity)

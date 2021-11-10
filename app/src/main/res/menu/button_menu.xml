@@ -5,9 +5,8 @@
         android:icon="@drawable/ic_baseline_home_24"
         android:title="@string/menu_home" />
     <item
-        android:id="@+id/nav_gallery"
+        android:id="@+id/plannerFragment"
         android:icon="@drawable/ic_baseline_favorite_24"
-
         android:title="@string/menu_favourite" />
     <item
         android:id="@+id/nav_slideshow"
