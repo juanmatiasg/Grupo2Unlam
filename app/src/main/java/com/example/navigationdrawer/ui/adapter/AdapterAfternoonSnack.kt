@@ -14,7 +14,7 @@ import com.squareup.picasso.Picasso
 class AdapterAfternoonSnack(private val items: List<Meals>, private val itemClickListener: AdapterAfternoonSnack.OnMealsListener): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     interface OnMealsListener{
-        fun deleteFavouriteListener(item:Meals,position: Int)
+        fun deleteAfternoonSnackListener(item:Meals, position: Int)
     }
 
     private lateinit var itemsAfternoonSnackBinding: ItemCarouselBinding
@@ -28,7 +28,7 @@ class AdapterAfternoonSnack(private val items: List<Meals>, private val itemClic
         itemsAfternoonSnackBinding.txtTitleMain.text = items[position].title
         itemsAfternoonSnackBinding.imgVMealMain.loadUrl(items[position].image)
         itemsAfternoonSnackBinding.btnUiClearMain.setOnClickListener {
-            itemClickListener.deleteFavouriteListener(items[position],position)
+            itemClickListener.deleteAfternoonSnackListener(items[position],position)
             val lista = items as ArrayList
             lista.removeAt(position)
             notifyItemRemoved(position)
@@ -36,8 +36,8 @@ class AdapterAfternoonSnack(private val items: List<Meals>, private val itemClic
         }
         itemsAfternoonSnackBinding.cardView.setOnClickListener {
             val bundle = Bundle()
-            bundle.putParcelable(AdapterAfternoonSnack.MEALS_ITEMS,items[position])
-            it.findNavController().navigate(R.id.action_plannerFragment_to_mealDetailFragment)
+            bundle.putParcelable(AdapterMeals.MEALS_ITEMS,items[position])
+            it.findNavController().navigate(R.id.action_plannerFragment_to_mealDetailFragment,bundle)
         }
     }
 

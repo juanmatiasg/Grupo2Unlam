@@ -83,7 +83,11 @@
         android:id="@+id/profileFragment"
         android:name="com.example.navigationdrawer.ui.profile.ProfileFragment"
         android:label="ProfileFragment"
-        tools:layout="@layout/fragment_profile"/>
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profileFragment_to_nav_slideshow"
+            app:destination="@id/nav_slideshow" />
+    </fragment>
     <fragment
         android:id="@+id/plannerFragment"
         android:name="com.example.navigationdrawer.ui.planner.PlannerFragment"

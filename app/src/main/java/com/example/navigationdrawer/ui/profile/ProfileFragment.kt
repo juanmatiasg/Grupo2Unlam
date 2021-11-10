@@ -51,6 +51,7 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         getDataProfile()
+        navToHelp()
     }
 
     private fun getDataProfile(){
@@ -77,5 +78,10 @@ class ProfileFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+    private fun navToHelp(){
+        binding.btnHelp.setOnClickListener {
+            it.findNavController().navigate(R.id.action_profileFragment_to_nav_slideshow)
+        }
     }
 }

@@ -14,7 +14,7 @@ import com.squareup.picasso.Picasso
 class AdapterBreakfast (private val items: List<Meals>, private val itemClickListener: AdapterBreakfast.OnMealsListener): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     interface OnMealsListener{
-        fun deleteFavouriteListener(item:Meals,position: Int)
+        fun deleteBreakfastListener(item:Meals, position: Int)
     }
 
     private lateinit var itemsBreakfastBinding: ItemCarouselBinding
@@ -28,7 +28,7 @@ class AdapterBreakfast (private val items: List<Meals>, private val itemClickLis
         itemsBreakfastBinding.txtTitleMain.text = items[position].title
         itemsBreakfastBinding.imgVMealMain.loadUrl(items[position].image)
         itemsBreakfastBinding.btnUiClearMain.setOnClickListener {
-            itemClickListener.deleteFavouriteListener(items[position],position)
+            itemClickListener.deleteBreakfastListener(items[position],position)
             val lista = items as ArrayList
             lista.removeAt(position)
             notifyItemRemoved(position)
@@ -36,8 +36,8 @@ class AdapterBreakfast (private val items: List<Meals>, private val itemClickLis
         }
         itemsBreakfastBinding.cardView.setOnClickListener {
             val bundle= Bundle()
-            bundle.putParcelable(MEALS_ITEMS,items[position])
-            it.findNavController().navigate(R.id.action_plannerFragment_to_mealDetailFragment)
+            bundle.putParcelable(AdapterMeals.MEALS_ITEMS,items[position])
+            it.findNavController().navigate(R.id.action_plannerFragment_to_mealDetailFragment,bundle)
         }
     }
 

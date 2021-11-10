@@ -55,6 +55,7 @@
         <entry key="app/src/main/res/layout/fragment_meal_detail.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_new_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_planner.xml" value="0.340625" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_splash_screen.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/layout/item_carousel.xml" value="0.35572916666666665" />

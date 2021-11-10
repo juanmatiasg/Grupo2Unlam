@@ -12,7 +12,7 @@ import java.lang.Exception
 
 class PlannerViewModel(private val repo: Repo) : ViewModel() {
 
-    /*
+
     fun getBreakfast() = liveData(Dispatchers.IO) {
         emit(Resource.loading(data = null))
         try {
@@ -71,5 +71,5 @@ class PlannerViewModel(private val repo: Repo) : ViewModel() {
         viewModelScope.launch {
             repo.deleteDinner(dinnerEntity)
         }
-    }*/
+    }
 }

@@ -3,7 +3,6 @@ package com.example.navigationdrawer.ui.adapter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Adapter
 import android.widget.ImageView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -15,7 +14,7 @@ import com.squareup.picasso.Picasso
 class AdapterLunch(private val items: List<Meals>, private val itemClickListener: AdapterLunch.OnMealsListener): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     interface OnMealsListener{
-        fun deleteFavouriteListener(item:Meals,position: Int)
+        fun deleteLunchListener(item:Meals, position: Int)
     }
 
     private lateinit var itemsLunchBinding: ItemCarouselBinding
@@ -29,7 +28,7 @@ class AdapterLunch(private val items: List<Meals>, private val itemClickListener
         itemsLunchBinding.txtTitleMain.text = items[position].title
         itemsLunchBinding.imgVMealMain.loadUrl(items[position].image)
         itemsLunchBinding.btnUiClearMain.setOnClickListener {
-            itemClickListener.deleteFavouriteListener(items[position],position)
+            itemClickListener.deleteLunchListener(items[position],position)
             val lista = items as ArrayList
             lista.removeAt(position)
             notifyItemRemoved(position)
@@ -37,8 +36,8 @@ class AdapterLunch(private val items: List<Meals>, private val itemClickListener
         }
         itemsLunchBinding.cardView.setOnClickListener {
             val bundle = Bundle()
-            bundle.putParcelable(AdapterLunch.MEALS_ITEMS,items[position])
-            it.findNavController().navigate(R.id.action_plannerFragment_to_mealDetailFragment)
+            bundle.putParcelable(AdapterMeals.MEALS_ITEMS,items[position])
+            it.findNavController().navigate(R.id.action_plannerFragment_to_mealDetailFragment,bundle)
         }
     }
 

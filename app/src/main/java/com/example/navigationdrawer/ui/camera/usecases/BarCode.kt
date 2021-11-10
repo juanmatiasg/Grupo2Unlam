@@ -1,8 +1,12 @@
 package com.example.navigationdrawer.ui.camera.usecases
 
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import android.util.Log
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
+import androidx.core.content.ContentProviderCompat.requireContext
 import com.google.mlkit.vision.barcode.Barcode
 import com.google.mlkit.vision.barcode.BarcodeScannerOptions
 import com.google.mlkit.vision.barcode.BarcodeScanning
@@ -11,6 +15,7 @@ import com.google.mlkit.vision.common.InputImage
 class BarCode(): ImageAnalysis.Analyzer {
 
     val scanner = BarcodeScanning.getClient()
+
 
     val options = BarcodeScannerOptions.Builder()
         .setBarcodeFormats(
@@ -50,6 +55,7 @@ class BarCode(): ImageAnalysis.Analyzer {
                         Barcode.TYPE_URL -> {
                             val title = barcode.url!!.title
                             val url = barcode.url!!.url
+
 
                             Log.i("barCodeScanner", "title: $title url $url")
                         }

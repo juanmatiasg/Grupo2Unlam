@@ -96,10 +96,8 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
 
-
     /*Gson*/
     implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
-
 
     /*Retrofit*/
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'

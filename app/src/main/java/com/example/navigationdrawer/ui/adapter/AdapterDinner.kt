@@ -14,7 +14,7 @@ import com.squareup.picasso.Picasso
 class AdapterDinner(private val items: List<Meals>, private val itemClickListener: AdapterDinner.OnMealsListener): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     interface OnMealsListener{
-        fun deleteFavouriteListener(item:Meals,position: Int)
+        fun deleteDinnerListener(item:Meals, position: Int)
     }
 
 
@@ -29,7 +29,7 @@ class AdapterDinner(private val items: List<Meals>, private val itemClickListene
         itemsDinnerBinding.txtTitleMain.text = items[position].title
         itemsDinnerBinding.imgVMealMain.loadUrl(items[position].image)
         itemsDinnerBinding.btnUiClearMain.setOnClickListener {
-            itemClickListener.deleteFavouriteListener(items[position],position)
+            itemClickListener.deleteDinnerListener(items[position],position)
             val lista = items as ArrayList
             lista.removeAt(position)
             notifyItemRemoved(position)
@@ -37,8 +37,8 @@ class AdapterDinner(private val items: List<Meals>, private val itemClickListene
         }
         itemsDinnerBinding.cardView.setOnClickListener {
             val bundle = Bundle()
-            bundle.putParcelable(AdapterDinner.MEALS_ITEMS,items[position])
-            it.findNavController().navigate(R.id.action_plannerFragment_to_mealDetailFragment)
+            bundle.putParcelable(AdapterMeals.MEALS_ITEMS,items[position])
+            it.findNavController().navigate(R.id.action_plannerFragment_to_mealDetailFragment,bundle)
         }
     }
 
