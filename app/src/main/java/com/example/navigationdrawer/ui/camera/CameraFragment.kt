@@ -30,6 +30,9 @@ import androidx.camera.core.ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST
 import com.example.navigationdrawer.databinding.FragmentHomeBinding
 import com.example.navigationdrawer.ui.camera.usecases.BarCode
 import java.util.*
+import android.content.ActivityNotFoundException
+
+import android.R.id
 
 
 class CameraFragment : Fragment() {
@@ -97,7 +100,7 @@ class CameraFragment : Fragment() {
                 .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                 .build()
                 .also {
-                    it.setAnalyzer(executorCamera, BarCode{onSucceded(it)})
+                    it.setAnalyzer(executorCamera, BarCode { codigoQr(it) })
                 }
 
             try {
@@ -112,13 +115,33 @@ class CameraFragment : Fragment() {
                     preview,
                     imageCapture,
 
-                )
+                    )
 
             } catch (e: Exception) {
                 Log.e("ErrorDeCamara", "Falló al enlanzar la cámara: $e")
             }
 
         }, ContextCompat.getMainExecutor(requireContext())) /*Cuando termina e listener*/
+
+    }
+
+
+    private fun codigoQr(it: String) {
+
+        executorCamera.shutdown()
+
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(it))
+        /*val appIntent = Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:$id"))
+        val webIntent = Intent(
+            Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=$id")
+        )*/
+        try {
+            activity?.startActivity(intent)
+        } catch (ex: ActivityNotFoundException) {
+            activity?.startActivity(intent)
+        }
+
+        activity?.finish()
 
     }
 
@@ -182,7 +205,7 @@ class CameraFragment : Fragment() {
     }
 
     @Synchronized
-    fun onSucceded(url: String){
+    fun onSucceded(url: String) {
         executorCamera.shutdown()
         var intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         startActivity(intent)
