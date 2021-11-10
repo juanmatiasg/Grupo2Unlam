@@ -8,14 +8,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.findNavController
 import com.example.navigationdrawer.R
-import com.example.navigationdrawer.data.entities.MealEntity
-import com.example.navigationdrawer.data.entities.PlannerEntity
+import com.example.navigationdrawer.data.entities.*
 import com.example.navigationdrawer.data.model.Meals
 import com.example.navigationdrawer.databinding.FragmentMealDetailBinding
 import com.example.navigationdrawer.ui.adapter.AdapterMeals
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.squareup.picasso.Picasso
+import org.koin.android.ext.android.bind
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class MealDetailFragment : Fragment() {
@@ -54,6 +54,10 @@ class MealDetailFragment : Fragment() {
         setupDetail()
         setupGuardarFavoritos()
         setUpGuardarPlanner()
+        setUpGuardarDesayuno()
+        setUpGuardarAlmuerzo()
+        setUpGuardarMerienda()
+        setUpGuardarCena()
     }
 
     private fun setupGuardarFavoritos() {
@@ -70,6 +74,37 @@ class MealDetailFragment : Fragment() {
         }
     }
 
+    private fun setUpGuardarDesayuno(){
+        binding.btnAddDesayuno.setOnClickListener {
+            viewModel.insertBreakfast(BreakfastEntity(meals.id,meals.title,meals.image,meals.description,meals.strYoutube))
+            Toast.makeText(requireContext(),"Se agregó al desayuno",Toast.LENGTH_SHORT).show()
+            it.findNavController().navigate(R.id.action_mealDetailFragment_to_plannerFragment)
+        }
+    }
+
+    private fun setUpGuardarAlmuerzo(){
+        binding.btnAddAlmuerzo.setOnClickListener {
+            viewModel.insertLunch(LunchEntity(meals.id,meals.title,meals.image,meals.description,meals.strYoutube))
+            Toast.makeText(requireContext(),"Se agregó al almuerzo",Toast.LENGTH_SHORT).show()
+            it.findNavController().navigate(R.id.action_mealDetailFragment_to_plannerFragment)
+        }
+    }
+
+    private fun setUpGuardarMerienda(){
+        binding.btnAddMerienda.setOnClickListener {
+            viewModel.insertAfternoonSnack(AfternoonSnackEntity(meals.id,meals.title,meals.image,meals.description,meals.strYoutube))
+            Toast.makeText(requireContext(),"Se agregó a la merienda",Toast.LENGTH_SHORT).show()
+            it.findNavController().navigate(R.id.action_mealDetailFragment_to_plannerFragment)
+        }
+    }
+
+    private fun setUpGuardarCena(){
+        binding.btnAddCena.setOnClickListener {
+            viewModel.insertDinner(DinnerEntity(meals.id,meals.title,meals.image,meals.description,meals.strYoutube))
+            Toast.makeText(requireContext(),"Se agregó a la cena",Toast.LENGTH_SHORT).show()
+            it.findNavController().navigate(R.id.action_mealDetailFragment_to_plannerFragment)
+        }
+    }
 
     private fun setupDetail() {
         requireArguments().let {

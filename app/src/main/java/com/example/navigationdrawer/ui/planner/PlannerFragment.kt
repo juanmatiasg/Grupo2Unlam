@@ -5,8 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.navigationdrawer.R
+import com.example.navigationdrawer.data.model.Meals
 import com.example.navigationdrawer.databinding.FragmentPlannerBinding
+import com.example.navigationdrawer.ui.adapter.AdapterHome
+import com.example.navigationdrawer.vo.Status
+import androidx.lifecycle.Observer
+import com.example.navigationdrawer.data.entities.BreakfastEntity
+import com.example.navigationdrawer.ui.adapter.AdapterBreakfast
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class PlannerFragment : Fragment() {
@@ -30,6 +38,7 @@ class PlannerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        navToMeals()
         setUpRecyclerDesayuno()
         setUpRecyclerAlmuerzo()
         setUpRecyclerMerienda()
@@ -39,6 +48,12 @@ class PlannerFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun navToMeals(){
+        binding.btnAddMealMain.setOnClickListener {
+            it.findNavController().navigate(R.id.action_plannerFragment_to_nav_mealFragment)
+        }
     }
 
     private fun setUpRecyclerDesayuno(){

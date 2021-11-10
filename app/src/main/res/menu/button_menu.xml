@@ -10,7 +10,7 @@
 
         android:title="Favoritos" />
     <item
-        android:id="@+id/nav_slideshow"
+        android:id="@+id/plannerFragment"
         android:icon="@drawable/ic_restaurant"
         android:title="Planificador" />
     <item

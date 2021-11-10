@@ -4,9 +4,8 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "table_planner")
-data class PlannerEntity(
-
+@Entity(tableName = "lunch_entity")
+data class LunchEntity(
     @PrimaryKey
     @ColumnInfo(name="id")
     var id:String,
@@ -22,6 +21,4 @@ data class PlannerEntity(
 
     @ColumnInfo(name = "strYoutube")
     var strYoutube: String
-
-
 )
