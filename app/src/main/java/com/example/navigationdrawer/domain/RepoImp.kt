@@ -2,10 +2,14 @@ package com.example.navigationdrawer.domain
 
 import com.example.navigationdrawer.data.DataSource
 import com.example.navigationdrawer.data.entities.*
+import com.example.navigationdrawer.data.model.DirectionsDto
 import com.example.navigationdrawer.data.model.ListMeals
 import com.example.navigationdrawer.data.model.Meals
 import com.example.navigationdrawer.data.model.MealsInformation
+import com.example.navigationdrawer.vo.MapsRetrofitClient
 import com.example.navigationdrawer.vo.Resource
+import com.example.navigationdrawer.vo.toUrlParam
+import com.google.android.gms.maps.model.LatLng
 
 class RepoImp(private val dataSource: DataSource):Repo{
 
@@ -111,7 +115,9 @@ class RepoImp(private val dataSource: DataSource):Repo{
         dataSource.deleteAllPlanner()
     }
 
-
+    override suspend fun retrieveDirections(origin: LatLng, destination: LatLng): DirectionsDto {
+       return dataSource.retrieveDirections(origin, destination)
+    }
 
 
 }

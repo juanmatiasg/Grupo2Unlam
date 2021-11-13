@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-android-extensions'
+    id 'com.google.secrets_gradle_plugin' version '0.5'
 }
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.gms.google-services' /*Aplicar el google service para el mapa*/
@@ -118,8 +119,7 @@ dependencies {
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
 
 
-    /*Service Google*/
-    implementation "com.google.android.gms:play-services-location:15.0.1"
+
 
     /*MultipleDex
     * Explicacion: https://frogames.es/solucion-a-error-con-el-dexfile-en-android-studionull-cannot-fit-requested-classes-in-a-single-dexfile/
@@ -163,7 +163,11 @@ dependencies {
 
     //Maps
     implementation 'com.google.android.gms:play-services-maps:17.0.1'
-    implementation 'com.google.android.gms:play-services-location:17.0.0'
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
+    implementation 'com.google.maps:google-maps-services:0.19.0'
+    implementation 'org.slf4j:slf4j-simple:1.7.25'
+
+    
 
     //Firebase Code QR
     implementation 'com.google.mlkit:barcode-scanning:17.0.0' // Eso de manera local

@@ -1,10 +1,12 @@
 package com.example.navigationdrawer.domain
 
 import com.example.navigationdrawer.data.entities.*
+import com.example.navigationdrawer.data.model.DirectionsDto
 import com.example.navigationdrawer.data.model.ListMeals
 import com.example.navigationdrawer.data.model.Meals
 import com.example.navigationdrawer.data.model.MealsInformation
 import com.example.navigationdrawer.vo.Resource
+import com.google.android.gms.maps.model.LatLng
 
 interface Repo{
 
@@ -58,5 +60,8 @@ interface Repo{
     suspend fun deleteAllDinner()
 
     suspend fun deleteAllPlanner()
+
+    suspend fun retrieveDirections(origin: LatLng, destination: LatLng): DirectionsDto
+
 
 }

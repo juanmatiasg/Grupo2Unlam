@@ -4,11 +4,15 @@ import android.app.Application
 import android.widget.Toast
 import com.example.navigationdrawer.data.database.AppDataBase
 import com.example.navigationdrawer.data.entities.*
+import com.example.navigationdrawer.data.model.DirectionsDto
 import com.example.navigationdrawer.data.model.ListMeals
 import com.example.navigationdrawer.data.model.Meals
 import com.example.navigationdrawer.data.model.MealsInformation
+import com.example.navigationdrawer.vo.MapsRetrofitClient
 import com.example.navigationdrawer.vo.Resource
 import com.example.navigationdrawer.vo.RetrofitClient
+import com.example.navigationdrawer.vo.toUrlParam
+import com.google.android.gms.maps.model.LatLng
 import com.google.firebase.auth.FirebaseAuth
 import java.util.concurrent.Executors
 
@@ -114,6 +118,12 @@ class DataSource(private val appDataBase: AppDataBase) {
     suspend fun deleteAllDinner(){
         appDataBase.mealDao().deleteAllDinner()
     }
+
+    suspend fun retrieveDirections(origin: LatLng, destination: LatLng):DirectionsDto{
+        return MapsRetrofitClient.getDirectionsApi().getDirections(origin.toUrlParam(), destination.toUrlParam())
+    }
+
+
 
 
 }

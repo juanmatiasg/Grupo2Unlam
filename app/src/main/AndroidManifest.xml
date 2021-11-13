@@ -9,20 +9,13 @@
     <uses-permission android:name="android.permission.CAMERA" />
 
     <!--Usar el permiso para la llamada -->
-    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
 
-
-    <!--Mapa -->
-
-    <!-- Provides location accuracy to within a city block.-->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
-    <!-- Provides a more accurate location than one provided when you request ACCESS_COARSE_LOCATION.
-     This permission is necessary for some connectivity tasks, such as connecting to nearby
-     devices over Bluetooth Low Energy (BLE). -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+
 
 
     <application
@@ -33,11 +26,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NavigationDrawer">
-        <activity
-            android:name=".ui.planner.PlannerActivity"
-            android:exported="false"
-            android:label="@string/title_activity_planner"
-            android:theme="@style/Theme.NavigationDrawer.NoActionBar" />
+
         <activity
             android:name=".ui.splashScreen.SplashScreenActivity"
             android:exported="true">
@@ -60,6 +49,11 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

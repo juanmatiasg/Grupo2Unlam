@@ -1,14 +1,20 @@
 package com.example.navigationdrawer.ui.profile
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.navigationdrawer.R
 import com.example.navigationdrawer.data.entities.MealEntity
 import com.example.navigationdrawer.data.entities.PlannerEntity
@@ -34,6 +40,13 @@ class ProfileFragment : Fragment() {
     private val db = Firebase.firestore
     lateinit var mAuth: FirebaseAuth
 
+    private val REQUIRED_PERMISSION = arrayOf(
+        Manifest.permission.ACCESS_FINE_LOCATION,
+        Manifest.permission.ACCESS_COARSE_LOCATION
+    )
+    private lateinit var registerPermissionLaunchar: ActivityResultLauncher<Array<String>>
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mAuth = FirebaseAuth.getInstance()
@@ -51,10 +64,12 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         getDataProfile()
-        navToHelp()
+        //navToHelp()
+        createPermissionLauncher()
+        binding.btnHelp.setOnClickListener { launchLocationClicked() }
     }
 
-    private fun getDataProfile(){
+    private fun getDataProfile() {
         try {
             db.collection("users").document(mAuth.uid.toString()).get().addOnSuccessListener {
                 binding.tvEmail.text = mAuth.currentUser!!.email
@@ -67,11 +82,41 @@ class ProfileFragment : Fragment() {
                 binding.tvWeight.text = "${it.getString("weight")} Kg"
                 binding.spaceHeightAndWeight.minimumWidth = 70
             }
-        }
-        catch (e:Exception){
-            Log.e("ProfileFragment","Error")
+        } catch (e: Exception) {
+            Log.e("ProfileFragment", "Error")
         }
 
+    }
+
+    private fun createPermissionLauncher() {
+        registerPermissionLaunchar =
+            registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permission ->
+                if (permission[Manifest.permission.ACCESS_FINE_LOCATION] == true || permission[Manifest.permission.ACCESS_COARSE_LOCATION] == true) {
+                    launchLocationClicked()
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "Se necesita los permisos para lanzar la ubicacion",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+    }
+
+    private fun launchLocationClicked() {
+        if (arePermissionGranted()) {
+            findNavController().navigate(R.id.action_profileFragment_to_nav_slideshow)
+        } else {
+            askPermission() // como pido permiso si no fueron otorgados
+        }
+    }
+
+    private fun askPermission() {
+        registerPermissionLaunchar.launch(REQUIRED_PERMISSION)
+    }
+
+    private fun arePermissionGranted(): Boolean = REQUIRED_PERMISSION.all {
+        ContextCompat.checkSelfPermission(requireContext(), it) == PackageManager.PERMISSION_GRANTED
     }
 
 
@@ -79,9 +124,5 @@ class ProfileFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-    private fun navToHelp(){
-        binding.btnHelp.setOnClickListener {
-            it.findNavController().navigate(R.id.action_profileFragment_to_nav_slideshow)
-        }
-    }
+
 }
