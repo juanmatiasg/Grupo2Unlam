@@ -6,16 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.ComposeView
 import androidx.navigation.findNavController
 import com.example.navigationdrawer.R
 import com.example.navigationdrawer.data.entities.*
 import com.example.navigationdrawer.data.model.Meals
 import com.example.navigationdrawer.databinding.FragmentMealDetailBinding
+import com.example.navigationdrawer.ui.viewImage.ViewImageFragment
 import com.example.navigationdrawer.ui.adapter.AdapterMeals
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.squareup.picasso.Picasso
-import org.koin.android.ext.android.bind
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class MealDetailFragment : Fragment() {
@@ -58,6 +60,7 @@ class MealDetailFragment : Fragment() {
         setUpGuardarAlmuerzo()
         setUpGuardarMerienda()
         setUpGuardarCena()
+        openDialog()
     }
 
     private fun setupGuardarFavoritos() {
@@ -122,6 +125,18 @@ class MealDetailFragment : Fragment() {
         }
 
     }
+
+     fun openDialog(){
+        binding.imageViewMealDetail.setOnClickListener {
+            showImageDialog()
+        }
+    }
+
+    fun showImageDialog(){
+        var newFragment: ViewImageFragment = ViewImageFragment().newInstance(meals.image)
+        newFragment.show(activity!!.supportFragmentManager,"viewImage")
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
