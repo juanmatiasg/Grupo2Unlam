@@ -81,7 +81,7 @@ class HelpFragment : Fragment(), OnMapReadyCallback {
 
     private fun setUpObservers() {
 
-        helpViewModel.currentDirections.observe(this.viewLifecycleOwner, { directions ->
+        helpViewModel.currentDirections.observe(viewLifecycleOwner, { directions ->
             directions?.run {
                 val path = mutableListOf<LatLng>()
                 directions.routes.forEach { route ->
