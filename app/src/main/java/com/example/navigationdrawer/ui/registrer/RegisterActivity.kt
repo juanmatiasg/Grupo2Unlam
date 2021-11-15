@@ -37,6 +37,10 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(binding.root)
         mAuth = FirebaseAuth.getInstance()
         binding.btnFinishLogUp.setOnClickListener { eventos() }
+        binding.tvBtnGoToLogIn.setOnClickListener {
+            var login = Intent(this,LoginActivity::class.java)
+            startActivity(login)
+        }
     }
 
     private fun eventos() {
