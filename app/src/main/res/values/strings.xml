@@ -47,5 +47,5 @@
     <string name="item_carousel"><u>Eliminar</u></string>
     <string name="title_activity_planner_with_compose">PlannerWithComposeActivity</string>
     <string name="title_activity_planner">PlannerActivity</string>
-    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDMvGi6swCMjBHyZlL76lg6_GcfGTy0hGs</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyAHOR3pyuH4N3vuJloY93qDGqcQPmKDMG4</string>
 </resources>

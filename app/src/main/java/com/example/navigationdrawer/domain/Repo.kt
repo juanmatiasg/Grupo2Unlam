@@ -61,7 +61,7 @@ interface Repo{
 
     suspend fun deleteAllPlanner()
 
-    suspend fun retrieveDirections(origin: LatLng, destination: LatLng): DirectionsDto
+    suspend fun retrieveDirections(origin: LatLng, destination: LatLng):DirectionsDto
 
 
 }

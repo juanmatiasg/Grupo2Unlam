@@ -134,7 +134,7 @@ class MealDetailFragment : Fragment() {
 
     fun showImageDialog(){
         var newFragment: ViewImageFragment = ViewImageFragment().newInstance(meals.image)
-        newFragment.show(activity!!.supportFragmentManager,"viewImage")
+        newFragment.show(requireActivity().supportFragmentManager,"viewImage")
     }
 
     override fun onDestroyView() {

@@ -9,6 +9,7 @@
     app:layoutDescription="@xml/fragment_meal_detail_scene3"
     tools:context=".ui.mealDetail.MealDetailFragment">
 
+
     <ImageView
         android:id="@+id/imageView_MealDetail"
         android:layout_width="match_parent"
@@ -305,5 +306,7 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

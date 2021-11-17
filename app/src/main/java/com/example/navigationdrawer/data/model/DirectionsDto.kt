@@ -69,7 +69,6 @@ data class GeocodedWaypoints (
 )
 
 data class Location (
-
     @SerializedName("lat") val lat : Double,
     @SerializedName("lng") val lng : Double
 )

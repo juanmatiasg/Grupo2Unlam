@@ -9,9 +9,10 @@ interface DirectionsApi {
 
     @GET("directions/json")
     suspend fun getDirections(
-        @Query("origin") origin: String,
         @Query("destination") destination: String,
-        //@Query("key") apiKey: String = "AIzaSyAvyrhaNDjhBP0pAniZf1DSYz6Hu_yLLUY"
-        @Query("key") apiKey: String = "${R.string.google_maps_key}"
+        @Query("origin") origin: String,
+        @Query("key") apiKey: String = "AIzaSyAHOR3pyuH4N3vuJloY93qDGqcQPmKDMG4"
     ): DirectionsDto
+
+
 }

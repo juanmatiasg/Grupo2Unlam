@@ -55,6 +55,10 @@
             motion:layout_constraintTop_toTopOf="parent"
             android:layout_width="match_parent"
             android:id="@+id/imageView_MealDetail" />
+        <Constraint
+            motion:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/compose_view"
+            motion:layout_constraintTop_toTopOf="parent" />
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">

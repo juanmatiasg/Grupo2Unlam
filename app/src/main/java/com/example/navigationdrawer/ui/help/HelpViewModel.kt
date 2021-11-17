@@ -15,7 +15,7 @@ class HelpViewModel(val repo: Repo) : ViewModel() {
 
     fun retrieveDirections(origin: LatLng, destination: LatLng) {
         viewModelScope.launch {
-            val directions = repo.retrieveDirections(origin, destination)
+            var directions = repo.retrieveDirections(origin, destination)
             currentDirections.value = directions
         }
     }
