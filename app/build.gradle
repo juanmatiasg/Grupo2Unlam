@@ -2,26 +2,36 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-android-extensions'
-    id 'com.google.firebase.crashlytics'
+    id 'com.google.secrets_gradle_plugin' version '0.5'
 }
 apply plugin: 'kotlin-kapt'
-apply plugin: 'com.android.application'
-apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.gms.google-services' /*Aplicar el google service para el mapa*/
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
     buildToolsVersion "30.0.3"
+
+    testOptions {
+        execution 'ANDROIDX_TEST_ORCHESTRATOR'
+
+        unitTests.all {
+            useJUnitPlatform() // <--- this is the important part
+        }
+    }
 
     defaultConfig {
         applicationId "com.example.navigationdrawer"
-        minSdkVersion 17
-        targetSdkVersion 30
+        minSdkVersion 21
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         multiDexEnabled true
+        vectorDrawables {
+            useSupportLibrary true
+        }
     }
 
     buildTypes {
@@ -30,34 +40,60 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+
+
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    buildFeatures { viewBinding = true }
+
 
     kotlinOptions {
         jvmTarget = '1.8'
+        useIR = true
+    }
+
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+
+    buildFeatures{
+        viewBinding = true
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion compose_version
+        kotlinCompilerVersion '1.5.21'
     }
 }
 
 dependencies {
-
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.5.0'
-    implementation 'androidx.appcompat:appcompat:1.3.0'
-    implementation 'com.google.android.material:material:1.3.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.core:core-ktx:1.6.0'
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'com.google.android.material:material:1.4.0'
+
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'com.google.android.gms:play-services-maps:17.0.1'
-    implementation 'com.google.firebase:firebase-database:19.2.1'
-    implementation 'com.google.firebase:firebase-crashlytics-ktx:18.1.0'
-    implementation 'com.google.firebase:firebase-analytics-ktx:19.0.0'
-    implementation 'com.google.firebase:firebase-auth:21.0.1'
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+
+    implementation "androidx.constraintlayout:constraintlayout:2.1.1"
+
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.0'
+
+    implementation 'com.google.firebase:firebase-firestore-ktx:23.0.4'
+    implementation 'androidx.camera:camera-core:1.0.2'
+    implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
+    implementation 'androidx.activity:activity-compose:1.4.0'
+
+
+    testImplementation 'org.testing:testing:6.9.6'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     /*Navigation Component*/
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
@@ -68,10 +104,8 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
 
-
     /*Gson*/
     implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
-
 
     /*Retrofit*/
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
@@ -87,29 +121,24 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
 
-    implementation 'androidx.room:room-ktx:2.2.6'
 
     /*Youtube Lib*/
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
 
 
-    /*Service Google*/
-    implementation "com.google.android.gms:play-services-location:15.0.1"
+
 
     /*MultipleDex
     * Explicacion: https://frogames.es/solucion-a-error-con-el-dexfile-en-android-studionull-cannot-fit-requested-classes-in-a-single-dexfile/
     * */
     implementation 'com.android.support:multidex:1.0.3'
 
-    /*Firebase*/
-    implementation platform('com.google.firebase:firebase-bom:28.2.0')
-    implementation 'com.google.firebase:firebase-analytics'
-
-
-    def room_version = "2.2.5"
-
-    implementation "androidx.room:room-runtime:$room_version"
+    /*Room*/
+    def room_version = "2.3.0"
+    kapt "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+
 
     /*Inyeccion de dependencias KOIN*/
     def koin_version = "2.0.0-GA2"
@@ -117,6 +146,64 @@ dependencies {
     implementation "org.koin:koin-android-viewmodel:$koin_version"
     testImplementation "org.koin:koin-test:$koin_version"
 
-   
+
+    // Tests
+    testImplementation 'io.mockk:mockk:1.10.2'
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.2'
+    testImplementation 'androidx.arch.core:core-testing:2.1.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    testImplementation("org.assertj:assertj-core:3.11.1")
+
+
+    //Firebase
+    implementation 'com.google.firebase:firebase-auth-ktx:21.0.1'
+    implementation platform('com.google.firebase:firebase-bom:28.4.2')
+    implementation 'com.google.firebase:firebase-analytics'
+
+    //CameraX
+    def camerax_version = "1.0.1"
+    implementation "androidx.camera:camera-camera2:$camerax_version"
+    implementation "androidx.camera:camera-lifecycle:$camerax_version"
+    implementation "androidx.camera:camera-view:1.0.0-alpha27"
+
+    //Maps
+    implementation 'com.google.android.gms:play-services-maps:17.0.1'
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
+    implementation 'com.google.maps:google-maps-services:0.19.0'
+    implementation 'org.slf4j:slf4j-simple:1.7.25'
+
+    
+
+    //Firebase Code QR
+    implementation 'com.google.mlkit:barcode-scanning:17.0.0' // Eso de manera local
+    // implementation 'com.google.android.gms:play-services-mlkit-barcode-scanning:16.2.1' // eso es para Firebase
+
+    //Compose
+    implementation("androidx.compose.ui:ui:1.0.1")
+    // Tooling support (Previews, etc.)
+    implementation("androidx.compose.ui:ui-tooling:1.0.1")
+    // Foundation (Border, Background, Box, Image, Scroll, shapes, animations, etc.)
+    implementation("androidx.compose.foundation:foundation:1.0.1")
+    // Material Design
+    implementation("androidx.compose.material:material:1.0.1")
+    // Material design icons
+    implementation("androidx.compose.material:material-icons-core:1.0.1")
+    implementation("androidx.compose.material:material-icons-extended:1.0.1")
+
+    // Integration with observables
+    implementation("androidx.compose.runtime:runtime-livedata:1.0.1")
+    implementation("androidx.compose.runtime:runtime-rxjava2:1.0.1")
+
+    // UI Tests
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.0.1")
+
+    //Navigation
+    def nav_compose_version = "1.0.0-alpha01"
+    implementation "androidx.navigation:navigation-compose:$nav_compose_version"
+
+    //More --> Compose
+    implementation("io.coil-kt:coil-compose:1.3.1")
 
 }

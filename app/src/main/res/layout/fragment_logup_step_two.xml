@@ -53,6 +53,7 @@
         app:layout_constraintTop_toBottomOf="@+id/Ic_logUpWithGoogleStep2">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputTextDateOfBirth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#85FFFFFF" />
@@ -72,6 +73,7 @@
         app:layout_constraintTop_toBottomOf="@+id/inputDate">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputTextWeight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#85FFFFFF"/>
@@ -91,6 +93,7 @@
         app:layout_constraintTop_toBottomOf="@+id/inputWeight">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputTextHeight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#85FFFFFF"/>
@@ -111,6 +114,7 @@
         app:layout_constraintTop_toBottomOf="@+id/inputHeight">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputTextGender"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#85FFFFFF"/>

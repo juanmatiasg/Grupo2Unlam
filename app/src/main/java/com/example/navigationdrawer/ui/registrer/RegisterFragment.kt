@@ -1,27 +1,35 @@
 package com.example.navigationdrawer.ui.registrer
 
+import android.app.Application
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.navigation.findNavController
+import androidx.annotation.NonNull
+import androidx.annotation.RequiresApi
+import androidx.core.view.get
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import com.example.navigationdrawer.R
-import com.example.navigationdrawer.data.entities.PlannerEntity
-import com.example.navigationdrawer.data.model.Meals
-import com.example.navigationdrawer.databinding.FragmentHomeBinding
+import com.example.navigationdrawer.data.model.User
 import com.example.navigationdrawer.databinding.FragmentRegisterBinding
-import com.example.navigationdrawer.ui.adapter.AdapterHome
-import com.example.navigationdrawer.ui.home.HomeViewModel
-import com.example.navigationdrawer.vo.Status
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.Dispatchers
+import org.koin.android.ext.android.bind
 import org.koin.android.viewmodel.ext.android.viewModel
-import java.text.DateFormat
-import java.util.*
+import org.koin.dsl.koinApplication
+
 
 class RegisterFragment : Fragment() {
 
@@ -29,9 +37,19 @@ class RegisterFragment : Fragment() {
 
     private val binding get() = _binding!!
 
-    private val mainViewModel : RegisterViewModel by viewModel()
-
     private lateinit var auth: FirebaseAuth
+
+    val db = Firebase.firestore
+
+    private var name: String = ""
+    private var surname: String = ""
+    private var email: String = ""
+    private var password: String = ""
+    private var confirmPassword: String = ""
+    private var dateOfBirth: String = ""
+    private var weight: String = ""
+    private var height: String = ""
+    private var gender: String = ""
 
 
     override fun onCreateView(
@@ -40,27 +58,74 @@ class RegisterFragment : Fragment() {
         savedInstanceState: Bundle?
 
     ): View? {
-        _binding = FragmentRegisterBinding.inflate(layoutInflater,container,false)
+        _binding = FragmentRegisterBinding.inflate(layoutInflater, container, false)
 
-        val view = binding.root
-
-        auth = Firebase.auth
-        return view
+        return binding.root
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //setDate()
-        //navToOtherFragment()
+        auth = FirebaseAuth.getInstance()
+
+        binding.btnFinishLogUp.setOnClickListener { register() }
+        saveIntoDatabaseFirebase()
+    }
+
+    private fun saveIntoDatabaseFirebase() {
+        this.name = binding.editTextName.text.toString()
+        this.surname = binding.editTextSurname.text.toString()
+        this.dateOfBirth = binding.inputTextDateOfBirth.text.toString()
+        this.weight = binding.inputTextWeight.text.toString()
+        this.height = binding.inputTextHeight.text.toString()
+        this.gender = binding.inputTextGender.text.toString()
+
+        val user = hashMapOf(
+            "name" to this.name,
+            "surname" to this.surname,
+            "dateOfBirth" to this.dateOfBirth,
+            "weight" to this.weight,
+            "height" to this.height,
+            "gender" to this.gender
+        )
+
+        db.collection("users").document(this.email)
+            .set(user)
+            .addOnSuccessListener { Log.d("SUCCESS", "DocumentSnapshot successfully written!") }
+            .addOnFailureListener { e -> Log.w("FAILURE", "Error writing document", e) }
+    }
+
+    private fun register() {
+        email = binding.editTextEmail.text.toString()
+        password = binding.editTextPassword.toString()
+
+        if (!email.isNullOrEmpty() && !password.isNullOrEmpty()) {
+            registerUser()
+        } else {
+            Toast.makeText(
+                requireContext(),
+                "Por favor completa los datos correspondientes",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
     }
 
 
-    private fun navToOtherFragment(){
-        /*binding.btnAddMealMain.setOnClickListener {
-            findNavController().navigate(R.id.registerFragment)
-        }*/
-    }
+    private fun registerUser() {
+        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(
+            OnCompleteListener {
+                if (it.isSuccessful) {
+                    //findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "No pudo haber registrado el usuario",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            })
 
+    }
 
 
     override fun onDestroyView() {

@@ -11,6 +11,7 @@
     <string name="menu_home">Home</string>
     <string name="menu_favourite">Favourite</string>
     <string name="menu_help">Help</string>
+    <string name="logOut">Logout</string>
     <string name="menu_meal">Meal</string>
     <string name="meal_detail">Detalles</string>
     <string name="textView_title">Title</string>
@@ -21,10 +22,8 @@
     <string name="lorem_impsumt">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
     <string name="msjeFavoritos">Se guardo en favoritos</string>
     <string name="msjePlanner">Se guardo en la planificacion del dia</string>
-    
-    
-    
-    
+
+    <!-- TODO: Texts -->
     <string name="inputNameRegister">Nombre</string>
     <string name="inputSurnameRegister">Apellido</string>
     <string name="inputEmailRegister">Email</string>
@@ -35,5 +34,18 @@
     <string name="selectYourDayOfBirthdayRegister">Fecha de nacimiento:</string>
     <string name="selectYourGenderRegister">Género:</string>
     <string name="hintGenderMenu">Selecione una opción...</string>
+    <string name="iniciar_sesion">Iniciar Sesión</string>
+    <string name="meal_planner">My Meal Planner</string>
 
+    <!--TODO: Onboarding Section -->
+    <string name="title_confirmEmail">Se registró correctamente</string>
+    <string name="subtitle_confirmEmail">Verifique su email\n para iniciar sesión</string>
+    <string name="btn_confirmEmail"><u>Ir a iniciar sesión</u></string>
+
+
+    <!--TODO: Carousel Section -->
+    <string name="item_carousel"><u>Eliminar</u></string>
+    <string name="title_activity_planner_with_compose">PlannerWithComposeActivity</string>
+    <string name="title_activity_planner">PlannerActivity</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyAHOR3pyuH4N3vuJloY93qDGqcQPmKDMG4</string>
 </resources>

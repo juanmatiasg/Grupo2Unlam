@@ -54,22 +54,47 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="#F60000"
         android:drawableLeft="@drawable/ic_baseline_call_24"
         android:text="Emergencias"
         app:cornerRadius="21dp"
         app:layout_constraintEnd_toEndOf="@+id/imgBackground"
         app:layout_constraintStart_toStartOf="@+id/imgBackground"
-        app:layout_constraintTop_toBottomOf="@+id/mapView" />
+        app:layout_constraintTop_toBottomOf="@+id/map" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/navigate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#F60000"
+        android:src="@drawable/ic_baseline_search_24"
+        app:cornerRadius="21dp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtTitleAyuda"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtTitleAyuda"
+        app:layout_constraintTop_toTopOf="@+id/txtTitleAyuda">
+
+    </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
     <com.google.android.gms.maps.MapView
         android:id="@+id/mapView"
         android:layout_width="290dp"
         android:layout_height="306dp"
+        app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="@+id/imgBackground"
         app:layout_constraintStart_toStartOf="@+id/imgBackground"
         app:layout_constraintTop_toBottomOf="@+id/txtDescription" />
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="290dp"
+        android:layout_height="306dp"
+        app:layout_constraintEnd_toEndOf="@+id/imgBackground"
+        app:layout_constraintStart_toStartOf="@+id/imgBackground"
+        app:layout_constraintTop_toBottomOf="@+id/txtDescription" />
+
 
     <TextView
         android:id="@+id/textView"

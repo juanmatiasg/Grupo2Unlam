@@ -1,6 +1,5 @@
 package com.example.navigationdrawer.ui.adapter
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,11 +7,8 @@ import android.widget.ImageView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.*
 import com.example.navigationdrawer.R
-import com.example.navigationdrawer.data.entities.MealEntity
 import com.example.navigationdrawer.data.model.Meals
-import com.example.navigationdrawer.databinding.FragmentHomeBinding
-import com.example.navigationdrawer.databinding.ItemsMainBinding
-import com.example.navigationdrawer.databinding.ItemsMealBinding
+import com.example.navigationdrawer.databinding.ItemCarouselBinding
 import com.squareup.picasso.Picasso
 
 class AdapterHome(private val items: List<Meals>, private val itemClickListener: OnMealsListener): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -21,17 +17,17 @@ class AdapterHome(private val items: List<Meals>, private val itemClickListener:
         fun deleteFavouriteListener(item:Meals,position: Int)
     }
 
-    private lateinit var itemsMainBinding: ItemsMainBinding
+    private lateinit var itemsMainBinding: ItemCarouselBinding
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        itemsMainBinding= ItemsMainBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        itemsMainBinding= ItemCarouselBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return ViewHolder(itemsMainBinding)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         itemsMainBinding.txtTitleMain.text=items[position].title
         itemsMainBinding.imgVMealMain.loadUrl(items[position].image)
-        itemsMainBinding.txtDescriptionPlannerMain.text=items[position].description
+        //itemsMainBinding.txtDescriptionPlannerMain.text=items[position].description
         itemsMainBinding.btnUiClearMain.setOnClickListener{
             itemClickListener.deleteFavouriteListener(items[position],position)
             val lista= items as ArrayList
@@ -61,7 +57,7 @@ class AdapterHome(private val items: List<Meals>, private val itemClickListener:
         items.addAll(list)
         notifyDataSetChanged()
     }*/
-    class ViewHolder(binding: ItemsMainBinding):RecyclerView.ViewHolder(binding.root)
+    class ViewHolder(binding: ItemCarouselBinding):RecyclerView.ViewHolder(binding.root)
 
 
 }
